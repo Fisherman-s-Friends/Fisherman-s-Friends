@@ -1,6 +1,34 @@
 # Fishing game
 A simple game about fishing
 # Implementation ideas
+## ClassDiagram
+```mermaid
+classDiagram
+FishController ..> Fish
+PlayerController ..> Player
+Player ..> FishingTool
+FishingRod <-- FishingTool
+Harpoon <-- FishingTool
+SmollFish <-- Fish
+MediumFish <-- Fish
+BigFish <-- Fish
+GameController ..> FishController
+GameController ..> PlayerController
+class FishController {
+    - Fish[]
+}
+class PlayerController {
+     - Player
+}
+class GameController  {
+     - PlayerController
+     - FishController
+}
+class Player {
+    - FishingTool
+}
+class FishingTool
+```
 ## Fishing rod
 ### Throwing
 With a rod the player could charge the throw (at a certain direction?) and on release the character throws the line. The throwable object (hook, bob etc.) flows in a simple arc and once it hit the surface of the water a line and a hook is generated down from that point,
