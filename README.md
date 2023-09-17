@@ -1,5 +1,7 @@
 # Fishing game
 A simple game about fishing
+
+[Jam board](https://jamboard.google.com/d/1iwD9tJyCewuWMxKnNL2V91Vn9Ly58QSOyiQ9IMgqwbg/edit?usp=sharing)
 # Implementation ideas
 ## ClassDiagram
 ```mermaid
