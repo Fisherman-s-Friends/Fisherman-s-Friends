@@ -33,7 +33,7 @@ class FishingTool
 ```
 ## Fishing rod
 ### Throwing
-With a rod the player could charge the throw (at a certain direction?) and on release the character throws the line. The throwable object (hook, bob etc.) flows in a simple arc and once it hit the surface of the water a line and a hook is generated down from that point,
+With a rod the player could wind-up the throw (at a certain direction?) and on release the character throws the line. The throwable object (hook, bob etc.) flows in a simple arc and once it hit the surface of the water a line and a hook is generated down from that point,
 ### Catching
 Once fish has begun jerking or has bitten the line player can pull on the line to hook the fish. Once hooked the player can reel the fish in.
 ### Rod alternative: Harpoon
