@@ -120,3 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3599cc599ce3c4246a4f0d379dc4ddbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  thershold: 0.1
+  minTargetPointDistance: 1
+  maxTargetPointDistance: 10
+  target: {x: 0, y: 0, z: 0}
