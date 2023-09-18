@@ -860,10 +860,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3126744789949641723, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
-      propertyPath: bobberRb
-      value: 
-      objectReference: {fileID: 8570724249587740579}
     - target: {fileID: 5396965144209481164, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
       propertyPath: m_Name
       value: BoatAndRod
