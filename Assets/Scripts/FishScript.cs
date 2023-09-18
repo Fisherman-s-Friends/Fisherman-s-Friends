@@ -64,9 +64,10 @@ public class FishScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(target, 0.25f);
+        Gizmos.DrawWireSphere(target, 0.2f);
+        Gizmos.DrawLine(transform.position, target);
     }
 }
