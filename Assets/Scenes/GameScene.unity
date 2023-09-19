@@ -138,6 +138,8 @@ GameObject:
   m_Component:
   - component: {fileID: 375046425}
   - component: {fileID: 375046424}
+  - component: {fileID: 375046426}
+  - component: {fileID: 375046427}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -175,31 +177,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &433397244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 433397246}
-  - component: {fileID: 433397245}
-  - component: {fileID: 433397247}
-  m_Layer: 0
-  m_Name: InputSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &433397245
+--- !u!114 &375046426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433397244}
+  m_GameObject: {fileID: 375046423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobberObj: {fileID: 159751007}
+--- !u!114 &375046427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375046423}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -220,7 +217,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 433397247}
+      - m_Target: {fileID: 375046426}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: StartCast
         m_Mode: 0
@@ -236,7 +233,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/CastLine[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 433397247}
+      - m_Target: {fileID: 375046426}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: ResetCast
         m_Mode: 0
@@ -255,34 +252,6 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!4 &433397246
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433397244}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &433397247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433397244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bobberObj: {fileID: 159751007}
 --- !u!1 &686230780
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +608,5 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 375046425}
-  - {fileID: 433397246}
   - {fileID: 7728236613053267426}
   - {fileID: 686230784}
