@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!54 &159751007 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3388612313448133279, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
+  m_PrefabInstance: {fileID: 7728236613053267426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &375046423
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishBoundingBoxOffset: {x: 0, y: 0, z: 0}
   fishBoundingBoxSize: {x: 25, y: 15, z: 10}
-  fishObject: {fileID: 1662539501538408675, guid: 8fd1c87ffb7c1704eb89626f1c5dde12, type: 3}
+  fishObject: {fileID: 0}
 --- !u!4 &375046425
 Transform:
   m_ObjectHideFlags: 0
@@ -229,6 +234,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 466d0f90-f17a-418a-817c-94feb4edf825
     m_ActionName: PlayerActions/CastLine[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 433397247}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: ResetCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 529af607-f59a-44f3-9770-0d9fe17df192
+    m_ActionName: PlayerActions/ResetCast[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions
@@ -261,9 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobberObj: {fileID: 8570724249587740579}
-  castLineX: 2
-  castLineY: 2
+  bobberObj: {fileID: 159751007}
 --- !u!1 &686230780
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,11 +632,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
---- !u!54 &8570724249587740579 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 3388612313448133279, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
-  m_PrefabInstance: {fileID: 7728236613053267426}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
