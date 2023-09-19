@@ -45,7 +45,7 @@ public class FishScript : MonoBehaviour
         
         var newDir = Vector3.RotateTowards(transform.forward, target - pos, turningSpeed * Time.deltaTime, turningSpeedChange);
         transform.position += newDir * (speed * Time.deltaTime);
-        transform.rotation = Quaternion.LookRotation(newDir,  new Vector3(0, 0, 1));
+        transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
     }
 
     private void CreateNewTarget ()
