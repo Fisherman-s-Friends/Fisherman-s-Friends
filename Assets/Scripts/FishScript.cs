@@ -16,15 +16,15 @@ public class FishScript : MonoBehaviour
     private float thershold;
 
     [SerializeField]
-    private float minTargetPointDistance;
+    protected float minTargetPointDistance;
 
     [SerializeField]
-    private float maxTargetPointDistance;
+    protected float maxTargetPointDistance;
 
     [SerializeField] private float turningSpeed;
     [SerializeField] private float turningSpeedChange;
 
-    private Vector3 target;
+    protected Vector3 target;
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +48,17 @@ public class FishScript : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
     }
 
-    private void CreateNewTarget ()
+    protected virtual void CreateNewTarget ()
     {
         target = transform.position + UnityEngine.Random.rotation * Vector3.forward * UnityEngine.Random.Range(minTargetPointDistance, maxTargetPointDistance);
+        KeepTargetInsideBounds();
+    }
 
+    protected void KeepTargetInsideBounds()
+    {
         if (target.x < controller.fishBoundingBoxOffset.x - controller.fishBoundingBoxSize.x / 2 ||
-            target.x > controller.fishBoundingBoxOffset.x + controller.fishBoundingBoxSize.x / 2) { 
+            target.x > controller.fishBoundingBoxOffset.x + controller.fishBoundingBoxSize.x / 2)
+        {
             target.x += target.x < controller.fishBoundingBoxOffset.x ? maxTargetPointDistance : -maxTargetPointDistance;
         }
 

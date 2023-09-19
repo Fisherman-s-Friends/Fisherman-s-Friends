@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WaterPlane
+  - boidFish
   layers:
   - Default
   - TransparentFX
