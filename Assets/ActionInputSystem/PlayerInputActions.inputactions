@@ -29,7 +29,7 @@
                     "name": "",
                     "id": "2f6a5495-bc49-4f2e-822c-b62b16f62456",
                     "path": "<Keyboard>/space",
-                    "interactions": "Hold(duration=0.3,pressPoint=0.2)",
+                    "interactions": "Hold(duration=0.2,pressPoint=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "CastLine",
