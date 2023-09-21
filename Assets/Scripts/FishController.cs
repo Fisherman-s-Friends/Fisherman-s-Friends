@@ -13,6 +13,8 @@ public class FishController : MonoBehaviour
     [SerializeField]
     private GameObject fishObject;
 
+    private List<GameObject> fishList = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,18 @@ public class FishController : MonoBehaviour
     private void SpawnFish()
     {
         var fish = Instantiate(fishObject, transform.position, transform.rotation);
+        fishList.Add(fish);
         fish.GetComponent<FishScript>().Controller = this;
+    }
+
+    public void KillFish(GameObject fish)
+    {
+        fishList.Remove(fish);
+        fish.GetComponent<FishScript>().Kill();
+    }
+
+    public bool isFish(GameObject gameObject)
+    {
+        return fishList.Contains(gameObject);
     }
 }

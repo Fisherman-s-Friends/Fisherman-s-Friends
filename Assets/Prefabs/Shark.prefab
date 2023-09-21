@@ -78,6 +78,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shark
       objectReference: {fileID: 0}
+    - target: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: m_TagString
+      value: shark
+      objectReference: {fileID: 0}
     - target: {fileID: 4333599181381960848, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -118,7 +122,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2191651640291972495, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
     m_AddedGameObjects:
@@ -129,6 +134,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8330981947973768934}
+    - targetCorrespondingSourceObject: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -902244385823292549}
   m_SourcePrefab: {fileID: 100100000, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
 --- !u!1 &5316582851097913313 stripped
 GameObject:
@@ -156,6 +164,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-902244385823292549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316582851097913313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e47f8ef9e009f7419839009e38ce6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  thershold: 1
+  minTargetPointDistance: 1.5
+  maxTargetPointDistance: 10
+  turningSpeed: 3
+  turningSpeedChange: 0
+  deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
+  senseRadius: 7
+  cannibal: 0
+  huntingSpeed: 6
+  attackThershold: 1
 --- !u!4 &6650613773048691541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4333599181381960848, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
