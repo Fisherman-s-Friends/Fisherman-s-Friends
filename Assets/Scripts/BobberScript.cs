@@ -3,6 +3,8 @@ using UnityEngine;
 public class BobberScript : MonoBehaviour
 {
     private Rigidbody bobberRb;
+
+
     private void OnCollisionEnter(Collision collision)
     {
         bobberRb = GetComponent<Rigidbody>();  
