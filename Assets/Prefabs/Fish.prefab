@@ -159,6 +159,7 @@ MonoBehaviour:
   maxTargetPointDistance: 10
   turningSpeed: 3
   turningSpeedChange: 0
+  deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
 --- !u!54 &-2310230062376628674
 Rigidbody:
   m_ObjectHideFlags: 0

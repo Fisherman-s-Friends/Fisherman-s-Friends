@@ -20,17 +20,20 @@ public class BoidFishScript : FishScript
         var boidTriggerCollider = gameObject.AddComponent<SphereCollider>();
         boidTriggerCollider.radius = boidSenseRadius;
         boidTriggerCollider.isTrigger = true;
+
+        base.Start();
     }
 
     protected override void CreateNewTarget()
     {
-        var scripts = closeBoids.Select(c => c.GetComponent<BoidFishScript>());
+        var scripts = closeBoids.Where(c => c != null).Select(c => c.GetComponent<BoidFishScript>());
 
         Vector3 avarageDirection = Vector3.zero;
 
         foreach (var script in scripts)
         {
-            avarageDirection += script.GetDirection();
+            if(script)
+                avarageDirection += script.GetDirection();
         }
 
         avarageDirection = avarageDirection.normalized;

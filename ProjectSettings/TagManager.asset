@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WaterPlane
   - boidFish
+  - shark
   layers:
   - Default
   - TransparentFX

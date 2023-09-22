@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class FishScript : MonoBehaviour
 {
-    private FishController controller;
+    protected FishController controller;
 
     public FishController Controller { set { controller = value; } }
 
     [SerializeField]
-    private float speed;
+    protected float speed;
 
     [SerializeField] 
     private float thershold;
@@ -21,28 +21,35 @@ public class FishScript : MonoBehaviour
     [SerializeField]
     protected float maxTargetPointDistance;
 
-    [SerializeField] private float turningSpeed;
-    [SerializeField] private float turningSpeedChange;
+    [SerializeField] protected float turningSpeed;
+    [SerializeField] protected float turningSpeedChange;
+
+    [SerializeField] private GameObject deathParticle;
 
     protected Vector3 target;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         target = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
+    {
+        Move();
+    }
+
+    protected virtual void Move()
     {
         // save position as variable to make code efficient see: https://github.com/JetBrains/resharper-unity/wiki/Avoid-multiple-unnecessary-property-accesses
         var pos = transform.position;
 
-        if(Vector3.Distance(pos, target) < thershold)
+        if (Vector3.Distance(pos, target) < thershold)
         {
             CreateNewTarget();
         }
-        
+
         var newDir = Vector3.RotateTowards(transform.forward, target - pos, turningSpeed * Time.deltaTime, turningSpeedChange);
         transform.position += newDir * (speed * Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
@@ -73,6 +80,12 @@ public class FishScript : MonoBehaviour
         {
             target.y += target.y < controller.fishBoundingBoxOffset.y ? maxTargetPointDistance : -maxTargetPointDistance;
         }
+    }
+
+    public void Kill()
+    {
+        Instantiate(deathParticle, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
