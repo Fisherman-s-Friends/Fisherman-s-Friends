@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A fish type that can detect other objects(such as fish) near it.
+/// </summary>
+/// <remarks>This is meant to be abstract class. If you want to use this you have to inherit this class into an implementation class</remarks>
 public abstract class DetectingFish : FishScript
 {
     [SerializeField] private float detectionRange;
