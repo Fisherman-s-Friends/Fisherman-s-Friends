@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectingFish : FishScript
+public abstract class DetectingFish : FishScript
 {
     [SerializeField] private float detectionRange;
 
@@ -24,10 +24,7 @@ public class DetectingFish : FishScript
     /// </summary>
     /// <param name="other">The collider</param>
     /// <returns>If the collider should be counted</returns>
-    protected virtual bool FilterCollider(Collider other)
-    {
-        return true;
-    }
+    protected abstract bool FilterCollider(Collider other);
 
     private void OnTriggerEnter(Collider other)
     {
