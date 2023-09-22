@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  thershold: 0.1
+  threshold: 0.2
   minTargetPointDistance: 1.5
   maxTargetPointDistance: 10
   turningSpeed: 3

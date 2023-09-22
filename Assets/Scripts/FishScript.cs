@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FishScript : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class FishScript : MonoBehaviour
     protected float speed;
 
     [SerializeField] 
-    private float thershold;
+    private float threshold;
 
     [SerializeField]
     protected float minTargetPointDistance;
@@ -29,25 +30,28 @@ public class FishScript : MonoBehaviour
     protected Vector3 target;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         target = transform.position;
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         Move();
     }
 
+    /// <summary>
+    /// Moves the fish towards its target
+    /// </summary>
     protected virtual void Move()
     {
         // save position as variable to make code efficient see: https://github.com/JetBrains/resharper-unity/wiki/Avoid-multiple-unnecessary-property-accesses
         var pos = transform.position;
 
-        if (Vector3.Distance(pos, target) < thershold)
+        if (Vector3.Distance(pos, target) < threshold)
         {
-            CreateNewTarget();
+            target = CreateNewTarget();
         }
 
         var newDir = Vector3.RotateTowards(transform.forward, target - pos, turningSpeed * Time.deltaTime, turningSpeedChange);
@@ -55,33 +59,18 @@ public class FishScript : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
     }
 
-    protected virtual void CreateNewTarget ()
+    /// <summary>
+    /// Create a new target position
+    /// </summary>
+    protected virtual Vector3 CreateNewTarget()
     {
-        target = transform.position + UnityEngine.Random.rotation * Vector3.forward * UnityEngine.Random.Range(minTargetPointDistance, maxTargetPointDistance);
-        KeepTargetInsideBounds();
+        var point = transform.position + UnityEngine.Random.rotation * Vector3.forward * UnityEngine.Random.Range(minTargetPointDistance, maxTargetPointDistance);
+        return controller.MovePointInsideBounds(point, maxTargetPointDistance);
     }
 
-    protected void KeepTargetInsideBounds()
-    {
-        if (target.x < controller.fishBoundingBoxOffset.x - controller.fishBoundingBoxSize.x / 2 ||
-            target.x > controller.fishBoundingBoxOffset.x + controller.fishBoundingBoxSize.x / 2)
-        {
-            target.x += target.x < controller.fishBoundingBoxOffset.x ? maxTargetPointDistance : -maxTargetPointDistance;
-        }
-
-        if (target.z < controller.fishBoundingBoxOffset.z - controller.fishBoundingBoxSize.z / 2 ||
-            target.z > controller.fishBoundingBoxOffset.z + controller.fishBoundingBoxSize.z / 2)
-        {
-            target.z += target.z < controller.fishBoundingBoxOffset.z ? maxTargetPointDistance : -maxTargetPointDistance;
-        }
-
-        if (target.y < controller.fishBoundingBoxOffset.y - controller.fishBoundingBoxSize.y / 2 ||
-            target.y > controller.fishBoundingBoxOffset.y + controller.fishBoundingBoxSize.y / 2)
-        {
-            target.y += target.y < controller.fishBoundingBoxOffset.y ? maxTargetPointDistance : -maxTargetPointDistance;
-        }
-    }
-
+    /// <summary>
+    /// Destroy the gameobject and instantiate death particle effect in its place.
+    /// </summary>
     public void Kill()
     {
         Instantiate(deathParticle, transform.position, transform.rotation);
