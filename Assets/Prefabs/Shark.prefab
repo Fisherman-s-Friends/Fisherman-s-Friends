@@ -187,6 +187,7 @@ MonoBehaviour:
   cannibal: 0
   huntingSpeed: 6
   attackThershold: 1
+  attackCooldown: 2
 --- !u!4 &6650613773048691541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4333599181381960848, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}

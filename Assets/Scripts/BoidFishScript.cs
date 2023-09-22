@@ -20,6 +20,8 @@ public class BoidFishScript : FishScript
         var boidTriggerCollider = gameObject.AddComponent<SphereCollider>();
         boidTriggerCollider.radius = boidSenseRadius;
         boidTriggerCollider.isTrigger = true;
+
+        base.Start();
     }
 
     protected override void CreateNewTarget()

@@ -14,21 +14,40 @@ public class HunterFish : FishScript
     [SerializeField]
     private bool cannibal;
 
+    [SerializeField]
+    private float huntingSpeed;
+
+    [SerializeField]
+    private float attackThershold;
+
+    [SerializeField] 
+    private float attackCooldown;
+
+    private float attackTimer;
+
     private List<Collider> closePrey;
 
     private bool hunting;
 
-    [SerializeField]
-    private float huntingSpeed;
-    [SerializeField]
-    private float attackThershold;
-
     private void Start()
     {
+        attackTimer = 0;
+
         closePrey = new List<Collider>();
         var preyTriggerCollider = gameObject.AddComponent<SphereCollider>();
         preyTriggerCollider.radius = senseRadius;
         preyTriggerCollider.isTrigger = true;
+
+        base.Start();
+    }
+
+    void Update()
+    {
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+        base.Update();
     }
 
     protected override void Move()
@@ -39,7 +58,7 @@ public class HunterFish : FishScript
             return;
         }
 
-        if(closePrey.Count == 0) 
+        if(closePrey.Count == 0 || attackTimer > 0) 
         {
             hunting = false;
             return;
@@ -52,6 +71,7 @@ public class HunterFish : FishScript
         {
             closePrey.Remove(closestPrey);
             controller.KillFish(closestPrey.gameObject);
+            attackTimer = attackCooldown;
             return;
         }
 

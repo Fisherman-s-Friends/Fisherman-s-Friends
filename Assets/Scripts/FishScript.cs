@@ -29,13 +29,13 @@ public class FishScript : MonoBehaviour
     protected Vector3 target;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         target = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         Move();
     }
