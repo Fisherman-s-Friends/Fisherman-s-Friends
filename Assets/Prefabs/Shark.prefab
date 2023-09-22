@@ -177,16 +177,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  thershold: 1
+  threshold: 0.5
   minTargetPointDistance: 1.5
   maxTargetPointDistance: 10
   turningSpeed: 3
   turningSpeedChange: 0
   deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
-  senseRadius: 7
+  detectionRange: 5
   cannibal: 0
   huntingSpeed: 6
-  attackThershold: 1
+  attackThreshold: 1
   attackCooldown: 2
 --- !u!4 &6650613773048691541 stripped
 Transform:

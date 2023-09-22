@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static UnityEditor.PlayerSettings;
 
-public class HunterFish : FishScript
+public class HunterFish : DetectingFish
 {
-
-    [SerializeField]
-    private float senseRadius;
-
     [SerializeField]
     private bool cannibal;
 
@@ -18,30 +15,23 @@ public class HunterFish : FishScript
     private float huntingSpeed;
 
     [SerializeField]
-    private float attackThershold;
+    private float attackThreshold;
 
     [SerializeField] 
     private float attackCooldown;
 
     private float attackTimer;
 
-    private List<Collider> closePrey;
-
     private bool hunting;
 
-    private void Start()
+    protected override void Start()
     {
         attackTimer = 0;
-
-        closePrey = new List<Collider>();
-        var preyTriggerCollider = gameObject.AddComponent<SphereCollider>();
-        preyTriggerCollider.radius = senseRadius;
-        preyTriggerCollider.isTrigger = true;
 
         base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
         if (attackTimer > 0)
         {
@@ -54,54 +44,43 @@ public class HunterFish : FishScript
     {
         if (!hunting)
         {
-            base.Move();
-            return;
+            if (closeColliders.Count == 0)
+            {
+                base.Move();
+                return;
+            }
+
+            hunting = true;
         }
 
-        if(closePrey.Count == 0 || attackTimer > 0) 
+        if(closeColliders.Count == 0 || attackTimer > 0) 
         {
             hunting = false;
             base.Move();
             return;
         }
 
-        var closestPrey = closePrey.Where(o => o != null).Select(o => o).OrderBy(o => (transform.position - o.transform.position).magnitude).First();
+        var pos = transform.position;
+
+        var closestPrey = closeColliders.Where(o => o != null).Select(o => o).OrderBy(o => (pos - o.transform.position).magnitude).First();
         var closestPreyPos = closestPrey.transform.position;
 
-        if(Vector3.Distance(closestPreyPos, transform.position) < attackThershold)
+        if(Vector3.Distance(closestPreyPos, pos) < attackThreshold)
         {
-            closePrey.Remove(closestPrey);
+            closeColliders.Remove(closestPrey);
             controller.KillFish(closestPrey.gameObject);
             attackTimer = attackCooldown;
-            target = transform.rotation * Vector3.forward * minTargetPointDistance;
+            target = controller.MovePointInsideBounds(transform.forward * maxTargetPointDistance, maxTargetPointDistance);
             return;
         }
 
-        var newDir = Vector3.RotateTowards(transform.forward, closestPreyPos - transform.position, turningSpeed * Time.deltaTime, turningSpeedChange);
+        var newDir = Vector3.RotateTowards(transform.forward, closestPreyPos - pos, turningSpeed * Time.deltaTime, turningSpeedChange);
         transform.position += newDir * (huntingSpeed * Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override bool FilterCollider(Collider other)
     {
-        if (other.gameObject != null && controller.isFish(other.gameObject))
-        {
-            if(other.tag == tag && !cannibal)
-            {
-                return;
-            }
-
-            closePrey.Add(other);
-            hunting = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other != null && (other.tag != tag || cannibal))
-        {
-            if (closePrey.Contains(other))
-                closePrey.Remove(other);
-        }
+        return controller.IsFish(other.gameObject) && (!CompareTag(other.tag) || cannibal);
     }
 }
