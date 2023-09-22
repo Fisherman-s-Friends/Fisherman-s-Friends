@@ -61,6 +61,7 @@ public class HunterFish : FishScript
         if(closePrey.Count == 0 || attackTimer > 0) 
         {
             hunting = false;
+            base.Move();
             return;
         }
 
@@ -72,6 +73,7 @@ public class HunterFish : FishScript
             closePrey.Remove(closestPrey);
             controller.KillFish(closestPrey.gameObject);
             attackTimer = attackCooldown;
+            target = transform.rotation * Vector3.forward * minTargetPointDistance;
             return;
         }
 
