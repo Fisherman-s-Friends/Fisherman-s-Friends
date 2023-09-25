@@ -194,10 +194,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  thershold: 0.5
+  threshold: 0.5
   minTargetPointDistance: 1.5
   maxTargetPointDistance: 4
   turningSpeed: 5
   turningSpeedChange: 0
-  boidSenseRadius: 3
+  deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
+  detectionRange: 3
   randomDirectionWeight: 0.7
