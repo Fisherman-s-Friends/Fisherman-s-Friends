@@ -418,8 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80824af05415b674fb0346b1cea58c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlaces: 4
-  spacing: 15
+  numberOfPlaces: 5
+  spacing: 14
   envPrefabs:
   - prefab: {fileID: 3582821535978698289, guid: 8e476281854f28e488ec1a2d92ea9a89, type: 3}
     weight: 1
