@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 public class FishController : MonoBehaviour
@@ -39,20 +41,13 @@ public class FishController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentTimeToSpawn > 0 && countFish < maxFish)
-        {
-            currentTimeToSpawn -= Time.deltaTime;
-        }
-        else if (currentTimeToSpawn <= 0 && countFish < maxFish)
+        if (currentTimeToSpawn <= 0 && countFish < maxFish)
         {
             SpawnFish();
             currentTimeToSpawn = timeToSpawn;
             countFish++;
         }
-        else if (countFish >= maxFish)
-        {
-            
-        }
+            currentTimeToSpawn -= Time.deltaTime;
     }
 
     /// <summary>
@@ -108,7 +103,7 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var fish = Instantiate(RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new System.Tuple<GameObject, float>(f.prefab,f.weight * 0.1f)).ToList()), transform.position, transform.rotation);
+        var fish = Instantiate(RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new System.Tuple<GameObject, float>(f.prefab,f.weight * 0.1f)).ToList()), new Vector3(CalculateX(),Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.y,Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.z), transform.rotation);
         fishList.Add(fish);
         fish.GetComponent<FishScript>().Controller = this;
     }
@@ -117,6 +112,14 @@ public class FishController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position + fishBoundingBoxOffset, fishBoundingBoxSize);
+    }
+
+    private float CalculateX()
+    {
+        float result = fishBoundingBoxSize.x;
+        result = Random.Range(-result, result);
+        result = result < 0 ? -fishBoundingBoxSize.x : fishBoundingBoxSize.x;
+        return result;
     }
     
     [System.Serializable]
