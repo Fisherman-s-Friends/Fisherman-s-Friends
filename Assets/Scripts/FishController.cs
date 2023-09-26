@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -13,7 +14,19 @@ public class FishController : MonoBehaviour
     public Vector3 fishBoundingBoxSize;
 
     [SerializeField]
-    private GameObject fishObject;
+    private FishPrefabs[] fishObjects;
+
+    [SerializeField] 
+    private float timeToSpawn;
+    
+    [SerializeField]
+    private float currentTimeToSpawn;
+    
+    [SerializeField]
+    private int countFish;
+
+    [SerializeField] 
+    private int maxFish;
 
     private List<GameObject> fishList = new List<GameObject>();
 
@@ -26,7 +39,20 @@ public class FishController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentTimeToSpawn > 0 && countFish < maxFish)
+        {
+            currentTimeToSpawn -= Time.deltaTime;
+        }
+        else if (currentTimeToSpawn <= 0 && countFish < maxFish)
+        {
+            SpawnFish();
+            currentTimeToSpawn = timeToSpawn;
+            countFish++;
+        }
+        else if (countFish >= maxFish)
+        {
+            
+        }
     }
 
     /// <summary>
@@ -82,7 +108,7 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var fish = Instantiate(fishObject, transform.position, transform.rotation);
+        var fish = Instantiate(RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new System.Tuple<GameObject, float>(f.prefab,f.weight * 0.1f)).ToList()), transform.position, transform.rotation);
         fishList.Add(fish);
         fish.GetComponent<FishScript>().Controller = this;
     }
@@ -92,11 +118,12 @@ public class FishController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position + fishBoundingBoxOffset, fishBoundingBoxSize);
     }
-
-    private void OnGUI()
+    
+    [System.Serializable]
+    struct FishPrefabs
     {
-        // Temporary until a spawner is created
-        if (GUI.Button(new Rect(10, 70, 100, 30), "Spawn a fish"))
-            SpawnFish();
+        public GameObject prefab;
+        [Range(1, 10)]
+        public int weight;
     }
 }
