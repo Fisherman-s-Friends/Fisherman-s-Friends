@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!54 &159751007 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3388612313448133279, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
+  m_PrefabInstance: {fileID: 7728236613053267426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290743409
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +314,7 @@ MonoBehaviour:
   timeToSpawn: 0.1
   currentTimeToSpawn: 0
   countFish: 0
-  maxFish: 250
+  maxFish: 50
 --- !u!4 &375046425
 Transform:
   m_ObjectHideFlags: 0
@@ -337,8 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobberRb: {fileID: 0}
-  castBar: {fileID: 0}
+  bobberRb: {fileID: 159751007}
+  castBar: {fileID: 1525385105}
 --- !u!114 &375046427
 MonoBehaviour:
   m_ObjectHideFlags: 0
