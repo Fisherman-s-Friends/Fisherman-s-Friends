@@ -2,6 +2,8 @@
 A simple game about fishing
 
 [Jam board](https://jamboard.google.com/d/1iwD9tJyCewuWMxKnNL2V91Vn9Ly58QSOyiQ9IMgqwbg/edit?usp=sharing)
+
+[Document work done here](https://github.com/Fisherman-s-Friends/Fisherman-s-Friends/issues/40)
 # Implementation ideas
 ## ClassDiagram
 ```mermaid

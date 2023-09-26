@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 public class FishController : MonoBehaviour
@@ -13,7 +16,19 @@ public class FishController : MonoBehaviour
     public Vector3 fishBoundingBoxSize;
 
     [SerializeField]
-    private GameObject fishObject;
+    private FishPrefabs[] fishObjects;
+
+    [SerializeField] 
+    private float timeToSpawn;
+    
+    [SerializeField]
+    private float currentTimeToSpawn;
+    
+    [SerializeField]
+    private int countFish;
+
+    [SerializeField] 
+    private int maxFish;
 
     private List<GameObject> fishList = new List<GameObject>();
 
@@ -26,7 +41,13 @@ public class FishController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentTimeToSpawn <= 0 && countFish < maxFish)
+        {
+            SpawnFish();
+            currentTimeToSpawn = timeToSpawn;
+            countFish++;
+        }
+            currentTimeToSpawn -= Time.deltaTime;
     }
 
     /// <summary>
@@ -82,7 +103,7 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var fish = Instantiate(fishObject, transform.position, transform.rotation);
+        var fish = Instantiate(RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new System.Tuple<GameObject, float>(f.prefab,f.weight * 0.1f)).ToList()), new Vector3(CalculateX(),Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.y,Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.z), transform.rotation);
         fishList.Add(fish);
         fish.GetComponent<FishScript>().Controller = this;
     }
@@ -93,10 +114,19 @@ public class FishController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + fishBoundingBoxOffset, fishBoundingBoxSize);
     }
 
-    private void OnGUI()
+    private float CalculateX()
     {
-        // Temporary until a spawner is created
-        if (GUI.Button(new Rect(10, 70, 100, 30), "Spawn a fish"))
-            SpawnFish();
+        float result = fishBoundingBoxSize.x;
+        result = Random.Range(-result, result);
+        result = result < 0 ? -fishBoundingBoxSize.x : fishBoundingBoxSize.x;
+        return result;
+    }
+    
+    [System.Serializable]
+    struct FishPrefabs
+    {
+        public GameObject prefab;
+        [Range(1, 10)]
+        public int weight;
     }
 }
