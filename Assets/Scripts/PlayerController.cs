@@ -41,9 +41,9 @@ public class PlayerController : MonoBehaviour
                 bobberRb.useGravity = true;
                 holdTotal = holdEnded - holdStarted;
 
-                if (holdTotal > 3f) // Limits the total distance that can be cast, even though keydown lasts for ages 
+                if (holdTotal >= 3.5f) // Limits the total distance that can be cast, even though keydown lasts for ages 
                 {
-                    holdTotal = 3f;
+                    holdTotal = 3.5f;
                 }
                 bobberRb.velocity = new Vector3(castLineX * (holdTotal + holdTotal + holdTotal), castLineY * (holdTotal), 0);
                 haveYouCasted = true;

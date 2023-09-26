@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 290743411}
   - component: {fileID: 290743410}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: GroundPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,8 +228,8 @@ Transform:
   m_GameObject: {fileID: 290743409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.339999, y: -8.894989, z: 83.731674}
-  m_LocalScale: {x: 17.860044, y: 1, z: 20.714815}
+  m_LocalPosition: {x: 15, y: -9, z: 80}
+  m_LocalScale: {x: 40, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 365205446}
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6dab07379083745aa59779728f8878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishBoundingBoxOffset: {x: 0, y: 0, z: 1.81}
+  fishBoundingBoxOffset: {x: 0, y: 0, z: -5}
   fishBoundingBoxSize: {x: 59, y: 15, z: 15}
   fishObjects:
   - prefab: {fileID: 1199477851743523356, guid: ec3d455af420c4440b7d4c61eca8a202, type: 3}
@@ -418,8 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80824af05415b674fb0346b1cea58c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlaces: 4
-  spacing: 15
+  numberOfPlaces: 5
+  spacing: 14
   envPrefabs:
   - prefab: {fileID: 3582821535978698289, guid: 8e476281854f28e488ec1a2d92ea9a89, type: 3}
     weight: 1
@@ -529,7 +529,7 @@ Transform:
   m_GameObject: {fileID: 686230780}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.5, z: 0}
+  m_LocalPosition: {x: 0, y: 7.7, z: 0}
   m_LocalScale: {x: 5, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,7 +789,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 12
-  far clip plane: 100
+  far clip plane: 400
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -817,7 +817,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 11, z: -21}
+  m_LocalPosition: {x: 0, y: 10, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 1304760125}
   - component: {fileID: 1304760124}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: WaterPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1137,8 +1137,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: 100}
-  m_SizeDelta: {x: 250, y: 120}
+  m_AnchoredPosition: {x: 150, y: 200}
+  m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525385107
 MonoBehaviour:
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 3.5
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1276,7 +1276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2872610479409427254, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 2872610479409427254, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1328,11 +1328,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
+  - {fileID: 1092510845}
   - {fileID: 705507995}
   - {fileID: 375046425}
   - {fileID: 814673348}
   - {fileID: 7728236613053267426}
-  - {fileID: 686230784}
-  - {fileID: 1092510845}
   - {fileID: 365205446}
   - {fileID: 1304760127}
+  - {fileID: 686230784}
