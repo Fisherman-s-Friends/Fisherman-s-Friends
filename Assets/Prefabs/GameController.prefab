@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5107217551883611595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3636223818719886641}
+  - component: {fileID: 7738259191278337774}
+  - component: {fileID: 4993968847069527256}
+  - component: {fileID: 8784801913461706646}
+  - component: {fileID: 6257030878461727376}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3636223818719886641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7738259191278337774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6dab07379083745aa59779728f8878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishBoundingBoxOffset: {x: 0, y: 0, z: -5}
+  fishBoundingBoxSize: {x: 59, y: 15, z: 15}
+  fishObjects:
+  - prefab: {fileID: 1199477851743523356, guid: ec3d455af420c4440b7d4c61eca8a202, type: 3}
+    weight: 6
+  - prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
+    weight: 6
+  - prefab: {fileID: 1152135729087072480, guid: ad32311d73b9b1a47b4705a051360cc9, type: 3}
+    weight: 6
+  - prefab: {fileID: 4483538326150811716, guid: 81725f454a9c4294396c7bd21bdefe54, type: 3}
+    weight: 7
+  - prefab: {fileID: 5316582851097913313, guid: 8fd1c87ffb7c1704eb89626f1c5dde12, type: 3}
+    weight: 2
+  timeToSpawn: 0.1
+  currentTimeToSpawn: 0
+  countFish: 0
+  maxFish: 50
+--- !u!114 &4993968847069527256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobberRb: {fileID: 0}
+  castBar: {fileID: 0}
+--- !u!114 &8784801913461706646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d0f6eb06f58e37845b8db5b2705bf03f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4993968847069527256}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: StartCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 466d0f90-f17a-418a-817c-94feb4edf825
+    m_ActionName: PlayerActions/CastLine[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4993968847069527256}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: ResetCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 529af607-f59a-44f3-9770-0d9fe17df192
+    m_ActionName: PlayerActions/ResetCast[/Keyboard/z]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &6257030878461727376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80824af05415b674fb0346b1cea58c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfPlaces: 5
+  spacing: 14
+  envPrefabs:
+  - prefab: {fileID: 3582821535978698289, guid: 8e476281854f28e488ec1a2d92ea9a89, type: 3}
+    weight: 1
+  - prefab: {fileID: 8651764069361032575, guid: 6b11b137a8a6d974686f8a586edd19cb, type: 3}
+    weight: 1
+  - prefab: {fileID: 3303426608160129129, guid: ce2c62dbb6468cb46827b1fa7c148440, type: 3}
+    weight: 5
+  envTransform: {fileID: 0}
+  offsetY: 8
