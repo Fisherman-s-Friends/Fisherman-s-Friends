@@ -62,7 +62,16 @@ public class HunterFish : DetectingFish
 
         var pos = transform.position;
 
-        var closestPrey = closeColliders.Where(o => o != null).Select(o => o).OrderBy(o => (pos - o.transform.position).magnitude).First();
+        var closestPrey = closeColliders.Where(o => o != null).Select(o => o).OrderBy(o => (pos - o.transform.position).magnitude).FirstOrDefault();
+        
+        // The list contains only deleted fish
+        if(closestPrey == null)
+        {
+            closeColliders.Clear();
+            base.Move();
+            return;
+        }
+
         var closestPreyPos = closestPrey.transform.position;
 
         if(Vector3.Distance(closestPreyPos, pos) < attackThreshold)

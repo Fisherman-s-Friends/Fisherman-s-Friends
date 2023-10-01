@@ -78,6 +78,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish2
       objectReference: {fileID: 0}
+    - target: {fileID: 3271729604366257140, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3271729604366257140, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4333599181381960848, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
