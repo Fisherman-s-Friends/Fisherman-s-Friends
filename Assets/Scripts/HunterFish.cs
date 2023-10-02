@@ -74,6 +74,14 @@ public class HunterFish : DetectingFish
 
         var closestPreyPos = closestPrey.transform.position;
 
+        // There is enviroment between hunter and prey, do not chase.
+        // 1 << 3 -> Only collissions with layermask no. 3
+        if(Raycast(closestPreyPos, 1 << 3))
+        {
+            base.Move();
+            return;
+        }
+
         if(Vector3.Distance(closestPreyPos, pos) < attackThreshold)
         {
             closeColliders.Remove(closestPrey);

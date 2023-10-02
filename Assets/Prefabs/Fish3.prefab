@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: threshold
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: turningSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_Name
       value: Fish3
