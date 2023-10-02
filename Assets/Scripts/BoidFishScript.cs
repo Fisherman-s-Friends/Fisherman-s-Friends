@@ -35,7 +35,8 @@ public class BoidFishScript : DetectingFish
         avarageDirection = avarageDirection.normalized;
 
         var point= transform.position + ((Random.rotation * Vector3.forward * randomDirectionWeight) + avarageDirection) * Random.Range(minTargetPointDistance, maxTargetPointDistance);
-        return controller.MovePointInsideBounds(point, maxTargetPointDistance);
+        point = controller.MovePointInsideBounds(point, maxTargetPointDistance);
+        return AvoidCollissionsWithEnv(point);
     }
 
     protected override bool FilterCollider(Collider other)

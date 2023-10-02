@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class FishScript : MonoBehaviour
@@ -26,6 +27,8 @@ public class FishScript : MonoBehaviour
     [SerializeField] protected float turningSpeedChange;
 
     [SerializeField] private GameObject deathParticle;
+
+    protected float collissionAvoidanceTurnRate = 10f;
 
     protected Vector3 target;
 
@@ -65,7 +68,39 @@ public class FishScript : MonoBehaviour
     protected virtual Vector3 CreateNewTarget()
     {
         var point = transform.position + UnityEngine.Random.rotation * Vector3.forward * UnityEngine.Random.Range(minTargetPointDistance, maxTargetPointDistance);
-        return controller.MovePointInsideBounds(point, maxTargetPointDistance);
+        point = controller.MovePointInsideBounds(point, maxTargetPointDistance);
+        return AvoidCollissionsWithEnv(point);
+    }
+     
+    protected Vector3 AvoidCollissionsWithEnv(Vector3 point)
+    {
+        var distanceModifier = 1f;
+        // 1 << 3 -> Check for collissions only on layermask no. 3
+        while (Raycast(point, 1 << 3))
+        {
+            point = RotatePointAroundFish(point, collissionAvoidanceTurnRate, distanceModifier);
+            distanceModifier *= 0.9f;
+        }
+        return point;
+    }
+
+    /// <summary>
+    /// Check if raycast from fish to a point hits anything
+    /// </summary>
+    /// <param name="point">Target point</param>
+    /// <param name="layerMask">Mask</param>
+    /// <returns></returns>
+    protected bool Raycast(Vector3 point, int layerMask)
+    {
+        var pos = transform.position;
+        var dir = point - pos;
+        return Physics.Raycast(pos, dir, dir.magnitude, layerMask);
+    }
+    
+    private Vector3 RotatePointAroundFish(Vector3 point, float amount, float distanceModifier)
+    {
+        var pos = transform.position;
+        return pos + Quaternion.AngleAxis(amount, Vector3.up) * (point - pos) * distanceModifier;
     }
 
     /// <summary>
@@ -76,6 +111,7 @@ public class FishScript : MonoBehaviour
         Instantiate(deathParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
 
     private void OnDrawGizmos()
     {
