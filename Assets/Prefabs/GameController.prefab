@@ -51,19 +51,19 @@ MonoBehaviour:
   fishBoundingBoxSize: {x: 59, y: 15, z: 15}
   fishObjects:
   - prefab: {fileID: 1199477851743523356, guid: ec3d455af420c4440b7d4c61eca8a202, type: 3}
-    weight: 6
+    weight: 10
   - prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
-    weight: 6
+    weight: 4
   - prefab: {fileID: 1152135729087072480, guid: ad32311d73b9b1a47b4705a051360cc9, type: 3}
-    weight: 6
+    weight: 4
   - prefab: {fileID: 4483538326150811716, guid: 81725f454a9c4294396c7bd21bdefe54, type: 3}
-    weight: 7
+    weight: 4
   - prefab: {fileID: 5316582851097913313, guid: 8fd1c87ffb7c1704eb89626f1c5dde12, type: 3}
-    weight: 2
+    weight: 1
   timeToSpawn: 0.1
   currentTimeToSpawn: 0
   countFish: 0
-  maxFish: 50
+  maxFish: 100
 --- !u!114 &4993968847069527256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +160,8 @@ MonoBehaviour:
   - prefab: {fileID: 8651764069361032575, guid: 6b11b137a8a6d974686f8a586edd19cb, type: 3}
     weight: 1
   - prefab: {fileID: 3303426608160129129, guid: ce2c62dbb6468cb46827b1fa7c148440, type: 3}
-    weight: 5
+    weight: 1
+  - prefab: {fileID: 3303426608160129129, guid: b6cb9351ca2ae8c4f8471fe66d216d55, type: 3}
+    weight: 1
   envTransform: {fileID: 0}
   offsetY: 8
