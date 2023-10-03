@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineControllerScript : MonoBehaviour
+public class LineController : MonoBehaviour
 {
-    [SerializeField] private Transform[] startAndEndPosition;
     private LineRenderer lr;
     private Transform[] points;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetUpLine(startAndEndPosition);
-    }
 
     private void Awake()
     {

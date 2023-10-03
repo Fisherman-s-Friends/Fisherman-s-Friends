@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!54 &159751007 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 3388612313448133279, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
-  m_PrefabInstance: {fileID: 7728236613053267426}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290743409
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +853,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!114 &1076485580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7693867995864395086, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
+  m_PrefabInstance: {fileID: 7728236613053267426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6321979484daf3142b99bcc7ea1d469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1076485582 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1101247998090443529, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
+  m_PrefabInstance: {fileID: 7728236613053267426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078003756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1496,11 @@ PrefabInstance:
     - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: bobberRb
       value: 
-      objectReference: {fileID: 159751007}
+      objectReference: {fileID: 1076485582}
+    - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: bobberScript
+      value: 
+      objectReference: {fileID: 1076485580}
     - target: {fileID: 5107217551883611595, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: m_Name
       value: GameController
