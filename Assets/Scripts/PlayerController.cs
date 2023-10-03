@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
     [SerializeField] private GameObject castBar;
+    [SerializeField] BobberScript bobberScript;
 
     private float castLineX = 2, castLineY = 2;
     private float holdStarted, holdEnded, holdTotal;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
             bobberRb.velocity = new Vector3(0, 0, 0);
             haveYouCasted = false;
             castSlider.value = 0;
+            bobberScript.DestroyHook();
         }
         else
         {
