@@ -38,9 +38,31 @@
                 },
                 {
                     "name": "",
+                    "id": "d8b897a8-4144-4c42-9381-9a92c91bb514",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CastLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cb4a605b-df01-4f0a-9663-bcdede0992a7",
                     "path": "<Keyboard>/z",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cb4fbef-3f20-4917-9355-0541208d38f6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ResetCast",
