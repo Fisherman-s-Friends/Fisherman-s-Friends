@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
-    [SerializeField] private GameObject castBar;
+    [SerializeField] private GameObject castBar, hook;
     [SerializeField] BobberScript bobberScript;
+
 
     private float castLineX = 2, castLineY = 2;
     private float holdStarted, holdEnded, holdTotal;
     private bool haveYouCasted = false, sliderBarCheck = false;
     private Slider castSlider;
+    private Rigidbody hookRb;
     private Vector3 startPos;
 
     public void Start()
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         // Stores the bobbers position on start
         startPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
+        hookRb = hook.GetComponent<Rigidbody>();
     }
 
     // Triggered with Space-key, casts the bobber
@@ -66,7 +69,7 @@ public class PlayerController : MonoBehaviour
             bobberRb.velocity = new Vector3(0, 0, 0);
             haveYouCasted = false;
             castSlider.value = 0;
-            bobberScript.DestroyHook();
+            bobberScript.DestroyHookAndSwapActionMap();
         }
         else
         {
@@ -83,4 +86,14 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
+
+    public void StopHook(InputAction.CallbackContext context)
+    {
+        if (haveYouCasted)
+        {
+            Debug.Log("Here you can trigger something to stop the hook");
+            haveYouCasted = false;
+        }
+    }
+
 }

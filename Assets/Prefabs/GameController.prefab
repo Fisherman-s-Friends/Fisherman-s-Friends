@@ -78,6 +78,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobberRb: {fileID: 0}
   castBar: {fileID: 0}
+  hook: {fileID: 1247711142905498930, guid: 2ee81cc447ad8f141bf34f6532838de4, type: 3}
+  bobberScript: {fileID: 0}
 --- !u!114 &8784801913461706646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,9 +137,41 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 529af607-f59a-44f3-9770-0d9fe17df192
     m_ActionName: PlayerActions/ResetCast[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4993968847069527256}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: StopHook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 219a738b-f5ca-4f04-b61b-e16217247f10
+    m_ActionName: HookActions/StopHook[/Mouse/leftButton,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4993968847069527256}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ResetCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe0b98b9-da9d-430c-af31-881d25de4569
+    m_ActionName: HookActions/ResetCast[/Keyboard/z,/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerActions
+  m_DefaultActionMap: RodActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6257030878461727376
