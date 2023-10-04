@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "PlayerActions",
+            "name": "RodActions",
             "id": "fbad3603-91e0-452b-b4a7-101bc1a657b5",
             "actions": [
                 {
@@ -61,6 +61,76 @@
                 {
                     "name": "",
                     "id": "1cb4fbef-3f20-4917-9355-0541208d38f6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "HookActions",
+            "id": "9bdc265f-5e44-4edb-adf3-21af1e93012e",
+            "actions": [
+                {
+                    "name": "StopHook",
+                    "type": "Button",
+                    "id": "219a738b-f5ca-4f04-b61b-e16217247f10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetCast",
+                    "type": "Button",
+                    "id": "fe0b98b9-da9d-430c-af31-881d25de4569",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e6299760-90b6-4336-bb14-26ac5dff3b38",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StopHook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92b89a7d-63c8-4e26-9037-0f2de3c5c82d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StopHook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1e6051e-500d-4c4f-b7c7-fa4461b0fadf",
+                    "path": "<Keyboard>/z",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1ca5354-a441-4a2c-953d-6347339efb6f",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
