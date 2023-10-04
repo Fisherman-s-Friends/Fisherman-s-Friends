@@ -89,8 +89,11 @@ public class PlayerController : MonoBehaviour
 
     public void StopHook(InputAction.CallbackContext context)
     {
-
+        if (haveYouCasted)
+        {
             Debug.Log("Here you can trigger something to stop the hook");
+            haveYouCasted = false;
+        }
     }
 
 }
