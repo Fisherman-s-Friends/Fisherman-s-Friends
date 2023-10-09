@@ -6,6 +6,7 @@ A simple game about fishing
 [Github Project Backlog](https://github.com/orgs/Fisherman-s-Friends/projects/1/views/5?filterQuery=)
 
 [Module 2 Assignment](https://github.com/Fisherman-s-Friends/Fisherman-s-Friends/issues/40)
+
 # Implementation ideas
 ## ClassDiagram
 ```mermaid
