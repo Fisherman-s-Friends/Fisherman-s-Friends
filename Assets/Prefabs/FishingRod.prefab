@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 337551539414645446}
   - component: {fileID: 248692780423733549}
-  - component: {fileID: 6828734227362708621}
+  - component: {fileID: 3003921296431667820}
   m_Layer: 0
-  m_Name: FishingLine
+  m_Name: RodToBobberLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &6828734227362708621
+--- !u!114 &3003921296431667820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3548931349571763953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883eccd7525491b4187b67475c091a39, type: 3}
+  m_Script: {fileID: 11500000, guid: f2ce922eb50b6164c9c7ddc0bf989947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startAndEndPosition:
@@ -357,7 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6321979484daf3142b99bcc7ea1d469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hook: {fileID: 5526888988267646980, guid: ce597dbce181e3540ac70369fe00f433, type: 3}
+  hook: {fileID: 1247711142905498930, guid: 2ee81cc447ad8f141bf34f6532838de4, type: 3}
+  gameController: {fileID: 0}
 --- !u!4 &8157834687586323342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090234855605732850, guid: 0c4cee92da0fb9c48ba315906014038b, type: 3}
