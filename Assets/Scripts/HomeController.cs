@@ -7,7 +7,6 @@ public class HomeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -18,7 +17,7 @@ public class HomeController : MonoBehaviour
 
     public void OnStartGame()
     {
-        Debug.Log("Game is started");
+        SceneController.ChangeScene(Scenes.Play);
     }
 
     public void OnOpenHome()

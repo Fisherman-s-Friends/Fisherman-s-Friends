@@ -20,6 +20,9 @@ public class Selectable : MonoBehaviour
     [SerializeField, Range(0,1)]
     float pulseAlpha;
 
+    [SerializeField]
+    GameObject infoText;
+
     private bool hoveredOn;
 
     // Start is called before the first frame update
@@ -28,6 +31,7 @@ public class Selectable : MonoBehaviour
         hoveredOn = false;
         outline = GetComponent<Outline>();
         outline.OutlineColor = ChangeOutlineColor(outline.OutlineColor, pulseAlpha);
+        infoText?.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +48,7 @@ public class Selectable : MonoBehaviour
         hoveredOn = true;
         outline.OutlineWidth = 10;
         outline.OutlineColor = ChangeOutlineColor(outline.OutlineColor, 1);
+        infoText?.SetActive(true);
     }
 
     private void OnMouseUp()
@@ -55,6 +60,7 @@ public class Selectable : MonoBehaviour
     {
         hoveredOn = false;
         outline.OutlineColor = ChangeOutlineColor(outline.OutlineColor, pulseAlpha);
+        infoText?.SetActive(false);
     }
 
     private Color ChangeOutlineColor (Color color, float alpha)
