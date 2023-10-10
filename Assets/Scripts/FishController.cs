@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -30,12 +31,14 @@ public class FishController : MonoBehaviour
     [SerializeField] 
     private int maxFish;
 
+    private Transform fishHolderTransform;
+
     private List<GameObject> fishList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fishHolderTransform = new GameObject("FishHolder").transform;
     }
 
     // Update is called once per frame
@@ -103,7 +106,11 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var fish = Instantiate(RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new System.Tuple<GameObject, float>(f.prefab,f.weight * 0.1f)).ToList()), new Vector3(CalculateX(),Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.y,Random.Range(-0.5f,0.5f)*fishBoundingBoxSize.z), transform.rotation);
+        var fish = Instantiate(
+            RandomUtil.GetRandomElemntFromWeightedList(fishObjects
+                .Select(f => new System.Tuple<GameObject, float>(f.prefab, f.weight * 0.1f)).ToList()),
+            new Vector3(CalculateX(), Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.y,
+                Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.z), transform.rotation, fishHolderTransform);
         fishList.Add(fish);
         fish.GetComponent<FishScript>().Controller = this;
     }
