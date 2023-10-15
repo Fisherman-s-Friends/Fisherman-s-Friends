@@ -14,6 +14,8 @@ public class SessionController : MonoBehaviour
     [SerializeField] private GameObject sky;
     private Material skyMaterial;
     [SerializeField] private Light light;
+    [SerializeField]
+    private bool debug = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,8 @@ public class SessionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (debug) return;
+
         timeLeft -= Time.deltaTime;
 
         timeText.SetText(timeLeft < 60 ? timeLeft.ToString("#0.0") : Mathf.Ceil(timeLeft / 60).ToString("#"));

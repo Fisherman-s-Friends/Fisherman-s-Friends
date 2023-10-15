@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7dcfcd0f59e788439a2869aef2cd4ae, type: 3}
+  m_Name: BoidFish
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1199477851743523356, guid: ec3d455af420c4440b7d4c61eca8a202, type: 3}
+  amount: 5
+  weight: 5
+  radius: 5
+  Limit: 0
