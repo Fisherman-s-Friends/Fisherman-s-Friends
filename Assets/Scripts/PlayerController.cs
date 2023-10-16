@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
-    [SerializeField] private GameObject castBar, hook;
+    [SerializeField] private GameObject castBar;
+    //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
 
     private float castLineX = 2, castLineY = 2;
     private float holdStarted, holdEnded, holdTotal;
-    private bool haveYouCasted = false, sliderBarCheck = false;
+    //added bool to check if hook has been stopped
+    private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false;
     private Slider castSlider;
-    private Rigidbody hookRb;
+    public Rigidbody hookRb;
     private Vector3 startPos;
 
     public void Start()
@@ -22,7 +24,8 @@ public class PlayerController : MonoBehaviour
         // Stores the bobbers position on start
         startPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
-        hookRb = hook.GetComponent<Rigidbody>();
+        //hookRb = hook.GetComponent<Rigidbody>();
+        
     }
 
     // Triggered with Space-key, casts the bobber
@@ -69,6 +72,7 @@ public class PlayerController : MonoBehaviour
             bobberRb.velocity = new Vector3(0, 0, 0);
             haveYouCasted = false;
             castSlider.value = 0;
+
             bobberScript.DestroyHookAndSwapActionMap();
         }
         else
@@ -86,13 +90,26 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
-
+    //space bar or mouse 1 stops the hook in place
     public void StopHook(InputAction.CallbackContext context)
     {
         if (haveYouCasted)
         {
+            //stops hook in place
+            hookRb.useGravity = false;
+            hookRb.velocity = Vector3.zero;
+            hookStopped = true;
+            
             Debug.Log("Here you can trigger something to stop the hook");
             haveYouCasted = false;
+        }
+    }
+    public void MoveHook(InputAction.CallbackContext context) 
+    { 
+        if (hookStopped) 
+        { 
+            //moving the hook uo and down
+            
         }
     }
 
