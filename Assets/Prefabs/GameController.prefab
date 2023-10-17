@@ -51,16 +51,11 @@ MonoBehaviour:
   fishBoundingBoxOffset: {x: 0, y: 0, z: -5}
   fishBoundingBoxSize: {x: 59, y: 15, z: 15}
   fishObjects:
-  - prefab: {fileID: 1199477851743523356, guid: ec3d455af420c4440b7d4c61eca8a202, type: 3}
-    weight: 10
-  - prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
-    weight: 4
-  - prefab: {fileID: 1152135729087072480, guid: ad32311d73b9b1a47b4705a051360cc9, type: 3}
-    weight: 4
-  - prefab: {fileID: 4483538326150811716, guid: 81725f454a9c4294396c7bd21bdefe54, type: 3}
-    weight: 4
-  - prefab: {fileID: 5316582851097913313, guid: 8fd1c87ffb7c1704eb89626f1c5dde12, type: 3}
-    weight: 1
+  - {fileID: 11400000, guid: a2d4cdcf88c5d184e8a2f5b4922c1467, type: 2}
+  - {fileID: 11400000, guid: 78d1a3a895c13d24aac9295796cb82ce, type: 2}
+  - {fileID: 11400000, guid: 1b6bb2140f527b64d9e287f677e2a3b8, type: 2}
+  - {fileID: 11400000, guid: de582fa53d1cf7d4c931d41491de7e56, type: 2}
+  - {fileID: 11400000, guid: 8257ee61d7d71bf48bf77488ac7384d1, type: 2}
   timeToSpawn: 0.1
   currentTimeToSpawn: 0
   countFish: 0
@@ -214,3 +209,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sessionLengthInSeconds: 130
   timeText: {fileID: 0}
+  sky: {fileID: 0}
+  light: {fileID: 0}

@@ -17,18 +17,18 @@ public class FishController : MonoBehaviour
     public Vector3 fishBoundingBoxSize;
 
     [SerializeField]
-    private FishPrefabs[] fishObjects;
+    private FishSpawnObject[] fishObjects;
 
-    [SerializeField] 
+    [SerializeField]
     private float timeToSpawn;
-    
+
     [SerializeField]
     private float currentTimeToSpawn;
-    
+
     [SerializeField]
     private int countFish;
 
-    [SerializeField] 
+    [SerializeField]
     private int maxFish;
 
     private Transform fishHolderTransform;
@@ -48,9 +48,8 @@ public class FishController : MonoBehaviour
         {
             SpawnFish();
             currentTimeToSpawn = timeToSpawn;
-            countFish++;
         }
-            currentTimeToSpawn -= Time.deltaTime;
+        currentTimeToSpawn -= Time.deltaTime;
     }
 
     /// <summary>
@@ -106,13 +105,17 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var fish = Instantiate(
-            RandomUtil.GetRandomElemntFromWeightedList(fishObjects
-                .Select(f => new System.Tuple<GameObject, float>(f.prefab, f.weight * 0.1f)).ToList()),
-            new Vector3(CalculateX(), Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.y,
-                Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.z), transform.rotation, fishHolderTransform);
-        fishList.Add(fish);
-        fish.GetComponent<FishScript>().Controller = this;
+        var spawnObject = RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new Tuple<FishSpawnObject, float>(f, f.weight * 0.1f)).ToList());
+
+        for (int i = 0; i < spawnObject.amount; i++)
+        {
+            var fish = Instantiate(spawnObject.prefab,
+                new Vector3(CalculateX(), Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.y,
+                    Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.z), transform.rotation, fishHolderTransform);
+            fishList.Add(fish);
+            fish.GetComponent<FishScript>().Controller = this;
+            countFish++;
+        }
     }
 
     private void OnDrawGizmos()
@@ -128,7 +131,7 @@ public class FishController : MonoBehaviour
         result = result < 0 ? -fishBoundingBoxSize.x : fishBoundingBoxSize.x;
         return result;
     }
-    
+
     [System.Serializable]
     struct FishPrefabs
     {
