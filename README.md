@@ -7,6 +7,8 @@ A simple game about fishing
 
 [Module 2 Assignment](https://github.com/Fisherman-s-Friends/Fisherman-s-Friends/issues/40)
 
+[Module 3 Assignment](https://github.com/Fisherman-s-Friends/Fisherman-s-Friends/issues/74)
+
 # Implementation ideas
 ## ClassDiagram
 ```mermaid
