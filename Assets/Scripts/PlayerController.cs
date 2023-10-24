@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
-    [SerializeField] private GameObject castBar;
+    [SerializeField] private GameObject castBar, minigameObj, minigameSliderObj, catchArea;
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
@@ -14,20 +14,28 @@ public class PlayerController : MonoBehaviour
     private float castLineX = 2, castLineY = 2;
     private float holdStarted, holdEnded, holdTotal;
     //added bool to check if hook has been stopped
-    private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false;
-    private Slider castSlider;
+    private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false, arrowKeysPressed = false;
+    private Slider castSlider, minigameSlider;
     public Rigidbody hookRb;
-    private Vector3 startPos;
+    private Vector3 startPos, areaStartPos;
+    private Vector2 movementDir;
 
     public void Start()
     {
-        // Stores the bobbers position on start
         startPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
+        minigameSlider = minigameSliderObj.GetComponent<Slider>();
+        areaStartPos = catchArea.transform.localPosition;
         //hookRb = hook.GetComponent<Rigidbody>();
-        
     }
 
+    public void Update()
+    {
+        if (arrowKeysPressed)
+        {
+            catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * 5, areaStartPos.y);
+        }
+    }
     // Triggered with Space-key, casts the bobber
     public void StartCast(InputAction.CallbackContext context)
     {
@@ -56,7 +64,6 @@ public class PlayerController : MonoBehaviour
                 haveYouCasted = true;
                 sliderBarCheck = false;
                 castBar.SetActive(false);
-                Debug.Log("Total time space was hold down: " + holdTotal); // Debug for the cast time multiplier
             }
         }
     }
@@ -64,20 +71,9 @@ public class PlayerController : MonoBehaviour
     // Triggered with Z-key, resets the position of the bobber for a recast
     public void ResetCast(InputAction.CallbackContext context)
     {
-        // checks if the bobber is in the air and moving with velocity
         if (bobberRb.velocity.x == 0 || bobberRb.velocity.y == 0)
         {
-            bobberRb.useGravity = false;
-            bobberRb.transform.localPosition = startPos;
-            bobberRb.velocity = new Vector3(0, 0, 0);
-            haveYouCasted = false;
-            castSlider.value = 0;
-
-            bobberScript.DestroyHookAndSwapActionMap();
-        }
-        else
-        {
-            Debug.Log("Bobber in motion, cannot recast yet!");
+            ResetEverything();
         }
     }
 
@@ -99,18 +95,57 @@ public class PlayerController : MonoBehaviour
             hookRb.useGravity = false;
             hookRb.velocity = Vector3.zero;
             hookStopped = true;
-            
-            Debug.Log("Here you can trigger something to stop the hook");
+
+            minigameObj.SetActive(true);
             haveYouCasted = false;
         }
     }
-    public void MoveHook(InputAction.CallbackContext context) 
-    { 
-        if (hookStopped) 
-        { 
-            //moving the hook uo and down
-            
+
+    public void MinigameMovement(InputAction.CallbackContext context)
+    {
+        arrowKeysPressed = false;
+        if (minigameSlider.value == 100 && context.performed)
+        {
+            // here you could add the splash screen for the fish you caught
+            ResetEverything();
+        }
+        movementDir = context.ReadValue<Vector2>();
+        if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1)
+            return;
+        else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1)
+            return;
+
+        // Implement here the code for the checking & adding if the icon is inside the area
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            arrowKeysPressed = true;
+            return;
+        }
+        catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * 5, areaStartPos.y);
+    }
+
+    public void ResetEverything()
+    {
+        bobberRb.useGravity = false;
+        bobberRb.transform.localPosition = startPos;
+        bobberRb.velocity = new Vector3(0, 0, 0);
+        haveYouCasted = false;
+        castSlider.value = 0;
+        minigameSlider.value = 0;
+
+        bobberScript.DestroyHookAndSwapActionMap();
+        minigameObj.SetActive(false);
+    }
+
+    public void MoveHook(InputAction.CallbackContext context)
+    {
+        if (hookStopped)
+        {
+            //moving the hook up and down
+
         }
     }
+
+
 
 }
