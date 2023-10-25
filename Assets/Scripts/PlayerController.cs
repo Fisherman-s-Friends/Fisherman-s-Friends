@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             {
                 holdTotal = 3.5f;
             }
-            bobberRb.velocity = new Vector3(castLineX * (holdTotal + holdTotal + holdTotal), castLineY * (holdTotal), 0);
+            bobberRb.velocity = new Vector3(castLineX * (holdTotal*3), castLineY * (holdTotal), 0);
             haveYouCasted = true;
             sliderBarCheck = false;
             castBar.SetActive(false);
