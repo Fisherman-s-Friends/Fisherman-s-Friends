@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
 
     private float castLineX = 2, castLineY = 2;
-    private float holdStarted, holdEnded, holdTotal;
+    private float holdStarted, holdEnded, holdTotal, minigameCtrlSpeed = 8f;
     //added bool to check if hook has been stopped
     private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false, arrowKeysPressed = false;
     private Slider castSlider, minigameSlider;
@@ -33,38 +33,37 @@ public class PlayerController : MonoBehaviour
     {
         if (arrowKeysPressed)
         {
-            catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * 5, areaStartPos.y);
+            if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1) { return; }
+            else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1) { return; }
+            catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * minigameCtrlSpeed, areaStartPos.y);
         }
     }
     // Triggered with Space-key, casts the bobber
     public void StartCast(InputAction.CallbackContext context)
     {
-
+        if (haveYouCasted) { return; }
         // Check if the bobber has been already cast
-        if (!haveYouCasted)
+        if (context.started) // .started triggers on key down
         {
-            if (context.started) // .started triggers on key down
-            {
-                castBar.SetActive(true);
-                holdStarted = Time.realtimeSinceStartup;
-                sliderBarCheck = true;
-                StartCoroutine(SliderChargeUp());
-            }
-            if (context.canceled) // .canceled triggers on key release
-            {
-                holdEnded = Time.realtimeSinceStartup;
-                bobberRb.useGravity = true;
-                holdTotal = holdEnded - holdStarted;
+            castBar.SetActive(true);
+            holdStarted = Time.realtimeSinceStartup;
+            sliderBarCheck = true;
+            StartCoroutine(SliderChargeUp());
+        }
+        if (context.canceled) // .canceled triggers on key release
+        {
+            holdEnded = Time.realtimeSinceStartup;
+            bobberRb.useGravity = true;
+            holdTotal = holdEnded - holdStarted;
 
-                if (holdTotal >= 3.5f) // Limits the total distance that can be cast, even though keydown lasts for ages 
-                {
-                    holdTotal = 3.5f;
-                }
-                bobberRb.velocity = new Vector3(castLineX * (holdTotal + holdTotal + holdTotal), castLineY * (holdTotal), 0);
-                haveYouCasted = true;
-                sliderBarCheck = false;
-                castBar.SetActive(false);
+            if (holdTotal >= 3.5f) // Limits the total distance that can be cast, even though keydown lasts for ages 
+            {
+                holdTotal = 3.5f;
             }
+            bobberRb.velocity = new Vector3(castLineX * (holdTotal + holdTotal + holdTotal), castLineY * (holdTotal), 0);
+            haveYouCasted = true;
+            sliderBarCheck = false;
+            castBar.SetActive(false);
         }
     }
 
@@ -110,18 +109,16 @@ public class PlayerController : MonoBehaviour
             ResetEverything();
         }
         movementDir = context.ReadValue<Vector2>();
-        if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1)
-            return;
-        else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1)
-            return;
-
         // Implement here the code for the checking & adding if the icon is inside the area
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             arrowKeysPressed = true;
             return;
         }
-        catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * 5, areaStartPos.y);
+        minigameCtrlSpeed = 20f;
+        if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1) { return; }
+        else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1) { return; }
+        catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * (minigameCtrlSpeed), areaStartPos.y);
     }
 
     public void ResetEverything()
