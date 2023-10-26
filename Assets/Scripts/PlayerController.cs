@@ -10,39 +10,34 @@ public class PlayerController : MonoBehaviour
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
-
-    private float castLineX = 2, castLineY = 2;
-    private float holdStarted, holdEnded, holdTotal, minigameCtrlSpeed = 8f;
+    private float holdStarted, holdEnded, holdTotal, controlSpeed=5, castLineX = 2, castLineY = 2;
     //added bool to check if hook has been stopped
     private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false, arrowKeysPressed = false;
     private Slider castSlider, minigameSlider;
     public Rigidbody hookRb;
-    private Vector3 startPos, areaStartPos;
+    private Vector3 bobberStartPos;
     private Vector2 movementDir;
+    private MinigameScript mgScript;
 
     public void Start()
     {
-        startPos = bobberRb.transform.localPosition;
+        bobberStartPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
         minigameSlider = minigameSliderObj.GetComponent<Slider>();
-        areaStartPos = catchArea.transform.localPosition;
-        //hookRb = hook.GetComponent<Rigidbody>();
+        mgScript = minigameObj.GetComponent<MinigameScript>();
     }
 
     public void Update()
     {
         if (arrowKeysPressed)
         {
-            if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1) { return; }
-            else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1) { return; }
-            catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * minigameCtrlSpeed, areaStartPos.y);
+            mgScript.MinigameMovement(movementDir, controlSpeed);
         }
     }
     // Triggered with Space-key, casts the bobber
     public void StartCast(InputAction.CallbackContext context)
     {
         if (haveYouCasted) { return; }
-        // Check if the bobber has been already cast
         if (context.started) // .started triggers on key down
         {
             castBar.SetActive(true);
@@ -56,11 +51,8 @@ public class PlayerController : MonoBehaviour
             bobberRb.useGravity = true;
             holdTotal = holdEnded - holdStarted;
 
-            if (holdTotal >= 3.5f) // Limits the total distance that can be cast, even though keydown lasts for ages 
-            {
-                holdTotal = 3.5f;
-            }
-            bobberRb.velocity = new Vector3(castLineX * (holdTotal*3), castLineY * (holdTotal), 0);
+            if (holdTotal >= 3.5f) { holdTotal = 3.5f; }    // Limits the total distance that can be cast, even though keydown lasts for ages 
+            bobberRb.velocity = new Vector3(castLineX * (holdTotal * 3), castLineY * (holdTotal), 0);
             haveYouCasted = true;
             sliderBarCheck = false;
             castBar.SetActive(false);
@@ -76,7 +68,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Updates the values to the castbar slider
     private IEnumerator SliderChargeUp()
     {
         while (sliderBarCheck)
@@ -109,22 +100,18 @@ public class PlayerController : MonoBehaviour
             ResetEverything();
         }
         movementDir = context.ReadValue<Vector2>();
-        // Implement here the code for the checking & adding if the icon is inside the area
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             arrowKeysPressed = true;
             return;
         }
-        minigameCtrlSpeed = 20f;
-        if (catchArea.transform.localPosition.x >= 340 && movementDir.x == 1) { return; }
-        else if (catchArea.transform.localPosition.x <= -340 && movementDir.x == -1) { return; }
-        catchArea.transform.localPosition = new Vector2(catchArea.transform.localPosition.x + movementDir.x * (minigameCtrlSpeed), areaStartPos.y);
+        mgScript.MinigameMovement(movementDir, controlSpeed);
     }
 
     public void ResetEverything()
     {
         bobberRb.useGravity = false;
-        bobberRb.transform.localPosition = startPos;
+        bobberRb.transform.localPosition = bobberStartPos;
         bobberRb.velocity = new Vector3(0, 0, 0);
         haveYouCasted = false;
         castSlider.value = 0;
@@ -142,7 +129,5 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
-
 
 }
