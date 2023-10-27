@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
+using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 public class FishScript : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class FishScript : MonoBehaviour
     [SerializeField]
     protected float speed;
 
-    [SerializeField] 
+    [SerializeField]
     private float threshold;
 
     [SerializeField]
@@ -31,6 +33,8 @@ public class FishScript : MonoBehaviour
     protected float collissionAvoidanceTurnRate = 10f;
 
     protected Vector3 target;
+
+    public FishBehaviour fishBehaviour=null;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -71,7 +75,7 @@ public class FishScript : MonoBehaviour
         point = controller.MovePointInsideBounds(point, maxTargetPointDistance);
         return AvoidCollissionsWithEnv(point);
     }
-     
+
     protected Vector3 AvoidCollissionsWithEnv(Vector3 point)
     {
         var distanceModifier = 1f;
@@ -96,7 +100,7 @@ public class FishScript : MonoBehaviour
         var dir = point - pos;
         return Physics.Raycast(pos, dir, dir.magnitude, layerMask);
     }
-    
+
     private Vector3 RotatePointAroundFish(Vector3 point, float amount, float distanceModifier)
     {
         var pos = transform.position;

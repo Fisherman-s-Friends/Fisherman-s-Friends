@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
-    private float holdStarted, holdEnded, holdTotal, controlSpeed=5, castLineX = 2, castLineY = 2;
+    private float holdStarted, holdEnded, holdTotal, controlSpeed=1000, castLineX = 2, castLineY = 2;
     //added bool to check if hook has been stopped
     private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false, arrowKeysPressed = false;
     private Slider castSlider, minigameSlider;
