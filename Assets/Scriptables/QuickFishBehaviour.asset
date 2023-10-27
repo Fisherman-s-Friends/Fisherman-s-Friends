@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3447dc4e27b74b34dadabf4de6d582a9, type: 3}
   m_Name: QuickFishBehaviour
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
+  smoothness: 5
