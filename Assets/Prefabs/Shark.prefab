@@ -183,6 +183,7 @@ MonoBehaviour:
   turningSpeed: 3
   turningSpeedChange: 0
   deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
+  fishBehaviour: {fileID: 0}
   detectionRange: 5
   cannibal: 0
   huntingSpeed: 6
