@@ -161,7 +161,7 @@
                     "name": "2D Vector",
                     "id": "70d4fc99-565d-4a21-950e-0b1aacedd4f1",
                     "path": "2DVector",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "HookMove",

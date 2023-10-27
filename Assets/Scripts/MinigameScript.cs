@@ -7,49 +7,74 @@ using UnityEngine.UI;
 
 public class MinigameScript : MonoBehaviour
 {
-    [SerializeField] private GameObject fishIconObj, catchArea, fishBar;
+    [SerializeField] private GameObject fishIconObj, catchArea, fishBar, pivotPointObj;
     [SerializeField] private Slider slider;
-    private RectTransform fishIconTrans, catchAreaTrans;
-    private float sliderGainSpeed = 10, boundaries=333f;
-    private int noPointDistance, halfPointDistance;
-    [SerializeField]private FishBehaviour fishBehaviour;
-    private void Start()
+    [SerializeField] private FishBehaviour fishBehaviour;
+    private float fishSmoothness, fishSpeedMultiplier;
+    private RectTransform fishIconTrans, catchAreaTrans, pivotPointTrans;
+    private Vector3 pivotPoint;
+    private float sliderGainSpeed = 20, fishPosition, fishDestination, fishTimer, fishSpeed;
+    private int noPointsDistance, halfPointsDistance;
+
+    void Start()
     {
         fishIconTrans = fishIconObj.GetComponent<RectTransform>();
         catchAreaTrans = catchArea.GetComponent<RectTransform>();
-
-        noPointDistance = Mathf.RoundToInt((fishIconTrans.sizeDelta.x / 2) + (catchAreaTrans.sizeDelta.x / 2));
-        halfPointDistance = Mathf.RoundToInt(noPointDistance * 0.5f);
+        pivotPointTrans = pivotPointObj.gameObject.GetComponent<RectTransform>();
+        pivotPoint.x = -(pivotPointTrans.localPosition.x + (catchAreaTrans.sizeDelta.x / 2));
+        noPointsDistance = Mathf.RoundToInt((fishIconTrans.sizeDelta.x / 2) + (catchAreaTrans.sizeDelta.x / 2));
+        halfPointsDistance = Mathf.RoundToInt(noPointsDistance * 0.5f);
     }
-
-    // use this when fish gets hooked, to determine the fish-behaviour used in the minigame
-    public void StartMinigame(FishBehaviour currentBehaviour)
-    {
-        fishBehaviour = currentBehaviour;
-    }
-
     void Update()
     {
         int areaDistance = Mathf.RoundToInt(Mathf.Abs(catchAreaTrans.localPosition.x - fishIconTrans.localPosition.x));
 
-        if (areaDistance > noPointDistance)
+        if (areaDistance > noPointsDistance)
             slider.value -= sliderGainSpeed / 2 * Time.deltaTime;
-        else if (areaDistance >= halfPointDistance)
+        else if (areaDistance >= halfPointsDistance)
             slider.value += sliderGainSpeed / 2 * Time.deltaTime;
-        else if (areaDistance <= halfPointDistance)
+        else if (areaDistance <= halfPointsDistance)
             slider.value += sliderGainSpeed * Time.deltaTime;
 
-        fishIconTrans.localPosition = new Vector2((fishBehaviour.FishMovement(fishIconTrans.localPosition)), fishIconTrans.localPosition.y);
+        fishSpeedMultiplier = fishBehaviour.FishMoveSpeed() / 10;
+        fishSmoothness = fishBehaviour.FishMoveSmoothness() / 10;
+
+        fishTimer -= Time.deltaTime;
+        if (fishTimer < 0f)
+        {
+            fishTimer = Random.value * fishSpeedMultiplier;
+            fishDestination = Random.value;
+        }
+
+        if (fishPosition < fishDestination)
+            fishIconTrans.transform.localScale = new Vector3(-1f, 1, 1);
+        else
+            fishIconTrans.transform.localScale = new Vector3(1f, 1, 1);
+
+        fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, fishSmoothness);
+        fishIconTrans.localPosition =
+            Vector3.Lerp
+            (new Vector3(-pivotPoint.x, fishIconTrans.localPosition.y),
+            new Vector3(pivotPoint.x, fishIconTrans.localPosition.y),
+            fishPosition);
+
+
     }
 
-    public void MinigameMovement(Vector2 movementDir, float controlSpeed)
+    public void GetFishBehaviour(FishBehaviour currentBehaviour)
     {
-        catchAreaTrans.localPosition = new Vector2(catchAreaTrans.localPosition.x + Time.deltaTime * movementDir.x * controlSpeed, catchAreaTrans.localPosition.y);
-        if (catchAreaTrans.localPosition.x > boundaries)
-            catchAreaTrans.localPosition = new Vector2(boundaries, catchAreaTrans.localPosition.y);
-        else if (catchAreaTrans.localPosition.x < -boundaries)
-            catchAreaTrans.localPosition = new Vector2(-boundaries, catchAreaTrans.localPosition.y);
+        fishBehaviour = currentBehaviour;
     }
 
-
+    public void MinigameMovement(Vector2 direction, float speed)
+    {
+        if (catchAreaTrans != null)
+        {
+            catchAreaTrans.localPosition = new Vector2(catchAreaTrans.localPosition.x + Time.deltaTime * direction.x * speed, catchAreaTrans.localPosition.y);
+            if (catchAreaTrans.localPosition.x > pivotPoint.x)
+                catchAreaTrans.localPosition = new Vector2(pivotPoint.x, catchAreaTrans.localPosition.y);
+            else if (catchAreaTrans.localPosition.x < -pivotPoint.x)
+                catchAreaTrans.localPosition = new Vector2(-pivotPoint.x, catchAreaTrans.localPosition.y);
+        }
+    }
 }

@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
-    private float holdStarted, holdEnded, holdTotal, controlSpeed=1000, castLineX = 2, castLineY = 2;
+    private float holdStarted, holdEnded, holdTotal, controlSpeed=750, castLineX = 2, castLineY = 2;
     //added bool to check if hook has been stopped
-    private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false, arrowKeysPressed = false;
+    private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false;
     private Slider castSlider, minigameSlider;
     public Rigidbody hookRb;
     private Vector3 bobberStartPos;
@@ -29,10 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        if (arrowKeysPressed)
-        {
-            mgScript.MinigameMovement(movementDir, controlSpeed);
-        }
+        mgScript.MinigameMovement(movementDir, controlSpeed);
     }
     // Triggered with Space-key, casts the bobber
     public void StartCast(InputAction.CallbackContext context)
@@ -91,21 +88,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MinigameMovement(InputAction.CallbackContext context)
+    public void MinigameInput(InputAction.CallbackContext context)
     {
-        arrowKeysPressed = false;
         if (minigameSlider.value == 100 && context.performed)
         {
             // here you could add the splash screen for the fish you caught
             ResetEverything();
         }
         movementDir = context.ReadValue<Vector2>();
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            arrowKeysPressed = true;
-            return;
-        }
-        mgScript.MinigameMovement(movementDir, controlSpeed);
     }
 
     public void ResetEverything()
@@ -129,5 +119,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
 
 }
