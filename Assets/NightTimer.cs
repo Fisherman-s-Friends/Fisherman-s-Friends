@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public class SessionController : MonoBehaviour
+public class NightTimer : MonoBehaviour
 {
     [SerializeField]
     private float sessionLengthInSeconds;
