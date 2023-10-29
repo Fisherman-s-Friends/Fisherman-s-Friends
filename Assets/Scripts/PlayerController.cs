@@ -6,82 +6,63 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
-    [SerializeField] private GameObject castBar;
+    [SerializeField] private GameObject castBar, minigameObj, minigameSliderObj, catchArea;
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
-
-    private float castLineX = 2, castLineY = 2;
-    private float holdStarted, holdEnded, holdTotal;
+    private float holdStarted, holdEnded, holdTotal, controlSpeed = 750, castLineX = 2, castLineY = 2;
     //added bool to check if hook has been stopped
     private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false;
-    private Slider castSlider;
+    private Slider castSlider, minigameSlider;
     public Rigidbody hookRb;
-    private Vector3 startPos;
+    private Vector3 bobberStartPos;
+    private Vector2 movementDir;
+    private MinigameScript mgScript;
 
     public void Start()
     {
-        // Stores the bobbers position on start
-        startPos = bobberRb.transform.localPosition;
+        bobberStartPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
-        //hookRb = hook.GetComponent<Rigidbody>();
-        
+        minigameSlider = minigameSliderObj.GetComponent<Slider>();
+        mgScript = minigameObj.GetComponent<MinigameScript>();
     }
 
+    public void Update()
+    {
+        mgScript.MinigameMovement(movementDir, controlSpeed);
+    }
     // Triggered with Space-key, casts the bobber
     public void StartCast(InputAction.CallbackContext context)
     {
-
-        // Check if the bobber has been already cast
-        if (!haveYouCasted)
+        if (haveYouCasted) { return; }
+        if (context.started) // .started triggers on key down
         {
-            if (context.started) // .started triggers on key down
-            {
-                castBar.SetActive(true);
-                holdStarted = Time.realtimeSinceStartup;
-                sliderBarCheck = true;
-                StartCoroutine(SliderChargeUp());
-            }
-            if (context.canceled) // .canceled triggers on key release
-            {
-                holdEnded = Time.realtimeSinceStartup;
-                bobberRb.useGravity = true;
-                holdTotal = holdEnded - holdStarted;
+            castBar.SetActive(true);
+            holdStarted = Time.realtimeSinceStartup;
+            sliderBarCheck = true;
+            StartCoroutine(SliderChargeUp());
+        }
+        if (context.canceled) // .canceled triggers on key release
+        {
+            holdEnded = Time.realtimeSinceStartup;
+            bobberRb.useGravity = true;
+            holdTotal = holdEnded - holdStarted;
 
-                if (holdTotal >= 3.5f) // Limits the total distance that can be cast, even though keydown lasts for ages 
-                {
-                    holdTotal = 3.5f;
-                }
-                bobberRb.velocity = new Vector3(castLineX * (holdTotal + holdTotal + holdTotal), castLineY * (holdTotal), 0);
-                haveYouCasted = true;
-                sliderBarCheck = false;
-                castBar.SetActive(false);
-                Debug.Log("Total time space was hold down: " + holdTotal); // Debug for the cast time multiplier
-            }
+            if (holdTotal >= 3.5f) { holdTotal = 3.5f; }    // Limits the total distance that can be cast, even though keydown lasts for ages 
+            bobberRb.velocity = new Vector3(castLineX * (holdTotal * 3), castLineY * (holdTotal), 0);
+            haveYouCasted = true;
+            sliderBarCheck = false;
+            castBar.SetActive(false);
         }
     }
 
     // Triggered with Z-key, resets the position of the bobber for a recast
     public void ResetCast(InputAction.CallbackContext context)
     {
-        // checks if the bobber is in the air and moving with velocity
-        if (bobberRb.velocity.x == 0 || bobberRb.velocity.y == 0)
-        {
-            bobberRb.useGravity = false;
-            bobberRb.transform.localPosition = startPos;
-            bobberRb.velocity = new Vector3(0, 0, 0);
-            haveYouCasted = false;
-            castSlider.value = 0;
-
-            bobberScript.DestroyHookAndSwapActionMap();
-        }
-        else
-        {
-            Debug.Log("Bobber in motion, cannot recast yet!");
-        }
+        if (bobberRb.velocity.x == 0 || bobberRb.velocity.y == 0) { return; }
+        ResetEverything();
     }
 
-    // Updates the values to the castbar slider
     private IEnumerator SliderChargeUp()
     {
         while (sliderBarCheck)
@@ -99,18 +80,38 @@ public class PlayerController : MonoBehaviour
             hookRb.useGravity = false;
             hookRb.velocity = Vector3.zero;
             hookStopped = true;
-            
-            Debug.Log("Here you can trigger something to stop the hook");
+
+            minigameObj.SetActive(true);
             haveYouCasted = false;
         }
     }
-    public void MoveHook(InputAction.CallbackContext context) 
-    { 
-        if (hookStopped) 
-        { 
-            //moving the hook uo and down
-            
+
+    public void MinigameInput(InputAction.CallbackContext context)
+    {
+        movementDir = context.ReadValue<Vector2>();
+    }
+
+    public void ResetEverything()
+    {
+        bobberRb.useGravity = false;
+        bobberRb.transform.localPosition = bobberStartPos;
+        bobberRb.velocity = new Vector3(0, 0, 0);
+        haveYouCasted = false;
+        castSlider.value = 0;
+        minigameSlider.value = 0;
+
+        bobberScript.DestroyHookAndSwapActionMap();
+        minigameObj.SetActive(false);
+    }
+
+    public void MoveHook(InputAction.CallbackContext context)
+    {
+        if (hookStopped)
+        {
+            //moving the hook up and down
+
         }
     }
+
 
 }
