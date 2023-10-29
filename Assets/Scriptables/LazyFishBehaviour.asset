@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3447dc4e27b74b34dadabf4de6d582a9, type: 3}
   m_Name: LazyFishBehaviour
   m_EditorClassIdentifier: 
-  speed: 60
-  smoothness: 25
+  speed: 20
+  smoothness: 10
+  barSize: 220
