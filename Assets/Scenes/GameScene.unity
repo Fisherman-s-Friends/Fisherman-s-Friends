@@ -1607,6 +1607,7 @@ MonoBehaviour:
   pivotPointObj: {fileID: 852159292}
   slider: {fileID: 2116176687}
   fishBehaviour: {fileID: 11400000, guid: 706ec85bf9bf9294992d2e1477a55c3c, type: 2}
+  playerController: {fileID: 728654501}
 --- !u!1 &1364681826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2338,10 @@ PrefabInstance:
       propertyPath: bobberRb
       value: 
       objectReference: {fileID: 1076485582}
+    - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: mgScript
+      value: 
+      objectReference: {fileID: 1330360334}
     - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: catchArea
       value: 

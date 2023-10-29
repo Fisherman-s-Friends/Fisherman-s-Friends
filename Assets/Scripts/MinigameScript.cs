@@ -10,11 +10,12 @@ public class MinigameScript : MonoBehaviour
     [SerializeField] private GameObject fishIconObj, catchArea, fishBar, pivotPointObj;
     [SerializeField] private Slider slider;
     [SerializeField] private FishBehaviour fishBehaviour;
-    private float fishSmoothness, fishSpeedMultiplier;
+    [SerializeField] private PlayerController playerController;
     private RectTransform fishIconTrans, catchAreaTrans, pivotPointTrans;
     private Vector3 pivotPoint;
-    private float sliderGainSpeed = 20, fishPosition, fishDestination, fishTimer, fishSpeed;
-    private int noPointsDistance, halfPointsDistance;
+    private float fishSmoothness, fishSpeedMultiplier, fishSliderSize,
+                  fishPosition, fishDestination, fishTimer, fishSpeed, sliderGainSpeed = 15f;
+    private int noPointsDistance, halfPointsDistance, areaDistance;
 
     void Start()
     {
@@ -24,10 +25,22 @@ public class MinigameScript : MonoBehaviour
         pivotPoint.x = -(pivotPointTrans.localPosition.x + (catchAreaTrans.sizeDelta.x / 2));
         noPointsDistance = Mathf.RoundToInt((fishIconTrans.sizeDelta.x / 2) + (catchAreaTrans.sizeDelta.x / 2));
         halfPointsDistance = Mathf.RoundToInt(noPointsDistance * 0.5f);
+
+        fishSpeedMultiplier = fishBehaviour.FishMoveSpeed() / 10;
+        fishSmoothness = fishBehaviour.FishMoveSmoothness() / 10;
+        fishSliderSize = fishBehaviour.FishBarValueSize();
+        slider.maxValue = fishSliderSize;
+
+        
     }
     void Update()
     {
-        int areaDistance = Mathf.RoundToInt(Mathf.Abs(catchAreaTrans.localPosition.x - fishIconTrans.localPosition.x));
+        if (slider.value == fishSliderSize)
+        {
+            // here you could add the splash screen for the fish you caught
+            playerController.ResetEverything();
+        }
+        areaDistance = Mathf.RoundToInt(Mathf.Abs(catchAreaTrans.localPosition.x - fishIconTrans.localPosition.x));
 
         if (areaDistance > noPointsDistance)
             slider.value -= sliderGainSpeed / 2 * Time.deltaTime;
@@ -36,14 +49,14 @@ public class MinigameScript : MonoBehaviour
         else if (areaDistance <= halfPointsDistance)
             slider.value += sliderGainSpeed * Time.deltaTime;
 
-        fishSpeedMultiplier = fishBehaviour.FishMoveSpeed() / 10;
-        fishSmoothness = fishBehaviour.FishMoveSmoothness() / 10;
-
         fishTimer -= Time.deltaTime;
         if (fishTimer < 0f)
         {
             fishTimer = Random.value * fishSpeedMultiplier;
+            float oldFishDestination = fishDestination;
             fishDestination = Random.value;
+            if (fishDestination - oldFishDestination < 0.1f) // Prevents fish from staying seemingly still
+                fishDestination += 0.05f;
         }
 
         if (fishPosition < fishDestination)
@@ -57,14 +70,12 @@ public class MinigameScript : MonoBehaviour
             (new Vector3(-pivotPoint.x, fishIconTrans.localPosition.y),
             new Vector3(pivotPoint.x, fishIconTrans.localPosition.y),
             fishPosition);
-
-
     }
 
-    public void GetFishBehaviour(FishBehaviour currentBehaviour)
-    {
-        fishBehaviour = currentBehaviour;
-    }
+    //public void GetFishBehaviour(FishBehaviour currentBehaviour)
+    //{
+    //    fishBehaviour = currentBehaviour;
+    //}
 
     public void MinigameMovement(Vector2 direction, float speed)
     {
