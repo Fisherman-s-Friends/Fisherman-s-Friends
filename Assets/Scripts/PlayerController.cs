@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject hook;
     [SerializeField] BobberScript bobberScript;
 
-    private float holdStarted, holdEnded, holdTotal, controlSpeed=750, castLineX = 2, castLineY = 2;
+    private float holdStarted, holdEnded, holdTotal, controlSpeed = 750, castLineX = 2, castLineY = 2;
     //added bool to check if hook has been stopped
     private bool haveYouCasted = false, sliderBarCheck = false, hookStopped = false;
     private Slider castSlider, minigameSlider;
@@ -59,10 +59,8 @@ public class PlayerController : MonoBehaviour
     // Triggered with Z-key, resets the position of the bobber for a recast
     public void ResetCast(InputAction.CallbackContext context)
     {
-        if (bobberRb.velocity.x == 0 || bobberRb.velocity.y == 0)
-        {
-            ResetEverything();
-        }
+        if (bobberRb.velocity.x == 0 || bobberRb.velocity.y == 0) { return; }
+        ResetEverything();
     }
 
     private IEnumerator SliderChargeUp()
@@ -90,11 +88,6 @@ public class PlayerController : MonoBehaviour
 
     public void MinigameInput(InputAction.CallbackContext context)
     {
-        if (minigameSlider.value == 100 && context.performed)
-        {
-            // here you could add the splash screen for the fish you caught
-            ResetEverything();
-        }
         movementDir = context.ReadValue<Vector2>();
     }
 
