@@ -42,13 +42,13 @@ public class SessionController : MonoBehaviour
         if (money < 0)
         {
             throw new NotImplementedException("Not enough money, you lose");
-            return;
+            //return;
         }
         loan -= paybackRate;
         if (loan <= 0)
         {
             throw new NotImplementedException("Loan payed, you win");
-            return;
+            //return;
         }
 
         UpdateMoneyText();

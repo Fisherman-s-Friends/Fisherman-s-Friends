@@ -8,15 +8,23 @@ public class HookScript : MonoBehaviour
 {
     private GameObject closestFish;
 
+    private FishScript fishScript;
+
+    private void Start()
+    {
+        fishScript = fishScript.GetComponent<FishScript>();
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (closestFish != null) { return; }
         if (collision.gameObject.tag == "Fish" || collision.gameObject.tag == "boidFish")
         {
             closestFish = collision.gameObject;
-            closestFish.transform.localScale = new Vector3(5, 5, 5);
+            fishScript.GetHook();
+
             Debug.Log("A fish is near!");
         }
-    }
 
+    }
 }

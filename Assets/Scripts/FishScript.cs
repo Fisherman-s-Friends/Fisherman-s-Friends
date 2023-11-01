@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,7 +35,7 @@ public class FishScript : MonoBehaviour
 
     protected Vector3 target;
 
-    public FishBehaviour fishBehaviour=null;
+    public FishBehaviour fishBehaviour = null;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -45,7 +46,7 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Move();
+            Move();
     }
 
     /// <summary>
@@ -122,5 +123,10 @@ public class FishScript : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(target, 0.2f);
         Gizmos.DrawLine(transform.position, target);
+    }
+
+    public void GetHook()
+    {
+
     }
 }
