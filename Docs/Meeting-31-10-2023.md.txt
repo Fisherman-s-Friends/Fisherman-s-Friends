@@ -1,0 +1,40 @@
+31.10.2023
+The whole group present 
+# Table of content for the meeting
+- Current state
+- Next steps
+	- Prioritization
+	- cutting
+# Decission made
+- steps
+	- Fish catching
+	- Money counter in play scene
+	- Show loan
+	- convert caught fish into money
+		- Splash screen
+	- Progress day
+	- Lose and win.
+	- Menus
+		- Pause & main
+		- Or a button to take player back home.
+- Responsibilities
+	- Counters & UI
+		- Transfer, show
+		- Leevi
+	- Fish splash screen
+		-  aleks
+	- Win % lose
+		- aleks
+	- Fish
+		- emil
+	- quitting
+		- emil
+	- Hook & bobber models
+		- aleks
+	- Project management
+		- Jaakko
+	- Timelines
+		- Jaakko
+- Code review
+	- Organize one
+		- Good learning oppurtunity
