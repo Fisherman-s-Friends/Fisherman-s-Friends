@@ -9,4 +9,4 @@ A simple game about fishing
 
 [Module 3 Assignment](https://github.com/Fisherman-s-Friends/Fisherman-s-Friends/issues/74)
 
-
+[Design Draft](./Docs/Draft.md)
