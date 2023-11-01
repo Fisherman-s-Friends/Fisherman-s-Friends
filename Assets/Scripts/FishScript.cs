@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,6 +38,10 @@ public class FishScript : MonoBehaviour
 
     public FishBehaviour fishBehaviour = null;
 
+    public float hookDistance { get { return 0.5f; } private set { } }
+    private bool isMoving = false, stopMovement = false;
+    private Vector3 hookPos;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -46,7 +51,31 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (isMoving)
+            SwimToHook();
+        else
             Move();
+    }
+
+    public void GetHook(Vector3 target)
+    {
+        hookPos = target;
+        isMoving = true;
+    }
+
+    private void SwimToHook()
+    {
+        float swimSpeed = 1.5f;
+
+        if (stopMovement) { return; }
+
+        transform.LookAt(hookPos);
+        transform.position = Vector3.MoveTowards(transform.position, hookPos, swimSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, hookPos) < hookDistance)
+        {
+            stopMovement = true;
+        }
     }
 
     /// <summary>
@@ -117,16 +146,10 @@ public class FishScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(target, 0.2f);
         Gizmos.DrawLine(transform.position, target);
-    }
-
-    public void GetHook()
-    {
-
     }
 }
