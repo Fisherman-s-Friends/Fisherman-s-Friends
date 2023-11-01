@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish4
       objectReference: {fileID: 0}
+    - target: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: m_TagString
+      value: Fish
+      objectReference: {fileID: 0}
     - target: {fileID: 3271729604366257140, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_Height
       value: 1
