@@ -11,6 +11,7 @@ public class MinigameScript : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private FishBehaviour fishBehaviour;
     [SerializeField] private PlayerController playerController;
+    private SessionController sessionController;
     private RectTransform fishIconTrans, catchAreaTrans, pivotPointTrans;
     private Vector3 pivotPoint;
     private float fishSmoothness, fishSpeedMultiplier, fishSliderSize,
@@ -19,6 +20,8 @@ public class MinigameScript : MonoBehaviour
 
     void Start()
     {
+        sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
+        
         fishIconTrans = fishIconObj.GetComponent<RectTransform>();
         catchAreaTrans = catchArea.GetComponent<RectTransform>();
         pivotPointTrans = pivotPointObj.gameObject.GetComponent<RectTransform>();
@@ -38,6 +41,7 @@ public class MinigameScript : MonoBehaviour
         {
             // here you could add the splash screen for the fish you caught
             playerController.ResetEverything();
+            sessionController.AddMoney(10);
         }
 
         areaDistance = Mathf.RoundToInt(Mathf.Abs(catchAreaTrans.localPosition.x - fishIconTrans.localPosition.x));

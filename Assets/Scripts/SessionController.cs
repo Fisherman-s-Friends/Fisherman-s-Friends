@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SessionController : MonoBehaviour
@@ -24,7 +25,8 @@ public class SessionController : MonoBehaviour
         sessionObject = gameObject;
         DontDestroyOnLoad(sessionObject);
 
-        UpdateMoneyText();
+        UpdateText();
+        SceneManager.sceneLoaded += onSceneLoaded;
     }
 
     void Update()
@@ -35,7 +37,7 @@ public class SessionController : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
-        UpdateMoneyText();
+        UpdateText();
     }
 
     public void NextDay()
@@ -53,7 +55,7 @@ public class SessionController : MonoBehaviour
             //return;
         }
 
-        UpdateMoneyText();
+        UpdateText();
         UpdateDayCount();
     }
     public void UpdateDayCount()
@@ -61,11 +63,14 @@ public class SessionController : MonoBehaviour
         DayCount++;
     }
 
-    private void UpdateMoneyText()
+    private void UpdateText()
     {
         var text = GameObject.FindGameObjectWithTag("moneyText");
         if (text != null)
             text.GetComponent<TMPro.TMP_Text>().text = money + " fishes";
+        var text2 = GameObject.FindGameObjectWithTag("loanText");
+        if (text2 != null)
+            text2.GetComponent<TMPro.TMP_Text>().text = loan + " Loan";
     }
 
     private void OnGUI()
@@ -74,9 +79,9 @@ public class SessionController : MonoBehaviour
         {
             AddMoney(10);
         }
-        if (GUI.Button(new Rect(100, 10, 75, 50), "Next day"))
-        {
-            NextDay();
-        }
+    }
+    void onSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateText();
     }
 }
