@@ -38,8 +38,8 @@ public class FishScript : MonoBehaviour
 
     public FishBehaviour fishBehaviour = null;
 
-    public float hookDistance { get { return 0.5f; } private set { } }
-    private bool isMoving = false, stopMovement = false;
+    private float hookDistance = 0.5f;
+    private bool goingForHook = false, stopMovement = false;
     private Vector3 hookPos;
 
     // Start is called before the first frame update
@@ -51,16 +51,24 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (isMoving)
+        if (goingForHook)
+        {
             SwimToHook();
-        else
-            Move();
+            return;
+        }
+        Move();
     }
+
 
     public void GetHook(Vector3 target)
     {
         hookPos = target;
-        isMoving = true;
+        FishInMovement(true);
+    }
+
+    public void FishInMovement(bool moving) 
+    {
+        goingForHook = moving;
     }
 
     private void SwimToHook()
