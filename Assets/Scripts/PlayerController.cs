@@ -9,19 +9,24 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody bobberRb;
     [SerializeField] private GameObject castBar, minigameObj, minigameSliderObj, catchArea;
-    [SerializeField] BobberScript bobberScript;
+    [SerializeField] private BobberScript bobberScript;
 
-    public bool hookGetFish = false; // change this to getter/setter
-    private float holdStarted, holdEnded, holdTotal, controlSpeed = 750, castLineX = 2, castLineY = 2, hookDist = 0.5f;
-    private bool haveYouCasted = false, sliderBarCheck = false, gameStarted = false;
-    private Slider castSlider, minigameSlider;
     public Rigidbody hookRb;
-    private Vector3 bobberStartPos;
-    private Vector2 movementDir;
+
     private MinigameScript mgScript;
     private GameObject closestFish;
     private Transform hookTrans;
     private Collider hookCollider;
+    private Slider castSlider, minigameSlider;
+
+    private Vector3 bobberStartPos;
+    private Vector2 movementDir;
+
+    private float
+        holdStarted, holdEnded, holdTotal,
+        controlSpeed = 750, castLineX = 2, castLineY = 2, fishFromHook = 1f;
+    private bool
+        haveYouCasted = false, sliderBarCheck = false, gameStarted = false;
 
     public void Start()
     {
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (gameStarted == true && Vector3.Distance(hookTrans.position, closestFish.transform.position) < hookDist)
+        if (gameStarted == true && Vector3.Distance(hookTrans.position, closestFish.transform.position) < fishFromHook)
         {
             mgScript.GetFishBehaviour(closestFish.GetComponent<FishScript>().fishBehaviour);
             minigameObj.SetActive(true);
@@ -94,7 +99,6 @@ public class PlayerController : MonoBehaviour
             hookRb.useGravity = false;
             hookRb.velocity = Vector3.zero;
             haveYouCasted = false;
-            hookGetFish = true;
             hookCollider.enabled = true;
         }
     }
@@ -110,12 +114,14 @@ public class PlayerController : MonoBehaviour
         bobberRb.useGravity = false;
         bobberRb.transform.localPosition = bobberStartPos;
         bobberRb.velocity = new Vector3(0, 0, 0);
+        bobberScript.DestroyHookAndSwapActionMap();
         haveYouCasted = false;
         castSlider.value = 0;
+        if (closestFish != null && minigameSlider.value < minigameSlider.maxValue)
+            closestFish.GetComponent<FishScript>().FishInMovement(false);
+        else if (closestFish != null)
+            Destroy(closestFish);
         minigameSlider.value = 0;
-        bobberScript.DestroyHookAndSwapActionMap();
-        Destroy(closestFish);
-        hookGetFish = false;
     }
 
     public void FishHookedStartGame(GameObject fish, Transform hooktransform)
@@ -127,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetHookCollider(Collider collider)
     {
-            hookCollider = collider;
+        hookCollider = collider;
     }
 
 }
