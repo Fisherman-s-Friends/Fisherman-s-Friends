@@ -217,5 +217,6 @@ MonoBehaviour:
   turningSpeedChange: 0
   deathParticle: {fileID: 819939023633149891, guid: cf3b962aa6f5ced43b49fd8d0c4cced5, type: 3}
   fishBehaviour: {fileID: 11400000, guid: 706ec85bf9bf9294992d2e1477a55c3c, type: 2}
+  fishValue: {fileID: 11400000, guid: 307efdc67e552464b88310a2ec551a8d, type: 2}
   detectionRange: 3
   randomDirectionWeight: 0.7

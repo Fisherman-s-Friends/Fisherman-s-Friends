@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject castBar, minigameObj, minigameSliderObj, catchArea;
     [SerializeField] private BobberScript bobberScript;
 
+    private SessionController sessionController;
+
     public Rigidbody hookRb;
 
     private MinigameScript mgScript;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
+        
         bobberStartPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
         minigameSlider = minigameSliderObj.GetComponent<Slider>();
@@ -120,6 +124,7 @@ public class PlayerController : MonoBehaviour
         if (closestFish != null && minigameSlider.value < minigameSlider.maxValue)
             closestFish.GetComponent<FishScript>().FishInMovement(false);
         else if (closestFish != null)
+            sessionController.AddMoney(closestFish.GetComponent<FishScript>().fishValue.value);
             Destroy(closestFish);
         minigameSlider.value = 0;
     }
