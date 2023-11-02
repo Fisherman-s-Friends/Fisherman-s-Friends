@@ -1606,7 +1606,7 @@ MonoBehaviour:
   fishBar: {fileID: 519371058}
   pivotPointObj: {fileID: 852159292}
   slider: {fileID: 2116176687}
-  fishBehaviour: {fileID: 11400000, guid: 706ec85bf9bf9294992d2e1477a55c3c, type: 2}
+  fishBehaviour: {fileID: 0}
   playerController: {fileID: 728654501}
 --- !u!1 &1364681826
 GameObject:
@@ -2279,6 +2279,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 738953684}
     - target: {fileID: -1694090202123332570, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1694090202123332570, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: light
       value: 
       objectReference: {fileID: 705507994}
@@ -2286,10 +2290,6 @@ PrefabInstance:
       propertyPath: timeText
       value: 
       objectReference: {fileID: 1903752379}
-    - target: {fileID: -1694090202123332570, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: sessionLengthInSeconds
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 3636223818719886641, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
