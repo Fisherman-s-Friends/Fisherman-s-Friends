@@ -11,6 +11,8 @@ public class SessionController : MonoBehaviour
 
     [SerializeField]
     private int paybackRate;
+
+    [SerializeField] private int DayCount;
     void Start()
     {
         if (sessionObject != null)
@@ -52,6 +54,11 @@ public class SessionController : MonoBehaviour
         }
 
         UpdateMoneyText();
+        UpdateDayCount();
+    }
+    public void UpdateDayCount()
+    {
+        DayCount++;
     }
 
     private void UpdateMoneyText()
