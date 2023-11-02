@@ -48,4 +48,5 @@ public class HookScript : MonoBehaviour
             fishOnHook = true;
         }
     }
+
 }
