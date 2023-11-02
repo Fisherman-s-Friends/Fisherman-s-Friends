@@ -85,10 +85,14 @@ PrefabInstance:
     - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: fishBehaviour
       value: 
-      objectReference: {fileID: 11400000, guid: de5947cd4be67964696e43c475a3223d, type: 2}
+      objectReference: {fileID: 11400000, guid: a228f6352709f464886f7d9612293a13, type: 2}
     - target: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_Name
       value: Fish2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001644120210855972, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: m_TagString
+      value: Fish
       objectReference: {fileID: 0}
     - target: {fileID: 3271729604366257140, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: m_Height

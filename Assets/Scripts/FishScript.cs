@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,7 +36,11 @@ public class FishScript : MonoBehaviour
 
     protected Vector3 target;
 
-    public FishBehaviour fishBehaviour=null;
+    public FishBehaviour fishBehaviour = null;
+
+    private float hookDistance = 0.5f;
+    private bool goingForHook = false, stopMovement = false;
+    private Vector3 hookPos;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -45,7 +51,39 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (goingForHook)
+        {
+            SwimToHook();
+            return;
+        }
         Move();
+    }
+
+
+    public void GetHook(Vector3 target)
+    {
+        hookPos = target;
+        FishInMovement(true);
+    }
+
+    public void FishInMovement(bool moving) 
+    {
+        goingForHook = moving;
+    }
+
+    private void SwimToHook()
+    {
+        float swimSpeed = 1.5f;
+
+        if (stopMovement) { return; }
+
+        transform.LookAt(hookPos);
+        transform.position = Vector3.MoveTowards(transform.position, hookPos, swimSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, hookPos) < hookDistance)
+        {
+            stopMovement = true;
+        }
     }
 
     /// <summary>
@@ -115,7 +153,6 @@ public class FishScript : MonoBehaviour
         Instantiate(deathParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
 
     private void OnDrawGizmos()
     {

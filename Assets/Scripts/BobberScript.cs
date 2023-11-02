@@ -11,7 +11,6 @@ public class BobberScript : MonoBehaviour
     private PlayerInput playerInputSwap;
     private PlayerController playerController;
 
-
     private void Start()
     {
         playerInputSwap = gameController.GetComponent<PlayerInput>();
@@ -33,7 +32,6 @@ public class BobberScript : MonoBehaviour
     }
     public void DestroyHookAndSwapActionMap()
     {
-
         playerInputSwap.SwitchCurrentActionMap("RodActions");
         Destroy(newHook);
     }

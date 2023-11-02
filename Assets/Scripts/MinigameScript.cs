@@ -30,9 +30,8 @@ public class MinigameScript : MonoBehaviour
         fishSmoothness = fishBehaviour.FishMoveSmoothness() / 10;
         fishSliderSize = fishBehaviour.FishBarValueSize();
         slider.maxValue = fishSliderSize;
-
-        
     }
+
     void Update()
     {
         if (slider.value == fishSliderSize)
@@ -40,6 +39,7 @@ public class MinigameScript : MonoBehaviour
             // here you could add the splash screen for the fish you caught
             playerController.ResetEverything();
         }
+
         areaDistance = Mathf.RoundToInt(Mathf.Abs(catchAreaTrans.localPosition.x - fishIconTrans.localPosition.x));
 
         if (areaDistance > noPointsDistance)
@@ -55,7 +55,7 @@ public class MinigameScript : MonoBehaviour
             fishTimer = Random.value * fishSpeedMultiplier;
             float oldFishDestination = fishDestination;
             fishDestination = Random.value;
-            if (fishDestination - oldFishDestination < 0.1f) // Prevents fish from staying seemingly still
+            if (fishDestination - oldFishDestination < 0.1f) 
                 fishDestination += 0.05f;
         }
 
@@ -72,10 +72,10 @@ public class MinigameScript : MonoBehaviour
             fishPosition);
     }
 
-    //public void GetFishBehaviour(FishBehaviour currentBehaviour)
-    //{
-    //    fishBehaviour = currentBehaviour;
-    //}
+    public void GetFishBehaviour(FishBehaviour currentBehaviour)
+    {
+        fishBehaviour = currentBehaviour;
+    }
 
     public void MinigameMovement(Vector2 direction, float speed)
     {

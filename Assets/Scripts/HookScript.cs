@@ -1,27 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HookScript : MonoBehaviour
 {
-   
+    private PlayerController playerController;
+    private GameObject closestFish;
+    private FishScript fishScript;
+    private bool fishOnHook = false;
+    private Transform hookTrans;
+    private Collider hookCollider;
 
-    private Rigidbody hook;
-    public float hookSpeed = 1.0f;
 
-    
-    private void OnCollisionEnter(Collision collision)
+    void Start()
     {
-        hook = GetComponent<Rigidbody>();
-
-        //if (collision.gameObject.CompareTag("WaterPlane"))
-        //{
-        //    hook.useGravity = false;
-        //    Vector3 upwardForce = Vector3.up * hookSpeed;
-        //    hook.AddForce(upwardForce, ForceMode.Impulse);
-        //
-        //}
-
+        playerController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>();
+        hookCollider = GetComponent<Collider>();
+        hookCollider.enabled = false;
+        playerController.GetHookCollider(hookCollider);
     }
+    private void Update()
+    {
+        if (fishOnHook)
+        {
+            playerController.FishHookedStartGame(closestFish, hookTrans);
+            fishOnHook = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (closestFish != null) { return; }
+
+        if (collision.gameObject.tag == "Fish" || collision.gameObject.tag == "boidFish")
+        {
+            closestFish = collision.gameObject;
+            fishScript = closestFish.GetComponent<FishScript>();
+            hookTrans = transform;
+        }
+
+        if (fishScript != null)
+        {
+            fishScript.GetHook(hookTrans.position);
+            fishOnHook = true;
+        }
+    }
+
 }
