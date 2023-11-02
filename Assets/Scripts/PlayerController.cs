@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private MinigameScript mgScript;
     private GameObject closestFish;
     private Transform hookTrans;
-    private SphereCollider hookCollider;
+    private Collider hookCollider;
 
     public void Start()
     {
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         gameStarted = true;
     }
 
-    public void GetHookCollider(SphereCollider collider)
+    public void GetHookCollider(Collider collider)
     {
             hookCollider = collider;
     }

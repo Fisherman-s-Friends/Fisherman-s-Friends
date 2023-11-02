@@ -12,13 +12,13 @@ public class HookScript : MonoBehaviour
     private FishScript fishScript;
     private bool fishOnHook = false;
     private Transform hookTrans;
-    private SphereCollider hookCollider;
+    private Collider hookCollider;
 
 
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>();
-        hookCollider = GetComponent<SphereCollider>();
+        hookCollider = GetComponent<Collider>();
         hookCollider.enabled = false;
         playerController.GetHookCollider(hookCollider);
     }
