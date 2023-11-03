@@ -15,5 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
   amount: 1
   weight: 2
-  radius: 0
   Limit: 0
