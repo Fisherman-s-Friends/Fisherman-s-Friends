@@ -24,4 +24,10 @@ public class HomeController : MonoBehaviour
     {
         Debug.Log("Home is opened");
     }
+
+    public void OnExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit the game");
+    }
 }
