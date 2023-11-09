@@ -1003,7 +1003,6 @@ RectTransform:
   - {fileID: 1525385106}
   - {fileID: 1903752378}
   - {fileID: 1330360333}
-  - {fileID: 1398218460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1702,148 +1701,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09062dc0008857b46aaacdb7206f1453, type: 3}
---- !u!1 &1398218459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1398218460}
-  - component: {fileID: 1398218463}
-  - component: {fileID: 1398218462}
-  - component: {fileID: 1398218461}
-  - component: {fileID: 1398218464}
-  m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1398218460
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398218459}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 814673348}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60, y: 60}
-  m_SizeDelta: {x: 102.4, y: 102.4}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1398218461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398218459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 793263eb135ca2743a657e25ad0d4b10, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!114 &1398218462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398218459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1398218461}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1398218464}
-        m_TargetAssemblyTypeName: BackButton, Assembly-CSharp
-        m_MethodName: ButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!222 &1398218463
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398218459}
-  m_CullTransparentMesh: 1
---- !u!114 &1398218464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398218459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea96a5116ce49e84697fb9c1365ee326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1437304898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,7 +2357,7 @@ PrefabInstance:
     - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: buttonScript
       value: 
-      objectReference: {fileID: 1398218464}
+      objectReference: {fileID: 0}
     - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: pivotPointObj
       value: 
@@ -2526,68 +2383,12 @@ PrefabInstance:
       value: RodActions
       objectReference: {fileID: 0}
     - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 336f0590-b370-46a8-80da-2ae442152b09
       objectReference: {fileID: 0}
     - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
-      value: 219a738b-f5ca-4f04-b61b-e16217247f10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: fe0b98b9-da9d-430c-af31-881d25de4569
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
-      value: cf394edb-2164-48f7-a918-264c46ce0b70
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 8a042ecc-483e-4ebe-8c9e-271426ba7932
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
-      value: HookActions/StopHook[/Mouse/leftButton,/Keyboard/space]
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: HookActions/ResetCast[/Keyboard/z,/Mouse/rightButton]
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
-      value: HookActions/HookMove[/Keyboard/upArrow,/Keyboard/downArrow,/Mouse/scroll/up,/Mouse/scroll/down]
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: HookActions/MinigameControls[/Mouse/delta/left,/Mouse/delta/right]
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 728654501}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MinigameInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: HookActions/MainMenuButton[/Keyboard/escape]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
