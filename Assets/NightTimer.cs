@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -31,15 +32,17 @@ public class NightTimer : MonoBehaviour
 
         timeLeft -= Time.deltaTime;
 
+        if (timeLeft < 0)
+        {
+            ReturnHome();
+            return;
+        }
+
         timeText.SetText(timeLeft < 60 ? timeLeft.ToString("#0.0") : Mathf.Ceil(timeLeft / 60).ToString("#"));
         skyMaterial.mainTextureOffset = new Vector2(0.3f * Mathf.Pow((1- timeLeft/sessionLengthInSeconds),2), 0);
         light.intensity = Mathf.Clamp(Mathf.Pow((timeLeft / sessionLengthInSeconds), 0.5f), 0.5f, 1);
         light.color = Color.Lerp(Color.white,  new Color(200f/255, 111f/255, 0), 1-timeLeft / sessionLengthInSeconds);
 
-        if (timeLeft < 0)
-        {
-            ReturnHome();
-        }
     }
 
     private void ReturnHome()
