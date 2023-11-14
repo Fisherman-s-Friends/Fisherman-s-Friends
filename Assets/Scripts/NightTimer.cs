@@ -47,6 +47,6 @@ public class NightTimer : MonoBehaviour
 
     private void ReturnHome()
     {
-        SceneController.ChangeScene(Scenes.Home);
+        StartCoroutine(SceneController.ChangeScene(Scenes.Home));
     }
 }
