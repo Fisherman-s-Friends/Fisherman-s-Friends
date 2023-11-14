@@ -37,6 +37,7 @@ public class FishScript : MonoBehaviour
     protected Vector3 target;
 
     public FishBehaviour fishBehaviour = null;
+    public FishValue fishValue = null;
 
     private float hookDistance = 0.5f;
     private bool goingForHook = false, stopMovement = false;

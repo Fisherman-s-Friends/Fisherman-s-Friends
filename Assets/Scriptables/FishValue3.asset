@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7dcfcd0f59e788439a2869aef2cd4ae, type: 3}
-  m_Name: Fish3
+  m_Script: {fileID: 11500000, guid: c33bb65c0edbd3241b416dab235882d3, type: 3}
+  m_Name: FishValue3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
-  amount: 1
-  weight: 2
-  Limit: 0
+  value: 20
