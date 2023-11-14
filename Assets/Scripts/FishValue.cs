@@ -6,8 +6,4 @@ using UnityEngine;
 public class FishValue : ScriptableObject
 {
     public int value;
-    public virtual int Value()
-    {
-        return value;
-    }
 }

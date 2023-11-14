@@ -124,8 +124,11 @@ public class PlayerController : MonoBehaviour
         if (closestFish != null && minigameSlider.value < minigameSlider.maxValue)
             closestFish.GetComponent<FishScript>().FishInMovement(false);
         else if (closestFish != null)
+        {
             sessionController.AddMoney(closestFish.GetComponent<FishScript>().fishValue.value);
             Destroy(closestFish);
+        }
+
         minigameSlider.value = 0;
     }
 

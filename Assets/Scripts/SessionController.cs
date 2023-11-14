@@ -72,14 +72,6 @@ public class SessionController : MonoBehaviour
         if (text2 != null)
             text2.GetComponent<TMPro.TMP_Text>().text = loan + " Loan";
     }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 75, 50), "Add money"))
-        {
-            AddMoney(10);
-        }
-    }
     void onSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateText();
