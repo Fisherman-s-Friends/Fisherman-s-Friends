@@ -20,7 +20,7 @@ public class HomeController : MonoBehaviour
 
     public void OnStartGame()
     {
-        SceneController.ChangeScene(Scenes.Play);
+        StartCoroutine(SceneController.ChangeScene(Scenes.Play));
     }
 
     public void OnOpenHome()
