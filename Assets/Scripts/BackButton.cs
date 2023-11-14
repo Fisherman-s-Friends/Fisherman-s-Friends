@@ -7,6 +7,6 @@ public class BackButton : MonoBehaviour
 {
     public void ButtonPressed()
     {
-        SceneController.ChangeScene(Scenes.Home);
+       StartCoroutine(SceneController.ChangeScene(Scenes.Home));
     }
 }

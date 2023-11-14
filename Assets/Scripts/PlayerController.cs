@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         holdStarted, holdEnded, holdTotal,
         controlSpeed = 750, castLineX = 2, castLineY = 2, fishFromHook = 1f;
     private bool
-        haveYouCasted = false, sliderBarCheck = false, gameStarted = false;
+        haveYouCasted = false, sliderBarCheck = false, gameStarted = false, mainMenuPressed = false;
 
     public void Start()
     {
@@ -109,7 +109,9 @@ public class PlayerController : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneController.ChangeScene(Scenes.Home);
+        if (mainMenuPressed) return; mainMenuPressed = true;
+
+        StartCoroutine(SceneController.ChangeScene(Scenes.Home));
     }
 
     public void MinigameInput(InputAction.CallbackContext context)

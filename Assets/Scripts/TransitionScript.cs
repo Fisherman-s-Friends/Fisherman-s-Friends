@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class TransitionScript : MonoBehaviour
 {
-    [SerializeField]
-    private bool startWithAnim = false;
     // Start is called before the first frame update
     void Start()
     {
-        if (startWithAnim)
+        if (SceneController.PlayAnimationOnLoad)
             GetComponent<Animator>().SetTrigger("FadeOut");
     }
 }
