@@ -9,6 +9,7 @@ TagManager:
   - shark
   - moneyText
   - Fish
+  - loanText
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MainMenuButton",
+                    "type": "Button",
+                    "id": "6530dff2-b3aa-41ac-9241-460fa56aec6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -68,6 +77,17 @@
                     "action": "ResetCast",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea87c215-504b-4a6d-9c7a-221620fe1543",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainMenuButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -94,19 +114,19 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HookMove",
-                    "type": "Value",
-                    "id": "cf394edb-2164-48f7-a918-264c46ce0b70",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "MinigameControls",
                     "type": "PassThrough",
                     "id": "8a042ecc-483e-4ebe-8c9e-271426ba7932",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MainMenuButton",
+                    "type": "Button",
+                    "id": "336f0590-b370-46a8-80da-2ae442152b09",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -156,72 +176,6 @@
                     "action": "ResetCast",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "70d4fc99-565d-4a21-950e-0b1aacedd4f1",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "0491a115-8b76-4af0-a9b5-c20c2c32b50f",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "0eaafe24-cf8b-4980-86aa-c6eb7688e574",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "b77b16bb-9a87-4a98-a34f-15c984b3dc62",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "ce892f99-ab14-49a2-84d2-33bc687e6029",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "94b98bcd-44af-4613-8b24-68b6a3a59a88",
-                    "path": "<Mouse>/scroll/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HookMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "2D Vector",
@@ -288,6 +242,17 @@
                     "action": "MinigameControls",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a8eef7a3-4056-4c9e-92e1-f500cd8c2503",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainMenuButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
+      propertyPath: fishValue
+      value: 
+      objectReference: {fileID: 11400000, guid: e55488448e66df54dacf953a2a58ef29, type: 2}
+    - target: {fileID: 531859280431396732, guid: fce43a46ce907764cbf1d8208dee64ee, type: 3}
       propertyPath: threshold
       value: 0.5
       objectReference: {fileID: 0}
