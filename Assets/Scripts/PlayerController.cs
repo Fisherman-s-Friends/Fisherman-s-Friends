@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void MainMenuButton()
+    {
+        SceneController.ChangeScene(Scenes.Home);
+    }
+
     public void MinigameInput(InputAction.CallbackContext context)
     {
         movementDir = context.ReadValue<Vector2>();

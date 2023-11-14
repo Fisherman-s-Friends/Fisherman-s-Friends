@@ -27,4 +27,10 @@ public class HomeController : MonoBehaviour
     {
         sessionController.NextDay();
     }
+
+    public void OnExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit the game");
+    }
 }
