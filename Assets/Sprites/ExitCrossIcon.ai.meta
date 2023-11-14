@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Material.002.mat.meta
+guid: 034d94351fa8f5c4cb9ff688cf5f6062
+NativeFormatImporter:
+========
 guid: de86d407c9f570949af1bbaf383a39dc
 DefaultImporter:
+>>>>>>>> main:Assets/Sprites/ExitCrossIcon.ai.meta
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
