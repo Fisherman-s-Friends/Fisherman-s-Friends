@@ -38,7 +38,6 @@ public class BobberRotator : MonoBehaviour
             castDirection = (targetPos.transform.position - transform.position).normalized;
             targetRotation = Quaternion.LookRotation(castDirection, Vector3.up);
             transform.rotation = targetRotation;
-            Debug.Log("Else");
         }
     }
 }
