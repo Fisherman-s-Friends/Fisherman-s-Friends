@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
     private LineRenderer lr;
     private Transform[] points;
+
+    [SerializeField]
+    private float lineOffset;
 
     private void Awake()
     {
@@ -22,8 +23,14 @@ public class LineController : MonoBehaviour
     {
         for (int i = 0; i < points.Length; i++)
         {
-            lr.SetPosition(i, points[i].position);
+            if (i == points.Length - 1)
+            {
+                Vector3 offsetPosition = new Vector3(points[i].position.x, points[i].position.y + lineOffset, points[i].position.z);
+                lr.SetPosition(i, offsetPosition);
+            } else
+            {
+                lr.SetPosition(i, points[i].position);
+            }
         }
-
     }
 }
