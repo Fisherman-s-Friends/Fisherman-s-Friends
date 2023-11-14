@@ -9,8 +9,8 @@ public class HookLine : LineController
     void Start()
     {
         Transform bobberPos = GameObject.Find("Bobber").GetComponent<Transform>();
-        startAndEndPosition[0] = bobberPos;
-        startAndEndPosition[1] = hookPos;
+        startAndEndPosition[1] = bobberPos;
+        startAndEndPosition[0] = hookPos;
 
         SetUpLine(startAndEndPosition);
     }

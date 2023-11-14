@@ -1416,6 +1416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2872610479409427254}
     m_Modifications:
+    - target: {fileID: 3003921296431667820, guid: 89bf9ff877ef2b849a45e029e11b1cb3, type: 3}
+      propertyPath: lineStartOffset
+      value: -0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 6238225695919297499, guid: 89bf9ff877ef2b849a45e029e11b1cb3, type: 3}
       propertyPath: m_Name
       value: 'FishingRod '
@@ -1460,7 +1464,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4019586740735619525, guid: 89bf9ff877ef2b849a45e029e11b1cb3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

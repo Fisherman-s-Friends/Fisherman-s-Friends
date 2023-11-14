@@ -6,7 +6,7 @@ public class LineController : MonoBehaviour
     private Transform[] points;
 
     [SerializeField]
-    private float lineOffset;
+    private float lineStartOffset, lineEndOffset;
 
     private void Awake()
     {
@@ -23,13 +23,15 @@ public class LineController : MonoBehaviour
     {
         for (int i = 0; i < points.Length; i++)
         {
-            if (i == points.Length - 1)
+            if (i > 0)
             {
-                Vector3 offsetPosition = new Vector3(points[i].position.x, points[i].position.y + lineOffset, points[i].position.z);
+                Vector3 offsetPosition = new Vector3(points[i].position.x, points[i].position.y + lineStartOffset, points[i].position.z);
                 lr.SetPosition(i, offsetPosition);
+
             } else
             {
-                lr.SetPosition(i, points[i].position);
+                Vector3 offsetPosition = new Vector3(points[i].position.x, points[i].position.y + lineEndOffset, points[i].position.z);
+                lr.SetPosition(i, offsetPosition);
             }
         }
     }

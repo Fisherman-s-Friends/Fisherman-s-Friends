@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a786f362775b84c9df4961e112bad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineOffset: 0.22
+  lineStartOffset: -0.3
+  lineEndOffset: 0.22
   hookPos: {fileID: 8335799618602339266}
 --- !u!120 &8321455390700186892
 LineRenderer:
