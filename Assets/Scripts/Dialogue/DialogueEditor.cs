@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
 using static UnityEditor.Progress;
@@ -12,9 +13,21 @@ using static UnityEditor.Progress;
 public class DialogueEditor : EditorWindow
 {
     [MenuItem("Window/Dialogue")]
-    public static void ShowWindow()
+    public static DialogueEditor ShowWindow()
     {
-        GetWindow<DialogueEditor>();
+        return GetWindow<DialogueEditor>();
+    }
+
+    [OnOpenAssetAttribute]
+    public static bool OpenDialogAsset(int instanceId, int line)
+    {
+        var instance = EditorUtility.InstanceIDToObject(instanceId);
+
+        if (instance is not Dialogue) return false;
+
+        ShowWindow().selectedDialogue = (AssetDatabase.GetAssetPath(instance), instance as Dialogue);
+
+        return true;
     }
 
     private List<(string path, Dialogue dialogue)> dialogueList = new List<(string path, Dialogue dialogue)>();
