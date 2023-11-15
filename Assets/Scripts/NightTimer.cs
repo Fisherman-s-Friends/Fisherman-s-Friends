@@ -18,6 +18,8 @@ public class NightTimer : MonoBehaviour
     [SerializeField]
     private bool debug = false;
 
+    private bool returnHomeCalled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +41,16 @@ public class NightTimer : MonoBehaviour
         }
 
         timeText.SetText(timeLeft < 60 ? timeLeft.ToString("#0.0") : Mathf.Ceil(timeLeft / 60).ToString("#"));
-        skyMaterial.mainTextureOffset = new Vector2(0.3f * Mathf.Pow((1- timeLeft/sessionLengthInSeconds),2), 0);
+        skyMaterial.mainTextureOffset = new Vector2(0.3f * Mathf.Pow((1 - timeLeft / sessionLengthInSeconds), 2), 0);
         light.intensity = Mathf.Clamp(Mathf.Pow((timeLeft / sessionLengthInSeconds), 0.5f), 0.5f, 1);
-        light.color = Color.Lerp(Color.white,  new Color(200f/255, 111f/255, 0), 1-timeLeft / sessionLengthInSeconds);
+        light.color = Color.Lerp(Color.white, new Color(200f / 255, 111f / 255, 0), 1 - timeLeft / sessionLengthInSeconds);
 
     }
 
     private void ReturnHome()
     {
+        if (returnHomeCalled) return;
         StartCoroutine(SceneController.ChangeScene(Scenes.Home));
+        returnHomeCalled = true;
     }
 }
