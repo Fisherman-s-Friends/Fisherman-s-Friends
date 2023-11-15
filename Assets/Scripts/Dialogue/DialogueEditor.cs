@@ -73,7 +73,9 @@ public class DialogueEditor : EditorWindow
         EditorGUILayout.BeginVertical();
 
         GUILayout.Label(selectedDialogue.path, EditorStyles.whiteLargeLabel);
-        
+
+        #region Lines
+
         GUILayout.Label($"Lines: {selectedDialogue.dialogue.lines.Count}", EditorStyles.whiteLargeLabel);
 
         linesScrollPos = EditorGUILayout.BeginScrollView(linesScrollPos);
@@ -110,9 +112,14 @@ public class DialogueEditor : EditorWindow
             selectedDialogue.dialogue.lines.Add(new Line());
         }
 
+        #endregion
+
+        #region Choices
+
         GUILayout.Label($"Choices: {selectedDialogue.dialogue.choices.Count}", EditorStyles.whiteLargeLabel);
 
         choicesScrollPos = EditorGUILayout.BeginScrollView(choicesScrollPos);
+
         foreach(var choice in selectedDialogue.dialogue.choices)
         {
             EditorGUILayout.BeginHorizontal();
@@ -158,6 +165,7 @@ public class DialogueEditor : EditorWindow
             selectedDialogue.dialogue.choices.Add(new Choice());
         };
 
+        #endregion
 
         EditorGUILayout.EndVertical();
         #endregion
