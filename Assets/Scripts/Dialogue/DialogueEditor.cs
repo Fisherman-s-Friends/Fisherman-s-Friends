@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
+using static UnityEditor.Progress;
 
 public class DialogueEditor : EditorWindow
 {
@@ -42,7 +43,7 @@ public class DialogueEditor : EditorWindow
         {
             if(EditorGUILayout.LinkButton(dialogListItem.path))
             {
-                SelectDialogItem(dialogListItem);
+                selectedDialogue = dialogListItem;
             }
         }
 
@@ -63,6 +64,7 @@ public class DialogueEditor : EditorWindow
         #endregion
 
         #region Editor layout
+
         if(!selectedDialogue.dialogue)
         {
             GUILayout.Label("No dialogue selected");
@@ -171,12 +173,6 @@ public class DialogueEditor : EditorWindow
         #endregion
 
         EditorGUILayout.EndHorizontal();
-    }
-
-    private void SelectDialogItem((string path, Dialogue dialogue) item)
-    {
-        selectedDialogue = item;
-        Repaint();
     }
 
     private static List<(string path, T asset)> LoadAssets<T>(string filter) where T : UnityEngine.Object
