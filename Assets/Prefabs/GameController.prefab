@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1694090202123332570}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   minigameSliderObj: {fileID: 0}
   catchArea: {fileID: 0}
   bobberScript: {fileID: 0}
+  controlSpeed: 750
   hookRb: {fileID: 0}
 --- !u!114 &8784801913461706646
 MonoBehaviour:
@@ -123,9 +124,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4993968847069527256}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: ResetCast
-        m_Mode: 0
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ResetEverything
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -141,7 +142,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4993968847069527256}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: StopHook
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -156,8 +157,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4993968847069527256}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: ResetCast
-        m_Mode: 0
+        m_MethodName: ResetEverything
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
