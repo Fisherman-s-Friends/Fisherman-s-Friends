@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40331d44a86c0d647b7cb76594e623d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopHookDistance: 0.8
 --- !u!65 &2029221903679528981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -265,7 +266,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -354,9 +354,9 @@ GameObject:
   - component: {fileID: 290743412}
   - component: {fileID: 290743411}
   - component: {fileID: 290743410}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundPlane
-  m_TagString: Untagged
+  m_TagString: GroundPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1844,7 +1844,7 @@ GameObject:
   - component: {fileID: 1304760124}
   m_Layer: 0
   m_Name: WaterPlane
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2833,6 +2833,30 @@ PrefabInstance:
     - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_ActionName
       value: HookActions/MainMenuButton[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetEverything
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetEverything
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784801913461706646, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

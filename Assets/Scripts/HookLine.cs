@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HookLine : LineController
 {
-    private Transform[] startAndEndPosition = new Transform[2];
     [SerializeField] Transform hookPos;
+    private Transform[] startAndEndPosition = new Transform[2];
+
     void Start()
     {
         Transform bobberPos = GameObject.Find("Bobber").GetComponent<Transform>();
