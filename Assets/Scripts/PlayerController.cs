@@ -1,17 +1,13 @@
-using System;
 using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody bobberRb;
-    [SerializeField] private GameObject castBar, minigameObj, minigameSliderObj, catchArea;
-    [SerializeField] private BobberScript bobberScript;
-
-    private SessionController sessionController;
+    [SerializeField] Rigidbody bobberRb;
+    [SerializeField] GameObject castBar, minigameObj, minigameSliderObj, catchArea;
+    [SerializeField] BobberScript bobberScript;
 
     public Rigidbody hookRb;
 
@@ -20,20 +16,20 @@ public class PlayerController : MonoBehaviour
     private Transform hookTrans;
     private Collider hookCollider;
     private Slider castSlider, minigameSlider;
+    private SessionController sessionController;
 
     private Vector3 bobberStartPos;
     private Vector2 movementDir;
 
-    private float
-        holdStarted, holdEnded, holdTotal,
-        controlSpeed = 750, castLineX = 2, castLineY = 2, fishFromHook = 1f;
-    private bool
-        haveYouCasted = false, sliderBarCheck = false, gameStarted = false, mainMenuPressed = false;
+    private float holdStarted, holdEnded, holdTotal;
+    private float controlSpeed = 750, castLineX = 2, castLineY = 2, fishFromHook = 1f;
+    private bool haveYouCasted = false, sliderBarCheck = false;
+    private bool gameStarted = false, mainMenuPressed = false;
 
     public void Start()
     {
         sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
-        
+
         bobberStartPos = bobberRb.transform.localPosition;
         castSlider = castBar.GetComponent<Slider>();
         minigameSlider = minigameSliderObj.GetComponent<Slider>();
@@ -56,7 +52,7 @@ public class PlayerController : MonoBehaviour
             gameStarted = false;
         }
     }
-    // Triggered with Space-key, casts the bobber
+
     public void StartCast(InputAction.CallbackContext context)
     {
         if (haveYouCasted) { return; }
@@ -73,20 +69,13 @@ public class PlayerController : MonoBehaviour
             bobberRb.useGravity = true;
             holdTotal = holdEnded - holdStarted;
 
-            if (holdTotal >= 3.5f) { holdTotal = 3.5f; }    // Limits the total distance that can be cast, even though keydown lasts for ages 
+            if (holdTotal >= 3.5f) { holdTotal = 3.5f; }
             bobberRb.velocity = new Vector3(castLineX * (holdTotal * 3), castLineY * (holdTotal), 0);
             haveYouCasted = true;
             sliderBarCheck = false;
             castBar.SetActive(false);
         }
     }
-
-    // Triggered with Z-key, resets the position of the bobber for a recast
-    public void ResetCast(InputAction.CallbackContext context)
-    {
-        ResetEverything();
-    }
-
     private IEnumerator SliderChargeUp()
     {
         while (sliderBarCheck)
@@ -95,8 +84,8 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
-    //space bar or mouse 1 stops the hook in place
-    public void StopHook(InputAction.CallbackContext context)
+
+    public void StopHook()
     {
         if (haveYouCasted)
         {
@@ -128,8 +117,11 @@ public class PlayerController : MonoBehaviour
         bobberScript.DestroyHookAndSwapActionMap();
         haveYouCasted = false;
         castSlider.value = 0;
+
         if (closestFish != null && minigameSlider.value < minigameSlider.maxValue)
+        {
             closestFish.GetComponent<FishScript>().FishInMovement(false);
+        }
         else if (closestFish != null)
         {
             sessionController.AddMoney(closestFish.GetComponent<FishScript>().fishValue.value);
@@ -150,6 +142,5 @@ public class PlayerController : MonoBehaviour
     {
         hookCollider = collider;
     }
-
 }
 

@@ -1,13 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 public class FishScript : MonoBehaviour
 {
@@ -59,7 +50,6 @@ public class FishScript : MonoBehaviour
         }
         Move();
     }
-
 
     public void GetHook(Vector3 target)
     {
