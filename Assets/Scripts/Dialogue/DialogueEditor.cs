@@ -64,7 +64,7 @@ public class DialogueEditor : EditorWindow
 
         if (GUILayout.Button("New")) 
         { 
-            AssetDatabase.CreateAsset(new Dialogue(), $"Assets/New Dialogue {dialogueList.Count}.asset");
+            AssetDatabase.CreateAsset(CreateInstance<Dialogue>(), $"Assets/New Dialogue {dialogueList.Count}.asset");
             dialogueList = LoadAssets<Dialogue>("t:Dialogue");
         }
 
@@ -138,7 +138,7 @@ public class DialogueEditor : EditorWindow
         foreach(var choice in selectedDialogue.dialogue.choices)
         {
             EditorGUILayout.BeginHorizontal();
-
+            
             GUILayout.Label("Display");
             choice.display = EditorGUILayout.TextField(choice.display);
 
@@ -175,10 +175,33 @@ public class DialogueEditor : EditorWindow
         }
         EditorGUILayout.EndScrollView();
 
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add new existing choice"))
+        {
+            EditorGUIUtility.ShowObjectPicker<Choice>(null, false, "t:Choice", 0);
+        };
         if (GUILayout.Button("Add new choice"))
         {
-            selectedDialogue.dialogue.choices.Add(new Choice());
+            var choice = CreateInstance<Choice>();
+            AssetDatabase.CreateAsset(choice, $"Assets/{selectedDialogue.dialogue.name}Choice_{selectedDialogue.dialogue.choices.Count}.asset");
+            selectedDialogue.dialogue.choices.Add(choice);
         };
+        EditorGUILayout.EndHorizontal();
+
+        if (Event.current.commandName == "ObjectSelectorClosed" && EditorGUIUtility.GetObjectPickerControlID() == 0)
+        {
+
+            var selected = EditorGUIUtility.GetObjectPickerObject();
+            if (selected != null && selected is Choice)
+            {
+                selectedDialogue.dialogue.choices.Add(selected as Choice);
+            }
+        }
+        /*
+        var choice = new Choice();
+        AssetDatabase.CreateAsset(choice, $"Assets/{selectedDialogue.dialogue.name}Choice_{selectedDialogue.dialogue.choices.Count}.asset");
+        selectedDialogue.dialogue.choices.Add(choice);
+        */
 
         #endregion
 
