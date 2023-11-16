@@ -10,11 +10,12 @@ TagManager:
   - moneyText
   - Fish
   - loanText
+  - GroundPlane
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GroundPlane
   - Water
   - UI
   - 
