@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[CreateAssetMenu(fileName = "Data", menuName = "Dialog/Choice")]
 public class Choice : ScriptableObject
 {
     public Line line;
