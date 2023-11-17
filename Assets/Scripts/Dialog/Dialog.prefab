@@ -89,7 +89,8 @@ GameObject:
   - component: {fileID: 2861573838182812312}
   - component: {fileID: 3107940560065117200}
   - component: {fileID: 2073750063367626104}
-  - component: {fileID: 521590696269600466}
+  - component: {fileID: 5687823580845187754}
+  - component: {fileID: 5754014462313943637}
   m_Layer: 5
   m_Name: Choices
   m_TagString: Untagged
@@ -186,7 +187,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &521590696269600466
+--- !u!114 &5687823580845187754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955053081411309294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e00b69460e41a64f8b9d6ca6ea86069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChoicesHolder: {fileID: 3869071253980596455}
+  ButtonPrefab: {fileID: 7233546918918654955, guid: ec59b335f201ab44cbc48dac767cb0ff, type: 3}
+--- !u!114 &5754014462313943637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,9 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fdabba2a25b9d45bdd904edb9e0985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChoicesHolder: {fileID: 3869071253980596455}
-  ButtonPrefab: {fileID: 7233546918918654955, guid: ec59b335f201ab44cbc48dac767cb0ff, type: 3}
-  selectedChoice: {fileID: 0}
 --- !u!1 &2129936801958162179
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825af0c993d80bc4a9401199eb65a1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speaker: {fileID: 1361343856221494958}
 --- !u!1 &2307268704363380101
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +1002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2305ca43550fe94bb44c9c38f25194c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceController: {fileID: 521590696269600466}
   test: {fileID: 0}
 --- !u!114 &2771051563651807962
 MonoBehaviour:

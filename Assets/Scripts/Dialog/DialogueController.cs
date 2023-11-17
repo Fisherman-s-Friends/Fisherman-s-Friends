@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Dialog
 {
     [RequireComponent(
         typeof(IDialogWindowManager),
-        typeof(IDialogInput))]
+        typeof(IDialogInput),
+        typeof(IWriter))]
     public class DialogueController : MonoBehaviour
     {
-        [SerializeField] private ChoicesController choiceController;
 
         [SerializeField] private Dialogue test;
 
@@ -18,6 +19,7 @@ namespace Dialog
         private IDialogInput input;
         private IWriter writer;
         private ISpeakerController speakerController;
+        private IChoiceController choiceController;
 
         private void Awake()
         {
@@ -33,9 +35,14 @@ namespace Dialog
                     "Couldn't find IDialogWindowManager attached to the game object");
             }
 
-            speakerController = GetComponentInChildren<ISpeakerController>(true);
+            if (!TryGetComponent(out writer))
+            {
+                throw new ArgumentNullException("writer",
+                    "Couldn't find IWriter attached to the game object");
+            }
 
-            writer = GetComponent<IWriter>();
+            speakerController = GetComponentInChildren<ISpeakerController>(true);
+            choiceController = GetComponentInChildren<IChoiceController>(true);
         }
 
         // Start is called before the first frame update
@@ -64,7 +71,7 @@ namespace Dialog
                 yield return ShowLineAndWaitForInput(line);
             }
 
-            if (dialogue.choices.Count == 0)
+            if (dialogue.choices.Count == 0 || choiceController == null)
             {
                 windowManager.ToggleDialogWindow(false);
                 speakerController?.UpdateSpeaker(null);
@@ -75,10 +82,10 @@ namespace Dialog
 
             speakerController?.UpdateSpeaker(null);
 
-            choiceController.RenderChoices(dialogue.choices);
-            yield return WaitForSelection(choiceController);
+            choiceController.AskToChoises(dialogue);
+            yield return choiceController.WaitForSelection();
 
-            var selected = choiceController.selectedChoice;
+            var selected = choiceController.SelectedChoice;
 
             windowManager.ShowDialogBox();
 
@@ -99,14 +106,5 @@ namespace Dialog
 
             yield return writer.WriteByCharacter(line.content);
         }
-
-        public static IEnumerator WaitForSelection(ChoicesController choicesController)
-        {
-            while (!choicesController.selectedChoice)
-            {
-                yield return null;
-            }
-        }
     }
-
 }
