@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 namespace Dialog
 {
-    [RequireComponent(typeof(IDialogWindowManager))]
+    [RequireComponent(
+        typeof(IDialogWindowManager), 
+        typeof(IDialogInput))]
     public class DialogueController : MonoBehaviour
     {
         [SerializeField] private TMPro.TMP_Text textField;
@@ -16,15 +18,21 @@ namespace Dialog
         [SerializeField] private Dialogue test;
 
         private IDialogWindowManager windowManager;
-        
+        private IDialogInput input;
+
         private bool skipLine = false;
 
         private void Awake()
         {
-            windowManager = GetComponent<IDialogWindowManager>();
-            if (windowManager == null)
+            if (!TryGetComponent<IDialogWindowManager>(out windowManager))
             {
                 throw new ArgumentNullException("windowManager",
+                    "Couldn't find IDialogWindowManager attached to the game object");
+            }
+
+            if (!TryGetComponent<IDialogInput>(out input))
+            {
+                throw new ArgumentNullException("input",
                     "Couldn't find IDialogWindowManager attached to the game object");
             }
         }
@@ -38,7 +46,7 @@ namespace Dialog
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (input.GetInput())
             {
                 skipLine = true;
             }
@@ -86,7 +94,7 @@ namespace Dialog
         private IEnumerator ShowLineAndWaitForInput(Line line)
         {
             yield return WriteLine(line);
-            yield return WaitForInput();
+            yield return input.WaitForInput();
         }
 
         private IEnumerator WriteLine(Line line)
@@ -109,18 +117,6 @@ namespace Dialog
 
                 if (letter != ' ')
                     yield return new WaitForSeconds(typingSpeedInSeconds);
-            }
-        }
-
-        private static IEnumerator WaitForInput()
-        {
-            while (true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    break;
-                }
-                yield return null;
             }
         }
 
