@@ -6,21 +6,18 @@ using UnityEngine.UI;
 namespace Dialog
 {
     [RequireComponent(
-        typeof(IDialogWindowManager), 
+        typeof(IDialogWindowManager),
         typeof(IDialogInput))]
     public class DialogueController : MonoBehaviour
     {
-        [SerializeField] private TMPro.TMP_Text textField;
-        [SerializeField] private Image speaker;
-        [SerializeField] private float typingSpeedInSeconds;
         [SerializeField] private ChoicesController choiceController;
 
         [SerializeField] private Dialogue test;
 
         private IDialogWindowManager windowManager;
         private IDialogInput input;
-
-        private bool skipLine = false;
+        private IWriter writer;
+        private ISpeakerController speakerController;
 
         private void Awake()
         {
@@ -35,6 +32,10 @@ namespace Dialog
                 throw new ArgumentNullException("input",
                     "Couldn't find IDialogWindowManager attached to the game object");
             }
+
+            speakerController = GetComponentInChildren<ISpeakerController>(true);
+
+            writer = GetComponent<IWriter>();
         }
 
         // Start is called before the first frame update
@@ -48,7 +49,7 @@ namespace Dialog
         {
             if (input.GetInput())
             {
-                skipLine = true;
+                writer.SkipLine();
             }
         }
 
@@ -58,26 +59,22 @@ namespace Dialog
 
             windowManager.ShowDialogBox();
 
-            // Show all lines
             foreach (var line in dialogue.lines)
             {
                 yield return ShowLineAndWaitForInput(line);
             }
 
-            // If dialog box has no choices, Hide the box
             if (dialogue.choices.Count == 0)
             {
                 windowManager.ToggleDialogWindow(false);
-                speaker.color = new Color(0, 0, 0, 0);
+                speakerController?.UpdateSpeaker(null);
                 yield break;
             }
 
             windowManager.ShowChoicesBox();
 
-            // Hide speaker
-            speaker.color = new Color(0, 0, 0, 0);
+            speakerController?.UpdateSpeaker(null);
 
-            // Presenent the choices and get the selection
             choiceController.RenderChoices(dialogue.choices);
             yield return WaitForSelection(choiceController);
 
@@ -87,7 +84,6 @@ namespace Dialog
 
             yield return ShowLineAndWaitForInput(selected.line);
 
-            // Start response dialog to the choice
             StartCoroutine(StartDialog(selected.response));
         }
 
@@ -99,25 +95,9 @@ namespace Dialog
 
         private IEnumerator WriteLine(Line line)
         {
-            skipLine = false;
-            speaker.sprite = line.speaker?.portrait;
-            speaker.color = line.speaker?.portrait ? Color.white : new Color(0, 0, 0, 0);
+            speakerController?.UpdateSpeaker(line.speaker);
 
-            textField.text = "";
-            foreach (var letter in line.content)
-            {
-                if (skipLine)
-                {
-                    textField.text = line.content;
-                    yield return new WaitForSeconds(typingSpeedInSeconds);
-                    break;
-                }
-
-                textField.text += letter;
-
-                if (letter != ' ')
-                    yield return new WaitForSeconds(typingSpeedInSeconds);
-            }
+            yield return writer.WriteByCharacter(line.content);
         }
 
         public static IEnumerator WaitForSelection(ChoicesController choicesController)
