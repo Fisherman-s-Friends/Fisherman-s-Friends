@@ -10,7 +10,7 @@ namespace Dialog
         typeof(IDialogWindowManager),
         typeof(IDialogInput),
         typeof(IWriter))]
-    public class DialogueController : MonoBehaviour
+    public class DialogueController : MonoBehaviour, IDialogueController
     {
 
         [SerializeField] private Dialogue test;
@@ -82,7 +82,7 @@ namespace Dialog
 
             speakerController?.UpdateSpeaker(null);
 
-            choiceController.AskToChoises(dialogue);
+            choiceController.AskChoices(dialogue);
             yield return choiceController.WaitForSelection();
 
             var selected = choiceController.SelectedChoice;

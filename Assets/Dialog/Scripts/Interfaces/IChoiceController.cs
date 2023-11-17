@@ -7,7 +7,7 @@ namespace Dialog
     {
         Choice SelectedChoice { get; }
 
-        void AskToChoises(Dialogue dialogue);
+        void AskChoices(Dialogue dialogue);
 
         IEnumerator WaitForSelection();
     }

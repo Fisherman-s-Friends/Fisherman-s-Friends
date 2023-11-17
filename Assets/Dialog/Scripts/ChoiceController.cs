@@ -21,7 +21,7 @@ namespace Dialog
 
         public Choice SelectedChoice { get; private set; }
 
-        public void AskToChoises(Dialogue dialogue)
+        public void AskChoices(Dialogue dialogue)
         {
             SelectedChoice = null;
             choiceRenderer.RenderChoices(dialogue.choices, (choice) =>
