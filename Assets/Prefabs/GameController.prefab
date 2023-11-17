@@ -78,7 +78,7 @@ MonoBehaviour:
   minigameSliderObj: {fileID: 0}
   catchArea: {fileID: 0}
   bobberScript: {fileID: 0}
-  controlSpeed: 750
+  controlSpeed: 850
   hookRb: {fileID: 0}
 --- !u!114 &8784801913461706646
 MonoBehaviour:
