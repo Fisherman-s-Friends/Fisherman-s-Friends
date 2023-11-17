@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class TerrainController : MonoBehaviour
 {
-    [SerializeField] float scale ;
+    [SerializeField] float scale;
     [SerializeField] float terrainHeightMultiplier;
     [SerializeField] AnimationCurve heightCurve;
 
-    [SerializeField] int numberOfSmallObjects = 100;
     [SerializeField] GameObject[] smallObjectsPrefabs;
+    [SerializeField] int numberOfSmallObjects;
+    [SerializeField] GameObject[] bigObjectsPrefabs;
+    [SerializeField] int numberOfBigObjects;
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
-
+    private Transform terrainHolderTransform;
 
     private void Start()
     {
+        terrainHolderTransform = new GameObject("TerrainHolder").transform;
         terrain = GetComponent<Terrain>();
         terrainCollider = GetComponent<TerrainCollider>();
 
@@ -77,19 +80,19 @@ public class TerrainController : MonoBehaviour
             float randomX = Random.Range(terrainPosition.x, terrainPosition.x + terrainSize.x);
             float randomZ = Random.Range(terrainPosition.z, terrainPosition.z + terrainSize.z);
 
-            Vector3 treePosition = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
+            Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
 
-            Ray ray = new Ray(treePosition + Vector3.up * 1000f, Vector3.down);
+            Ray ray = new Ray(smallObjPos + Vector3.up , Vector3.down);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
             {
-                treePosition.y = hit.point.y;
+                smallObjPos.y = hit.point.y;
 
                 int randomTreeIndex = Random.Range(0, smallObjectsPrefabs.Length);
-                GameObject treePrefab = smallObjectsPrefabs[randomTreeIndex];
+                GameObject smallObjPrefab = smallObjectsPrefabs[randomTreeIndex];
 
-                Instantiate(treePrefab, treePosition, Quaternion.identity);
+                Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
             }
         }
     }
