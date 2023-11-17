@@ -899,6 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10679794195336667}
   - component: {fileID: 6562128067501554947}
+  - component: {fileID: 2729203907495971991}
   m_Layer: 5
   m_Name: Dialog
   m_TagString: Untagged
@@ -947,3 +948,15 @@ MonoBehaviour:
   DialogueBox: {fileID: 5825711458320194709}
   ChoiceBox: {fileID: 1955053081411309294}
   test: {fileID: 0}
+--- !u!114 &2729203907495971991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281382189676105354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfdaffab1a64354fa4a0fc2b96c3ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,10 +9,7 @@ public class Choice : ScriptableObject
     public Line line;
     public string display;
     public Dialogue response;
-    public UnityEvent callback;
 
-    public Choice()
-    {
-        line = new Line();
-    }
+    [HideInInspector]
+    public UnityEvent callback;
 }
