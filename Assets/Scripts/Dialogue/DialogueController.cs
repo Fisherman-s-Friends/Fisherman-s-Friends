@@ -30,35 +30,50 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator StartDialog(Dialogue dialogue)
     {
+        // Set box active
         Box.SetActive(true);
+         
+        // Set dialogue box active and choice box inactive
         DialogueBox.SetActive(true);
         ChoiceBox.SetActive(false);
 
+        // Show all lines
         foreach (var line in dialogue.lines)
         {
             yield return WriteLine(line);
             yield return WaitForInput();
         }
 
+        // If dialog box has no choices, Hide the box
         if(dialogue.choices.Count == 0)
         {
-            WaitForInput();
             Box.SetActive(false);
             speaker.color = new Color(0, 0, 0, 0);
             yield break;
         }
 
+        // Set dialogue box inactive and choice box active
         DialogueBox.SetActive(false);
         ChoiceBox.SetActive(true);
+        
+        // Hide speaker
         speaker.color = new Color(0, 0, 0, 0);
 
+        // Presenent the choices and get the selection
         choiceController.RenderChoices(dialogue.choices);
         yield return WaitForSelection(choiceController);
         
         var selected = choiceController.selectedChoice;
-        
-        WriteLine(selected.line);
-        WaitForInput();
+
+        // Set dialogue box active and choice box inactive
+        DialogueBox.SetActive(true);
+        ChoiceBox.SetActive(false);
+
+        // Show selection full line
+        yield return WriteLine(selected.line);
+        yield return WaitForInput();
+
+        // Start response dialog to the choice
         StartCoroutine(StartDialog(selected.response));
     }
 
