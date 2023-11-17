@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class MinigameScript : MonoBehaviour
 {
-    [SerializeField] private GameObject fishIconObj, catchArea, fishBar, pivotPointObj;
-    [SerializeField] private Slider slider;
-    [SerializeField] private FishBehaviour fishBehaviour;
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] GameObject fishIconObj, catchArea, fishBar, pivotPointObj;
+    [SerializeField] Slider slider;
+    [SerializeField] FishBehaviour fishBehaviour;
+    [SerializeField] PlayerController playerController;
+
     private RectTransform fishIconTrans, catchAreaTrans, pivotPointTrans;
     private Vector3 pivotPoint;
-    private float fishSmoothness, fishSpeedMultiplier, fishSliderSize,
-                  fishPosition, fishDestination, fishTimer, fishSpeed, sliderGainSpeed = 15f;
+
+    private float fishSmoothness, fishSpeedMultiplier, fishSliderSize;
+    private float fishPosition, fishDestination, fishTimer, fishSpeed, sliderGainSpeed = 15f;
     private int noPointsDistance, halfPointsDistance, areaDistance;
 
     void Start()
@@ -55,7 +53,7 @@ public class MinigameScript : MonoBehaviour
             fishTimer = Random.value * fishSpeedMultiplier;
             float oldFishDestination = fishDestination;
             fishDestination = Random.value;
-            if (fishDestination - oldFishDestination < 0.1f) 
+            if (fishDestination - oldFishDestination < 0.1f)
                 fishDestination += 0.05f;
         }
 

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
+    [SerializeField] float lineOffset;
+
     private LineRenderer lr;
     private Transform[] points;
-
-    [SerializeField] private float lineOffset;
 
     private void Awake()
     {

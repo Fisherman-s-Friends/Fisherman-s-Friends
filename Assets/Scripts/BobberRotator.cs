@@ -1,26 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BobberRotator : MonoBehaviour
 {
-    [SerializeField]
-    private Transform targetPos;
-
-    [SerializeField]
-    private Rigidbody bobberObj;
+    [SerializeField] Transform targetPos;
+    [SerializeField] Rigidbody bobberObj;
 
     private Quaternion targetRotation;
     private Vector3 castDirection;
-    private float rotationSpeed = 0.5f;
-
     private Vector3 startPos;
+
+    private float rotationSpeed = 0.5f;
 
     private void Start()
     {
         startPos = transform.position;
     }
+
     void FixedUpdate()
     {
         RotateBobber();
@@ -28,14 +23,15 @@ public class BobberRotator : MonoBehaviour
 
     void RotateBobber()
     {
+        castDirection = (targetPos.transform.position - transform.position).normalized;
+
         if (!bobberObj.useGravity && startPos != transform.position)
         {
-            castDirection = (targetPos.transform.position - transform.position).normalized;
             targetRotation = Quaternion.LookRotation(Vector3.up, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        } else
+        }
+        else
         {
-            castDirection = (targetPos.transform.position - transform.position).normalized;
             targetRotation = Quaternion.LookRotation(castDirection, Vector3.up);
             transform.rotation = targetRotation;
         }

@@ -3,8 +3,7 @@ using UnityEngine.InputSystem;
 
 public class BobberScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject hook, gameController;
+    [SerializeField] GameObject hook, gameController;
 
     private GameObject newHook;
     private Rigidbody bobberRb;

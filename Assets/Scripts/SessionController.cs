@@ -31,7 +31,7 @@ public class SessionController : MonoBehaviour
 
     void Update()
     {
-            
+
     }
 
     public void AddMoney(int amount)
@@ -67,13 +67,18 @@ public class SessionController : MonoBehaviour
     {
         var text = GameObject.FindGameObjectWithTag("moneyText");
         if (text != null)
-            text.GetComponent<TMPro.TMP_Text>().text = money + " fishes";
+            text.GetComponent<TMPro.TMP_Text>().text = "Value of Fish: " + money;
         var text2 = GameObject.FindGameObjectWithTag("loanText");
         if (text2 != null)
-            text2.GetComponent<TMPro.TMP_Text>().text = loan + " Loan";
+            text2.GetComponent<TMPro.TMP_Text>().text = "Debt: " + loan;
     }
     void onSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateText();
+
+        if (scene.buildIndex == (int)Scenes.Play)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
     }
 }
