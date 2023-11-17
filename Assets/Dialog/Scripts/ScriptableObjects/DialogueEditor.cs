@@ -32,6 +32,8 @@ namespace Dialog
 
         private Vector2 listScrollPos = Vector2.zero, linesScrollPos = Vector2.zero, choicesScrollPos = Vector2.zero;
 
+        private SerializedObject serialized;
+
         private void Awake()
         {
             dialogueList = LoadAssets<Dialogue>("t:Dialogue");
@@ -54,9 +56,12 @@ namespace Dialog
                         return;
                     }
 
-                    GUILayout.Label(selectedDialogue.path, EditorStyles.whiteLargeLabel);
+                    if (serialized == null)
+                    {
+                        serialized = new SerializedObject(selectedDialogue.dialogue);
+                    }
 
-                    var serialized = new SerializedObject(selectedDialogue.dialogue);
+                    GUILayout.Label(selectedDialogue.path, EditorStyles.whiteLargeLabel);
 
                     #region Lines
 
@@ -67,13 +72,17 @@ namespace Dialog
                     {
                         foreach (var line in selectedDialogue.dialogue.lines)
                         {
-                            if (DrawLineEditor(line, () => { selectedDialogue.dialogue.lines.Remove(line); }))
+                            if (DrawLineEditor(line, () =>
+                            {
+                                serialized.FindProperty("lines").DeleteArrayElementAtIndex(selectedDialogue.dialogue.lines.FindIndex(l => l == line));
+                                selectedDialogue.dialogue.lines.Remove(line);
+                                serialized.ApplyModifiedProperties();
+                            }))
                             {
                                 return;
                             }
                             EditorGUILayout.Space(10f);
                         }
-                        serialized.ApplyModifiedProperties();
                     }
                     finally
                     {
@@ -83,6 +92,8 @@ namespace Dialog
                     AddButton("Add new line", () =>
                     {
                         selectedDialogue.dialogue.lines.Add(new Line());
+                        serialized.FindProperty("lines").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                        serialized.ApplyModifiedProperties();
                     });
 
                     #endregion
@@ -103,7 +114,12 @@ namespace Dialog
 
                             EditorGUILayout.EndHorizontal();
 
-                            if (DrawLineEditor(choice.line, () => { selectedDialogue.dialogue.choices.Remove(choice); }))
+                            if (DrawLineEditor(choice.line, () =>
+                            {
+                                serialized.FindProperty("choices").DeleteArrayElementAtIndex(selectedDialogue.dialogue.choices.FindIndex(c => c == choice));
+                                selectedDialogue.dialogue.choices.Remove(choice);
+                                serialized.ApplyModifiedProperties();
+                            }))
                             {
                                 return;
                             }
@@ -136,6 +152,13 @@ namespace Dialog
                         if (selected != null && selected is Choice)
                         {
                             selectedDialogue.dialogue.choices.Add(selected as Choice);
+
+                            serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                            serialized.FindProperty("choices")
+                                .GetArrayElementAtIndex(selectedDialogue.dialogue.lines.Count)
+                                .objectReferenceValue = selected;
+
+                            serialized.ApplyModifiedProperties();
                         }
                     }
 
@@ -143,7 +166,15 @@ namespace Dialog
                     {
                         var choice = CreateInstance<Choice>();
                         AssetDatabase.CreateAsset(choice, $"Assets/{selectedDialogue.dialogue.name}Choice_{selectedDialogue.dialogue.choices.Count}.asset");
+
                         selectedDialogue.dialogue.choices.Add(choice);
+
+                        serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                        serialized.FindProperty("choices")
+                            .GetArrayElementAtIndex(selectedDialogue.dialogue.lines.Count)
+                            .objectReferenceValue = choice;
+
+                        serialized.ApplyModifiedProperties();
                     });
 
                     EditorGUILayout.EndHorizontal();
@@ -162,6 +193,47 @@ namespace Dialog
             }
         }
 
+        private void OnDestroy()
+        {
+            Save();
+        }
+
+        private void Save()
+        {
+            if (serialized == null)
+            {
+                return;
+            }
+            var serializedLines = serialized.FindProperty("lines");
+
+            for (int i = 0; i < selectedDialogue.dialogue.lines.Count; i++)
+            {
+                var line = serializedLines.GetArrayElementAtIndex(i);
+                line.FindPropertyRelative("content").stringValue = selectedDialogue.dialogue.lines[i].content;
+                line.FindPropertyRelative("speaker").objectReferenceValue =
+                    selectedDialogue.dialogue.lines[i].speaker;
+            }
+
+            var serializedChoices = serialized.FindProperty("choices");
+
+            for (int i = 0; i < selectedDialogue.dialogue.choices.Count; i++)
+            {
+                var choice = new SerializedObject(serializedChoices.GetArrayElementAtIndex(i).boxedValue as UnityEngine.Object);
+
+                var line = choice.FindProperty("line");
+                line.FindPropertyRelative("content").stringValue = selectedDialogue.dialogue.choices[i].line.content;
+                line.FindPropertyRelative("speaker").objectReferenceValue =
+                    selectedDialogue.dialogue.choices[i].line.speaker;
+
+                choice.FindProperty("displayText").stringValue = selectedDialogue.dialogue.choices[i].displayText;
+                choice.FindProperty("responseDialog").objectReferenceValue =
+                    selectedDialogue.dialogue.choices[i].responseDialog;
+                choice.ApplyModifiedProperties();
+            }
+
+            serialized.ApplyModifiedProperties();
+        }
+
         /// <summary>
         /// Renders a list, where dialog items are listed as links
         /// </summary>
@@ -177,6 +249,7 @@ namespace Dialog
             {
                 if (EditorGUILayout.LinkButton(dialogListItem.path))
                 {
+                    Save();
                     selectedDialogue = dialogListItem;
                 }
             }
