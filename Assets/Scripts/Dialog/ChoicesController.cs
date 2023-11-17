@@ -10,9 +10,8 @@ namespace Dialog
     {
         [SerializeField] Transform ChoicesHolder;
         [SerializeField] GameObject ButtonPrefab;
-        [SerializeField] Choice[] test;
 
-        public Choice selectedChoice = null;
+        public Choice selectedChoice;
 
         public void RenderChoices(IEnumerable<Choice> choices)
         {

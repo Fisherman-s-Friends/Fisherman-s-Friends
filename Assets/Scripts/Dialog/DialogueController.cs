@@ -24,13 +24,13 @@ namespace Dialog
 
         private void Awake()
         {
-            if (!TryGetComponent<IDialogWindowManager>(out windowManager))
+            if (!TryGetComponent(out windowManager))
             {
                 throw new ArgumentNullException("windowManager",
                     "Couldn't find IDialogWindowManager attached to the game object");
             }
 
-            if (!TryGetComponent<IDialogInput>(out input))
+            if (!TryGetComponent(out input))
             {
                 throw new ArgumentNullException("input",
                     "Couldn't find IDialogWindowManager attached to the game object");
