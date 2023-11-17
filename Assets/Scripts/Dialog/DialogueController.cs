@@ -96,15 +96,10 @@ namespace Dialog
 
         private IEnumerator ShowLineAndWaitForInput(Line line)
         {
-            yield return WriteLine(line);
-            yield return input.WaitForInput();
-        }
-
-        private IEnumerator WriteLine(Line line)
-        {
             speakerController?.UpdateSpeaker(line.speaker);
 
             yield return writer.WriteByCharacter(line.content);
+            yield return input.WaitForInput();
         }
     }
 }
