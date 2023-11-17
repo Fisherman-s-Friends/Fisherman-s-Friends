@@ -9,7 +9,7 @@ namespace Dialog
     public class ChoiceEventMapper : MonoBehaviour
     {
         [SerializeField] private Mapping[] mappings;
-        // Start is called before the first frame update
+
         void Awake()
         {
             foreach (var map in mappings)

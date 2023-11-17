@@ -8,15 +8,15 @@ namespace Dialog
 {
     public class ChoiceRenderer : MonoBehaviour, IChoiceRenderer
     {
-        [SerializeField] Transform ChoicesHolder;
-        [SerializeField] GameObject ButtonPrefab;
+        [SerializeField] private Transform choicesHolder;
+        [SerializeField] private GameObject buttonPrefab;
 
         public void RenderChoices(IEnumerable<Choice> choices, Action<Choice> callback)
         {
             foreach (Choice choice in choices)
             {
-                var button = Instantiate(ButtonPrefab, ChoicesHolder);
-                button.GetComponentInChildren<TMP_Text>().text = choice.display;
+                var button = Instantiate(buttonPrefab, choicesHolder);
+                button.GetComponentInChildren<TMP_Text>().text = choice.displayText; 
 
                 button.GetComponent<Button>().onClick.AddListener(() => callback(choice));
             }

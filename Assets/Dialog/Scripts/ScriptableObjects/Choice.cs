@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Dialog
 {
@@ -9,8 +10,8 @@ namespace Dialog
     public class Choice : ScriptableObject
     {
         public Line line;
-        public string display;
-        public Dialogue response;
+        public string displayText;
+        public Dialogue responseDialog;
 
         [HideInInspector]
         public UnityEvent callback;

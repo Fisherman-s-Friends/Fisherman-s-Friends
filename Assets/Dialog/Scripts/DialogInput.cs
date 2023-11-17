@@ -6,11 +6,11 @@ namespace Dialog
 {
     public class DialogInput : MonoBehaviour, IDialogInput
     {
-        [SerializeField] private KeyCode[] keys;
+        [SerializeField] private KeyCode[] listenedKeys;
 
         public bool GetInput()
         {
-            return keys.Any(key => Input.GetKeyDown(key)) || Input.GetMouseButtonDown(0);
+            return listenedKeys.Any(key => Input.GetKeyDown(key)) || Input.GetMouseButtonDown(0);
         }
 
         public IEnumerator WaitForInput()

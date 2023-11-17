@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5687823580845187754}
   - component: {fileID: 5754014462313943637}
   m_Layer: 5
-  m_Name: Choices
+  m_Name: ChoicesBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e00b69460e41a64f8b9d6ca6ea86069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChoicesHolder: {fileID: 3869071253980596455}
-  ButtonPrefab: {fileID: 7233546918918654955, guid: ec59b335f201ab44cbc48dac767cb0ff, type: 3}
+  choicesHolder: {fileID: 3869071253980596455}
+  buttonPrefab: {fileID: 7233546918918654955, guid: ec59b335f201ab44cbc48dac767cb0ff, type: 3}
 --- !u!114 &5754014462313943637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2305ca43550fe94bb44c9c38f25194c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: {fileID: 0}
+  test: {fileID: 11400000, guid: 88c599ae4ff34b7449d6de606c5f08ad, type: 2}
 --- !u!114 &2771051563651807962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,9 +1015,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b5c71e7462f14b8a5f604a8b13959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Box: {fileID: 5360903620789854284}
-  DialogueBox: {fileID: 5825711458320194709}
-  ChoiceBox: {fileID: 1955053081411309294}
+  box: {fileID: 5360903620789854284}
+  dialogueBox: {fileID: 5825711458320194709}
+  choiceBox: {fileID: 1955053081411309294}
 --- !u!114 &1005491630953005292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be694086072e4674d8cb3e70c61b4bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 200000000d000000
+  listenedKeys: 200000000d000000
 --- !u!114 &9105216814433416910
 MonoBehaviour:
   m_ObjectHideFlags: 0

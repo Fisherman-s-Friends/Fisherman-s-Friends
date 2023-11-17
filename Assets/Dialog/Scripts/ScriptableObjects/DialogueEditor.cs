@@ -56,6 +56,8 @@ namespace Dialog
 
                     GUILayout.Label(selectedDialogue.path, EditorStyles.whiteLargeLabel);
 
+                    var serialized = new SerializedObject(selectedDialogue.dialogue);
+
                     #region Lines
 
                     GUILayout.Label($"Lines: {selectedDialogue.dialogue.lines.Count}", EditorStyles.whiteLargeLabel);
@@ -63,6 +65,8 @@ namespace Dialog
                     linesScrollPos = EditorGUILayout.BeginScrollView(linesScrollPos);
                     try
                     {
+                        EditorGUILayout.PropertyField(serialized.FindProperty("lines"));
+                        /*
                         foreach (var line in selectedDialogue.dialogue.lines)
                         {
                             if (DrawLineEditor(line, () => { selectedDialogue.dialogue.lines.Remove(line); }))
@@ -70,7 +74,8 @@ namespace Dialog
                                 return;
                             }
                             EditorGUILayout.Space(10f);
-                        }
+                        }*/
+                        serialized.ApplyModifiedProperties();
                     }
                     finally
                     {
@@ -96,7 +101,7 @@ namespace Dialog
                             EditorGUILayout.BeginHorizontal();
 
                             GUILayout.Label("Display");
-                            choice.display = EditorGUILayout.TextField(choice.display);
+                            choice.displayText = EditorGUILayout.TextField(choice.displayText);
 
                             EditorGUILayout.EndHorizontal();
 
@@ -108,7 +113,7 @@ namespace Dialog
                             EditorGUILayout.BeginHorizontal();
 
                             GUILayout.Label("Response");
-                            choice.response = EditorGUILayout.ObjectField("", choice.response, typeof(Dialogue), allowSceneObjects: false) as Dialogue;
+                            choice.responseDialog = EditorGUILayout.ObjectField("", choice.responseDialog, typeof(Dialogue), allowSceneObjects: false) as Dialogue;
 
                             EditorGUILayout.EndHorizontal();
 
@@ -156,6 +161,11 @@ namespace Dialog
             finally
             {
                 EditorGUILayout.EndHorizontal();
+
+                if (selectedDialogue.dialogue)
+                {
+                    Save(selectedDialogue.dialogue);
+                }
             }
         }
 
@@ -235,6 +245,10 @@ namespace Dialog
             return false;
         }
 
+        private static void Save(Dialogue dialogue)
+        {
+        }
+
         /// <summary>
         /// Load assets of type 
         /// </summary>
@@ -252,5 +266,6 @@ namespace Dialog
             }
             return assets;
         }
-    } 
+
+    }
 }

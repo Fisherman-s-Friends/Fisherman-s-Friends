@@ -1,30 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Dialog
 {
     public class DialogWindowManager : MonoBehaviour, IDialogWindowManager
     {
-        [SerializeField] private GameObject Box;
-        [SerializeField] private GameObject DialogueBox;
-        [SerializeField] private GameObject ChoiceBox;
+        [SerializeField] private GameObject box;
+        [SerializeField] private GameObject dialogueBox;
+        [SerializeField] private GameObject choiceBox;
 
         public void ToggleDialogWindow(bool visible)
         {
-            Box.SetActive(visible);
+            box.SetActive(visible);
         }
 
         public void ShowDialogBox()
         {
-            DialogueBox.SetActive(true);
-            ChoiceBox.SetActive(false);
+            dialogueBox.SetActive(true);
+            choiceBox.SetActive(false);
         }
 
         public void ShowChoicesBox()
         {
-            DialogueBox.SetActive(false);
-            ChoiceBox.SetActive(true);
+            dialogueBox.SetActive(false);
+            choiceBox.SetActive(true);
         }
     }
 }

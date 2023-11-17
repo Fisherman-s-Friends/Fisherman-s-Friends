@@ -15,4 +15,8 @@ MonoBehaviour:
   lines:
   - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
     content: dsadsad
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: dsadsad
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: dsadsad
   choices: []

@@ -73,8 +73,7 @@ namespace Dialog
 
             if (dialogue.choices.Count == 0 || choiceController == null)
             {
-                windowManager.ToggleDialogWindow(false);
-                speakerController?.UpdateSpeaker(null);
+                EndDialog();
                 yield break;
             }
 
@@ -91,7 +90,20 @@ namespace Dialog
 
             yield return ShowLineAndWaitForInput(selected.line);
 
-            StartCoroutine(StartDialog(selected.response));
+            if (!selected.responseDialog)
+            {
+                EndDialog();
+                yield break;
+            }
+            
+            StartCoroutine(StartDialog(selected.responseDialog));
+        }
+
+        public void EndDialog()
+        {
+            StopAllCoroutines();
+            windowManager.ToggleDialogWindow(false);
+            speakerController?.UpdateSpeaker(null);
         }
 
         private IEnumerator ShowLineAndWaitForInput(Line line)

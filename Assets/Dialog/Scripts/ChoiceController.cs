@@ -10,6 +10,8 @@ namespace Dialog
     {
         private ChoiceRenderer choiceRenderer;
 
+        public Choice SelectedChoice { get; private set; }
+
         private void Awake()
         {
             if (!TryGetComponent(out choiceRenderer))
@@ -18,8 +20,6 @@ namespace Dialog
                     "Couldn't find IChoiceRenderer attached to the game object");
             }
         }
-
-        public Choice SelectedChoice { get; private set; }
 
         public void AskChoices(Dialogue dialogue)
         {
