@@ -1827,7 +1827,6 @@ GameObject:
   - component: {fileID: 1110547213}
   - component: {fileID: 1110547212}
   - component: {fileID: 1110547214}
-  - component: {fileID: 1110547215}
   m_Layer: 3
   m_Name: Terrain
   m_TagString: GroundPlane
@@ -1880,11 +1879,11 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 545d1c26ab0d9a54e9b5b9411d9e8de6, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeDistance: 1000
+  m_TreeBillboardDistance: 300
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 200
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -1897,8 +1896,8 @@ Terrain:
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
   m_MaterialTemplate: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
+  m_BakeLightProbesForTrees: 0
+  m_PreserveTreePrototypeLayers: 1
   m_DeringLightProbesForTrees: 1
   m_ReceiveGI: 1
   m_ScaleInLightmap: 0.0256
@@ -1921,6 +1920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4655df436171e2846907fd2426042ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 30
+  terrainHeightMultiplier: 2
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -1945,24 +1946,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  scale: 30
-  terrainHeightMultiplier: 2
---- !u!114 &1110547215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110547210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc40ee7dc4874ac4b8f2d59ae3867b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foliagePrefabs:
-  - {fileID: 3303426608160129129, guid: ce2c62dbb6468cb46827b1fa7c148440, type: 3}
-  - {fileID: 3303426608160129129, guid: b6cb9351ca2ae8c4f8471fe66d216d55, type: 3}
-  foliageCount: 500
+  treePrefabs:
+  - {fileID: 3356751432538110193, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
+  - {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
+  - {fileID: 38335279662140195, guid: 34d3f526198dae440bb2ce6005d86055, type: 3}
+  numberOfTrees: 2000
 --- !u!4 &1224895903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 420bde364644a314396dc8ed24ee99d6, type: 3}

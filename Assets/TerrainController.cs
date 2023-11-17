@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class TerrainController : MonoBehaviour
 {
+    [SerializeField] float scale ;
+    [SerializeField] float terrainHeightMultiplier;
+    [SerializeField] AnimationCurve heightCurve;
+
+    [SerializeField] int numberOfSmallObjects = 100;
+    [SerializeField] GameObject[] smallObjectsPrefabs;
+
     private Terrain terrain;
     private TerrainCollider terrainCollider;
 
-    public AnimationCurve heightCurve;
-
-    public float scale = 20f;
-    public float terrainHeightMultiplier = 10f;
 
     private void Start()
     {
@@ -16,6 +19,7 @@ public class TerrainController : MonoBehaviour
         terrainCollider = GetComponent<TerrainCollider>();
 
         GenerateTerrain();
+        RandomizeSmallObjects();
     }
 
     public void GenerateTerrain()
@@ -61,4 +65,35 @@ public class TerrainController : MonoBehaviour
 
         return heightCurve.Evaluate(Mathf.PerlinNoise(xCoord, yCoord));
     }
+
+    void RandomizeSmallObjects()
+    {
+        TerrainData terrainData = terrain.terrainData;
+        Vector3 terrainSize = terrainData.size;
+        Vector3 terrainPosition = terrain.transform.position;
+
+        for (int i = 0; i < numberOfSmallObjects; i++)
+        {
+            float randomX = Random.Range(terrainPosition.x, terrainPosition.x + terrainSize.x);
+            float randomZ = Random.Range(terrainPosition.z, terrainPosition.z + terrainSize.z);
+
+            Vector3 treePosition = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
+
+            Ray ray = new Ray(treePosition + Vector3.up * 1000f, Vector3.down);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
+            {
+                treePosition.y = hit.point.y;
+
+                int randomTreeIndex = Random.Range(0, smallObjectsPrefabs.Length);
+                GameObject treePrefab = smallObjectsPrefabs[randomTreeIndex];
+
+                Instantiate(treePrefab, treePosition, Quaternion.identity);
+            }
+        }
+    }
+
+
+
 }
