@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TerrainEditor : MonoBehaviour
+public class TerrainController : MonoBehaviour
 {
     private Terrain terrain;
     private TerrainCollider terrainCollider;

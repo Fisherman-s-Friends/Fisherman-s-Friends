@@ -1946,7 +1946,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   scale: 30
-  terrainHeightMultiplier: 2.5
+  terrainHeightMultiplier: 2
 --- !u!114 &1110547215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,9 +1960,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foliagePrefabs:
-  - {fileID: 1965485796257092, guid: e6e8d19e72d993c4da18e26533c8e01d, type: 3}
-  - {fileID: 1902311598225028, guid: de15275cb8eed354bacab52fd5e60206, type: 3}
-  foliageCount: 2000
+  - {fileID: 3303426608160129129, guid: ce2c62dbb6468cb46827b1fa7c148440, type: 3}
+  - {fileID: 3303426608160129129, guid: b6cb9351ca2ae8c4f8471fe66d216d55, type: 3}
+  foliageCount: 500
 --- !u!4 &1224895903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 420bde364644a314396dc8ed24ee99d6, type: 3}
