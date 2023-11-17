@@ -75,5 +75,10 @@ public class SessionController : MonoBehaviour
     void onSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateText();
+
+        if (scene.buildIndex == (int)Scenes.Play)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
     }
 }

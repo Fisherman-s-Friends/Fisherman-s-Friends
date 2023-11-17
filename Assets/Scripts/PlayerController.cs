@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody bobberRb;
     [SerializeField] GameObject castBar, minigameObj, minigameSliderObj, catchArea;
     [SerializeField] BobberScript bobberScript;
+    [SerializeField] float controlSpeed;
 
     public Rigidbody hookRb;
 
@@ -22,11 +23,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementDir;
 
     private float holdStarted, holdEnded, holdTotal;
-    private float controlSpeed = 750, castLineX = 2, castLineY = 2, fishFromHook = 1f;
+    private float castLineX = 2, castLineY = 2, fishFromHook = 1f;
     private bool haveYouCasted = false, sliderBarCheck = false;
     private bool gameStarted = false, mainMenuPressed = false;
 
-    public void Start()
+    void Start()
     {
         sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
 
@@ -35,8 +36,7 @@ public class PlayerController : MonoBehaviour
         minigameSlider = minigameSliderObj.GetComponent<Slider>();
         mgScript = minigameObj.GetComponent<MinigameScript>();
     }
-
-    public void Update()
+    void Update()
     {
         mgScript.MinigameMovement(movementDir, controlSpeed);
 
