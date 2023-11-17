@@ -1,19 +1,28 @@
 using UnityEngine;
 
+[System.Serializable]
+public class WeightedPrefab
+{
+    public GameObject prefab;
+    [Range(0, 10)]
+    public int weight;
+}
 public class TerrainController : MonoBehaviour
 {
     [SerializeField] float scale;
     [SerializeField] float terrainHeightMultiplier;
     [SerializeField] AnimationCurve heightCurve;
 
-    [SerializeField] GameObject[] smallObjectsPrefabs;
+    [SerializeField] WeightedPrefab[] smallObjects;
     [SerializeField] int numberOfSmallObjects;
-    [SerializeField] GameObject[] bigObjectsPrefabs;
+    [SerializeField] WeightedPrefab[] bigObjectsPrefabs;
     [SerializeField] int numberOfBigObjects;
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
     private Transform terrainHolderTransform;
+
+
 
     private void Start()
     {
@@ -75,24 +84,51 @@ public class TerrainController : MonoBehaviour
         Vector3 terrainSize = terrainData.size;
         Vector3 terrainPosition = terrain.transform.position;
 
+        float minX = terrainPosition.x / 3f;
+        float maxX = (terrainPosition.x + terrainSize.x) / 3f;
+        float minZ = terrainPosition.z;
+        float maxZ = (terrainPosition.z + terrainSize.z) / 4f;
+
+        float totalWeight = 0f;
+        foreach (var weightedPrefab in smallObjects)
+        {
+            totalWeight += weightedPrefab.weight;
+        }
+
         for (int i = 0; i < numberOfSmallObjects; i++)
         {
-            float randomX = Random.Range(terrainPosition.x, terrainPosition.x + terrainSize.x);
-            float randomZ = Random.Range(terrainPosition.z, terrainPosition.z + terrainSize.z);
+            float randomValue = Random.value * totalWeight;
+            float randomX = Random.Range(minX, maxX);
+            float randomZ = Random.Range(minZ, maxZ);
 
             Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
 
-            Ray ray = new Ray(smallObjPos + Vector3.up , Vector3.down);
+            Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
             {
                 smallObjPos.y = hit.point.y;
 
-                int randomTreeIndex = Random.Range(0, smallObjectsPrefabs.Length);
-                GameObject smallObjPrefab = smallObjectsPrefabs[randomTreeIndex];
+                int selectedIndex = -1;
+                float cumulativeWeight = 0f;
 
-                Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+                for (int j = 0; j < smallObjects.Length; j++)
+                {
+                    cumulativeWeight += smallObjects[j].weight;
+
+                    if (randomValue <= cumulativeWeight)
+                    {
+                        selectedIndex = j;
+                        break;
+                    }
+                }
+
+                if (selectedIndex != -1)
+                {
+                    GameObject smallObjPrefab = smallObjects[selectedIndex].prefab;
+                    Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+                }
             }
         }
     }

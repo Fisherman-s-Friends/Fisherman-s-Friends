@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
+  m_OcclusionCullingData: {fileID: 36300000, guid: a17397526420cec41811539db5d0840f, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -668,14 +668,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300006, guid: d0223f77114284b47a0e8b317e71e4dc, type: 3}
       propertyPath: m_DynamicOccludee
       value: 1
       objectReference: {fileID: 0}
@@ -1237,7 +1229,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 12
-  far clip plane: 400
+  far clip plane: 360
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1739,8 +1731,8 @@ Transform:
   m_GameObject: {fileID: 1110547210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -156, y: -10, z: -22}
-  m_LocalScale: {x: 40, y: 1, z: 20}
+  m_LocalPosition: {x: -148, y: -10, z: -22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 365205446}
@@ -1775,22 +1767,22 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 545d1c26ab0d9a54e9b5b9411d9e8de6, type: 2}
-  m_TreeDistance: 1000
-  m_TreeBillboardDistance: 300
+  m_TreeDistance: 60
+  m_TreeBillboardDistance: 60
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 200
+  m_TreeMaximumFullLODCount: 0
+  m_DetailObjectDistance: 60
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
+  m_SplatMapDistance: 60
   m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
+  m_ShadowCastingMode: 0
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_MaterialTemplate: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
   m_BakeLightProbesForTrees: 0
   m_PreserveTreePrototypeLayers: 1
@@ -1817,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 30
-  terrainHeightMultiplier: 2
+  terrainHeightMultiplier: 2.5
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -1846,7 +1838,7 @@ MonoBehaviour:
   - {fileID: 3356751432538110193, guid: 5631f8d49a8fa1347ad45a1d9b20f86c, type: 3}
   - {fileID: 8903058273634794869, guid: 0b399e67125ae6748810de6527610635, type: 3}
   - {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
-  numberOfSmallObjects: 3000
+  numberOfSmallObjects: 400
   bigObjectsPrefabs: []
   numberOfBigObjects: 0
 --- !u!4 &1224895903 stripped
@@ -2815,20 +2807,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1076485580}
     - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: controlSpeed
-      value: 820
-      objectReference: {fileID: 0}
-    - target: {fileID: 4993968847069527256, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: minigameSliderObj
       value: 
       objectReference: {fileID: 2116176685}
     - target: {fileID: 5107217551883611595, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: m_Name
       value: GameController
-      objectReference: {fileID: 0}
-    - target: {fileID: 6257030878461727376, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257030878461727376, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
       propertyPath: envTransform
