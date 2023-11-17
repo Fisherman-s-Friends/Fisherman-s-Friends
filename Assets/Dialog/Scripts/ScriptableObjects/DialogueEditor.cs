@@ -65,8 +65,6 @@ namespace Dialog
                     linesScrollPos = EditorGUILayout.BeginScrollView(linesScrollPos);
                     try
                     {
-                        EditorGUILayout.PropertyField(serialized.FindProperty("lines"));
-                        /*
                         foreach (var line in selectedDialogue.dialogue.lines)
                         {
                             if (DrawLineEditor(line, () => { selectedDialogue.dialogue.lines.Remove(line); }))
@@ -74,7 +72,7 @@ namespace Dialog
                                 return;
                             }
                             EditorGUILayout.Space(10f);
-                        }*/
+                        }
                         serialized.ApplyModifiedProperties();
                     }
                     finally
@@ -243,10 +241,6 @@ namespace Dialog
 
             line.content = EditorGUILayout.TextArea(line.content, GUILayout.Height(100));
             return false;
-        }
-
-        private static void Save(Dialogue dialogue)
-        {
         }
 
         /// <summary>
