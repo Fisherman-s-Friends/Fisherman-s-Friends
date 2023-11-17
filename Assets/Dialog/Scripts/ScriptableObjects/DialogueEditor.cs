@@ -159,11 +159,6 @@ namespace Dialog
             finally
             {
                 EditorGUILayout.EndHorizontal();
-
-                if (selectedDialogue.dialogue)
-                {
-                    Save(selectedDialogue.dialogue);
-                }
             }
         }
 
