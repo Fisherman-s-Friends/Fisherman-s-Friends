@@ -16,6 +16,8 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject ChoiceBox;
 
     [SerializeField] private Dialogue test;
+
+    private bool skipLine = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,10 @@ public class DialogueController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            skipLine = true;
+        }
     }
 
     public IEnumerator StartDialog(Dialogue dialogue)
@@ -33,15 +38,12 @@ public class DialogueController : MonoBehaviour
         // Set box active
         Box.SetActive(true);
          
-        // Set dialogue box active and choice box inactive
-        DialogueBox.SetActive(true);
-        ChoiceBox.SetActive(false);
+        ShowDialogBox();
 
         // Show all lines
         foreach (var line in dialogue.lines)
         {
-            yield return WriteLine(line);
-            yield return WaitForInput();
+            yield return ShowLineAndWaitForInput(line);
         }
 
         // If dialog box has no choices, Hide the box
@@ -52,9 +54,7 @@ public class DialogueController : MonoBehaviour
             yield break;
         }
 
-        // Set dialogue box inactive and choice box active
-        DialogueBox.SetActive(false);
-        ChoiceBox.SetActive(true);
+        ShowChoicesBox();
         
         // Hide speaker
         speaker.color = new Color(0, 0, 0, 0);
@@ -64,27 +64,50 @@ public class DialogueController : MonoBehaviour
         yield return WaitForSelection(choiceController);
         
         var selected = choiceController.selectedChoice;
+        
+        ShowDialogBox();
 
-        // Set dialogue box active and choice box inactive
-        DialogueBox.SetActive(true);
-        ChoiceBox.SetActive(false);
-
-        // Show selection full line
-        yield return WriteLine(selected.line);
-        yield return WaitForInput();
+        yield return ShowLineAndWaitForInput(selected.line);
 
         // Start response dialog to the choice
         StartCoroutine(StartDialog(selected.response));
     }
 
+    private void ShowDialogBox()
+    {
+        DialogueBox.SetActive(true);
+        ChoiceBox.SetActive(false);
+    }
+
+    private void ShowChoicesBox()
+    {
+        DialogueBox.SetActive(false);
+        ChoiceBox.SetActive(true);
+    }
+
+    private IEnumerator ShowLineAndWaitForInput(Line line)
+    {
+        yield return WriteLine(line);
+        yield return WaitForInput();
+    }
+
     private IEnumerator WriteLine(Line line)
     {
+        skipLine = false;
         speaker.sprite = line.speaker?.portrait;
         speaker.color = line.speaker?.portrait ? Color.white : new Color(0,0,0,0);
 
         textField.text = "";
-        foreach (var letter in line.content) { 
+        foreach (var letter in line.content) {
+            if (skipLine)
+            {
+                textField.text = line.content;
+                yield return new WaitForSeconds(typingSpeedInSeconds);
+                break;
+            }
+
             textField.text += letter;
+
             if(letter != ' ')
                 yield return new WaitForSeconds(typingSpeedInSeconds);
         }
@@ -94,7 +117,7 @@ public class DialogueController : MonoBehaviour
     {
         while (true)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 break;
             }
