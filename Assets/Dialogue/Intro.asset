@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7917b69129d07b4f8f418f5a39c154e, type: 3}
   m_Name: Intro
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: dsadsad
   choices: []
