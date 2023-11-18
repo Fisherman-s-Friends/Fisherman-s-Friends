@@ -45,13 +45,6 @@ namespace Dialog
             choiceController = GetComponentInChildren<IChoiceController>(true);
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            StartCoroutine(StartDialog(test));
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (input.GetInput())
