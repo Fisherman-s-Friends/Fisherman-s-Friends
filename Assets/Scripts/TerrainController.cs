@@ -14,21 +14,21 @@ public class TerrainController : MonoBehaviour
     [SerializeField] AnimationCurve heightCurve;
 
     [SerializeField] WeightedPrefab[] smallObjects;
-    [SerializeField] int numberOfSmallObjects;
+    [SerializeField] int densitySmallObjects;
     [SerializeField] WeightedPrefab[] bigObjectsPrefabs;
-    [SerializeField] int numberOfBigObjects;
+    [SerializeField] int densityBigObjects;
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
     private Transform terrainHolderTransform;
-
-
+    private Camera mainCamera;
 
     private void Start()
     {
         terrainHolderTransform = new GameObject("TerrainHolder").transform;
         terrain = GetComponent<Terrain>();
         terrainCollider = GetComponent<TerrainCollider>();
+        mainCamera = Camera.main;
 
         GenerateTerrain();
         RandomizeSmallObjects();
@@ -78,6 +78,18 @@ public class TerrainController : MonoBehaviour
         return heightCurve.Evaluate(Mathf.PerlinNoise(xCoord, yCoord));
     }
 
+    float RandomTowardsCam(float min, float max)
+    {
+        if (Random.value < 0.70f)
+        {
+            return Random.Range(min, max / Random.Range(2f, 3f));
+        }
+        else
+        {
+            return Random.Range(min, max);
+        }
+    }
+
     void RandomizeSmallObjects()
     {
         TerrainData terrainData = terrain.terrainData;
@@ -87,7 +99,7 @@ public class TerrainController : MonoBehaviour
         float minX = terrainPosition.x / 3f;
         float maxX = (terrainPosition.x + terrainSize.x) / 3f;
         float minZ = terrainPosition.z;
-        float maxZ = (terrainPosition.z + terrainSize.z) / 4f;
+        float maxZ = (terrainPosition.z + terrainSize.z) / 4.1f;
 
         float totalWeight = 0f;
         foreach (var weightedPrefab in smallObjects)
@@ -95,44 +107,47 @@ public class TerrainController : MonoBehaviour
             totalWeight += weightedPrefab.weight;
         }
 
-        for (int i = 0; i < numberOfSmallObjects; i++)
+        for (int i = 0; i < densitySmallObjects; i++)
         {
             float randomValue = Random.value * totalWeight;
             float randomX = Random.Range(minX, maxX);
-            float randomZ = Random.Range(minZ, maxZ);
+            float randomZ = RandomTowardsCam(minZ, maxZ);
 
             Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
 
-            Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
-            RaycastHit hit;
+            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(smallObjPos);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
+            if (viewportPoint.x >= 0f && viewportPoint.x <= 1f && viewportPoint.y >= 0f && viewportPoint.y <= 1f)
             {
-                smallObjPos.y = hit.point.y;
+                Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
+                RaycastHit hit;
 
-                int selectedIndex = -1;
-                float cumulativeWeight = 0f;
-
-                for (int j = 0; j < smallObjects.Length; j++)
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
                 {
-                    cumulativeWeight += smallObjects[j].weight;
+                    smallObjPos.y = hit.point.y;
 
-                    if (randomValue <= cumulativeWeight)
+                    int selectedIndex = -1;
+                    float cumulativeWeight = 0f;
+
+                    for (int j = 0; j < smallObjects.Length; j++)
                     {
-                        selectedIndex = j;
-                        break;
-                    }
-                }
+                        cumulativeWeight += smallObjects[j].weight;
 
-                if (selectedIndex != -1)
-                {
-                    GameObject smallObjPrefab = smallObjects[selectedIndex].prefab;
-                    Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+                        if (randomValue <= cumulativeWeight)
+                        {
+                            selectedIndex = j;
+                            break;
+                        }
+                    }
+
+                    if (selectedIndex != -1)
+                    {
+                        GameObject smallObjPrefab = smallObjects[selectedIndex].prefab;
+                        Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+
+                    }
                 }
             }
         }
     }
-
-
-
 }

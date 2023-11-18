@@ -229,24 +229,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107217551883611595}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80824af05415b674fb0346b1cea58c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlaces: 5
-  spacing: 14
+  numberOfPlaces: 2
+  spacing: 56
   envPrefabs:
   - prefab: {fileID: 3582821535978698289, guid: 8e476281854f28e488ec1a2d92ea9a89, type: 3}
-    weight: 1
+    weight: 2
   - prefab: {fileID: 8651764069361032575, guid: 6b11b137a8a6d974686f8a586edd19cb, type: 3}
-    weight: 1
-  - prefab: {fileID: 3303426608160129129, guid: ce2c62dbb6468cb46827b1fa7c148440, type: 3}
-    weight: 1
-  - prefab: {fileID: 3303426608160129129, guid: b6cb9351ca2ae8c4f8471fe66d216d55, type: 3}
-    weight: 1
+    weight: 2
+  - prefab: {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
+    weight: 3
   envTransform: {fileID: 0}
-  offsetY: 8
+  offsetY: 8.5
 --- !u!114 &-1694090202123332570
 MonoBehaviour:
   m_ObjectHideFlags: 0
