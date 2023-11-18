@@ -92,7 +92,7 @@ namespace Dialog
                     AddButton("Add new line", () =>
                     {
                         selectedDialogue.dialogue.lines.Add(new Line());
-                        serialized.FindProperty("lines").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                        serialized.FindProperty("lines").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count - 1);
                         serialized.ApplyModifiedProperties();
                     });
 
@@ -153,9 +153,9 @@ namespace Dialog
                         {
                             selectedDialogue.dialogue.choices.Add(selected as Choice);
 
-                            serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                            serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.choices.Count - 1);
                             serialized.FindProperty("choices")
-                                .GetArrayElementAtIndex(selectedDialogue.dialogue.lines.Count)
+                                .GetArrayElementAtIndex(selectedDialogue.dialogue.choices.Count - 1)
                                 .objectReferenceValue = selected;
 
                             serialized.ApplyModifiedProperties();
@@ -169,9 +169,9 @@ namespace Dialog
 
                         selectedDialogue.dialogue.choices.Add(choice);
 
-                        serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.lines.Count);
+                        serialized.FindProperty("choices").InsertArrayElementAtIndex(selectedDialogue.dialogue.choices.Count - 1);
                         serialized.FindProperty("choices")
-                            .GetArrayElementAtIndex(selectedDialogue.dialogue.lines.Count)
+                            .GetArrayElementAtIndex(selectedDialogue.dialogue.choices.Count - 1)
                             .objectReferenceValue = choice;
 
                         serialized.ApplyModifiedProperties();
@@ -218,7 +218,7 @@ namespace Dialog
 
             for (int i = 0; i < selectedDialogue.dialogue.choices.Count; i++)
             {
-                var choice = new SerializedObject(serializedChoices.GetArrayElementAtIndex(i).boxedValue as UnityEngine.Object);
+                var choice = new SerializedObject(selectedDialogue.dialogue.choices[i]);
 
                 var line = choice.FindProperty("line");
                 line.FindPropertyRelative("content").stringValue = selectedDialogue.dialogue.choices[i].line.content;
