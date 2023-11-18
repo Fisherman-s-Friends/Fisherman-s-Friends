@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 [System.Serializable]
 public class WeightedPrefab
@@ -14,14 +13,15 @@ public class TerrainController : MonoBehaviour
     [SerializeField] float scale;
     [SerializeField] float terrainHeightMultiplier;
     [SerializeField] AnimationCurve heightCurve;
-
-    [SerializeField] WeightedPrefab[] weightedPrefabs;
     [SerializeField] int objectsDensity;
+    [SerializeField] WeightedPrefab[] weightedPrefabs;
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
     private Transform terrainHolderTransform;
     private Camera mainCamera;
+    private Vector3 terrainPosition;
+    private Vector3 terrainSize;
 
     private void Start()
     {
@@ -42,6 +42,8 @@ public class TerrainController : MonoBehaviour
         terrainData = GenerateTerrainMesh(terrainData);
         terrain.terrainData = terrainData;
         terrainCollider.terrainData = terrainData;
+        terrainPosition = terrain.transform.position;
+        terrainSize = terrain.terrainData.size;
     }
 
     TerrainData GenerateTerrainMesh(TerrainData terrainData)
@@ -92,16 +94,12 @@ public class TerrainController : MonoBehaviour
 
     void RandomizeSmallObjects()
     {
-        TerrainData terrainData = terrain.terrainData;
-        Vector3 terrainSize = terrainData.size;
-        Vector3 terrainPosition = terrain.transform.position;
-
         float minX = terrainPosition.x / 3f;
         float maxX = (terrainPosition.x + terrainSize.x) / 3f;
         float minZ = terrainPosition.z;
         float maxZ = (terrainPosition.z + terrainSize.z) / 4.1f;
-
         float totalWeight = 0f;
+
         foreach (var weightedPrefab in weightedPrefabs)
         {
             totalWeight += weightedPrefab.weight;
@@ -114,45 +112,37 @@ public class TerrainController : MonoBehaviour
             float randomZ = RandomTowardsCam(minZ, maxZ);
 
             Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
-
             Vector3 viewportPoint = mainCamera.WorldToViewportPoint(smallObjPos);
 
             if (viewportPoint.x >= 0f && viewportPoint.x <= 1f && viewportPoint.y >= 0f && viewportPoint.y <= 1f)
             {
                 Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
                 RaycastHit hit;
+                if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane"))) { return; }
+                smallObjPos.y = hit.point.y;
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
+                int selectedIndex = -1;
+                float cumulativeWeight = 0f;
+
+                for (int j = 0; j < weightedPrefabs.Length; j++)
                 {
-                    smallObjPos.y = hit.point.y;
+                    cumulativeWeight += weightedPrefabs[j].weight;
 
-                    int selectedIndex = -1;
-                    float cumulativeWeight = 0f;
-
-                    for (int j = 0; j < weightedPrefabs.Length; j++)
+                    if (randomValue <= cumulativeWeight)
                     {
-                        cumulativeWeight += weightedPrefabs[j].weight;
-
-                        if (randomValue <= cumulativeWeight)
-                        {
-                            selectedIndex = j;
-                            break;
-                        }
-                    }
-
-                    if (selectedIndex != -1)
-                    {
-                        GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
-                        GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
-
-                        if (!weightedPrefabs[selectedIndex].noEffects)
-                        {
-                            float multiplier = Random.Range(0.5f, 1.2f);
-                            newPrefab.transform.localScale *= multiplier;
-                            newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                        }
+                        selectedIndex = j;
+                        break;
                     }
                 }
+
+                GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
+                GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+
+                if (weightedPrefabs[selectedIndex].noEffects) { return; }
+
+                float multiplier = Random.Range(0.6f, 1.2f);
+                newPrefab.transform.localScale *= multiplier;
+                newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
             }
         }
     }
