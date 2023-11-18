@@ -84,7 +84,7 @@ namespace Dialog
             choiceController.AskChoices(dialogue);
             yield return choiceController.WaitForSelection();
 
-            var selected = choiceController.SelectedChoice;
+            var selected = choiceController.selectedChoice;
 
             windowManager.ShowDialogBox();
 

@@ -10,7 +10,7 @@ namespace Dialog
     {
         private ChoiceRenderer choiceRenderer;
 
-        public Choice SelectedChoice { get; private set; }
+        public Choice selectedChoice { get; private set; }
 
         private void Awake()
         {
@@ -23,17 +23,17 @@ namespace Dialog
 
         public void AskChoices(Dialogue dialogue)
         {
-            SelectedChoice = null;
+            selectedChoice = null;
             choiceRenderer.RenderChoices(dialogue.choices, (choice) =>
             {
-                SelectedChoice = choice;
+                selectedChoice = choice;
                 choice.callback.Invoke();
             });
         }
 
         public IEnumerator WaitForSelection()
         {
-            while (!SelectedChoice)
+            while (!selectedChoice)
             {
                 yield return null;
             }
