@@ -7,6 +7,7 @@ public class WeightedPrefab
     public GameObject prefab;
     [Range(0, 10)]
     public float weight;
+    public bool noEffects;
 }
 public class TerrainController : MonoBehaviour
 {
@@ -143,14 +144,13 @@ public class TerrainController : MonoBehaviour
                     {
                         GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
                         GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
-                        Debug.Log(selectedIndex);
-                        float multiplier = Random.Range(0.5f, 1.2f);
-                        if (selectedIndex > 0)
+
+                        if (!weightedPrefabs[selectedIndex].noEffects)
                         {
+                            float multiplier = Random.Range(0.5f, 1.2f);
                             newPrefab.transform.localScale *= multiplier;
                             newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                         }
-
                     }
                 }
             }
