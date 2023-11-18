@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4134033059537960}
   - component: {fileID: 33397641056185990}
   - component: {fileID: 23625589218362466}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chest_01_hinge L 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4134033059537960
 Transform:
@@ -94,12 +94,12 @@ GameObject:
   - component: {fileID: 4772715501342442}
   - component: {fileID: 33431921013757072}
   - component: {fileID: 23933124250690768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chest_01_hinge L 002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4772715501342442
 Transform:
@@ -178,12 +178,12 @@ GameObject:
   - component: {fileID: 33396143761483858}
   - component: {fileID: 23034225508236706}
   - component: {fileID: 6109515224249591155}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chest_01_top L 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4059255130930934
 Transform:
@@ -283,12 +283,12 @@ GameObject:
   - component: {fileID: 33230591435383520}
   - component: {fileID: 23312000702924218}
   - component: {fileID: 3679125273629080956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chest_01_bottom L 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4467847866221570
 Transform:
@@ -387,12 +387,12 @@ GameObject:
   - component: {fileID: 4485459372184582}
   - component: {fileID: 95560238553576570}
   - component: {fileID: 8963265365177801232}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreasureChest_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4485459372184582
 Transform:
@@ -402,9 +402,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821737343011776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8, y: 2, z: 2.8}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4467847866221570}
@@ -412,7 +412,7 @@ Transform:
   - {fileID: 4772715501342442}
   - {fileID: 4059255130930934}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &95560238553576570
 Animator:
   serializedVersion: 5

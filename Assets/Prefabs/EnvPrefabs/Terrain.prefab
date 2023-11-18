@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3389939875458544982}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -156, y: -10, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131,23 +131,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  objectsDensity: 600
   weightedPrefabs:
-  - prefab: {fileID: 1821737343011776, guid: 08f65a3b4bea8a444b73430f0289240c, type: 3}
-    weight: 0.05
-    noEffects: 1
   - prefab: {fileID: 3356751432538110193, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
-    weight: 2.95
+    weight: 3.97
     noEffects: 0
   - prefab: {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
-    weight: 3.31
+    weight: 3.33
     noEffects: 0
   - prefab: {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
-    weight: 4.17
+    weight: 3.73
     noEffects: 0
   - prefab: {fileID: 1000010323523608, guid: cc320c720e3404b64a3373ad0fe2ccc9, type: 3}
-    weight: 1.37
+    weight: 1.75
     noEffects: 0
   - prefab: {fileID: 1000010427777878, guid: f6e85fd4a4a8e4650a9703c16601ee47, type: 3}
-    weight: 2.73
+    weight: 2.14
     noEffects: 0
-  objectsDensity: 400
+  - prefab: {fileID: 7553936730422188752, guid: 71d6b8fbae830534182543fcf96b9b7a, type: 3}
+    weight: 1.9
+    noEffects: 0

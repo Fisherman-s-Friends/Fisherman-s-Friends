@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 38335279662569219}
   - component: {fileID: 5090221214659139843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bush_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &38335279662569219
 Transform:
@@ -64,12 +64,12 @@ GameObject:
   - component: {fileID: 5086433498838087047}
   - component: {fileID: 4434211006889732880}
   - component: {fileID: 7058618356254715797}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bush_03_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5086433498838087047
 Transform:
@@ -147,12 +147,12 @@ GameObject:
   - component: {fileID: 9215513372443883872}
   - component: {fileID: 9139703928979508264}
   - component: {fileID: 6955585385951576129}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bush_03_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9215513372443883872
 Transform:

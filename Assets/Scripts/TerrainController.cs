@@ -18,6 +18,7 @@ public class TerrainController : MonoBehaviour
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
+    private TerrainData terrainData;
     private Transform terrainHolderTransform;
     private Camera mainCamera;
     private Vector3 terrainPosition;
@@ -30,15 +31,15 @@ public class TerrainController : MonoBehaviour
         terrainCollider = GetComponent<TerrainCollider>();
         mainCamera = Camera.main;
 
+        if (terrain == null || terrainCollider == null) { return; }
+
         GenerateTerrain();
-        RandomizeSmallObjects();
+        RandomizePrefabs();
     }
 
     public void GenerateTerrain()
     {
-        if (terrain == null || terrainCollider == null) { return; }
-
-        TerrainData terrainData = terrain.terrainData;
+        terrainData = terrain.terrainData;
         terrainData = GenerateTerrainMesh(terrainData);
         terrain.terrainData = terrainData;
         terrainCollider.terrainData = terrainData;
@@ -53,6 +54,7 @@ public class TerrainController : MonoBehaviour
 
         terrainData.size = new Vector3(terrainData.size.x, terrainHeightMultiplier, terrainData.size.z);
         terrainData.SetHeights(0, 0, GenerateHeights(width, length));
+
         return terrainData;
     }
 
@@ -80,70 +82,90 @@ public class TerrainController : MonoBehaviour
         return heightCurve.Evaluate(Mathf.PerlinNoise(xCoord, yCoord));
     }
 
-    float RandomTowardsCam(float min, float max)
+    float WeightedSpawningTowardsCam(float min, float max)
     {
         if (Random.value < 0.70f)
-        {
             return Random.Range(min, max / Random.Range(2f, 3f));
-        }
         else
-        {
             return Random.Range(min, max);
-        }
     }
 
-    void RandomizeSmallObjects()
+    void RandomizePrefabs()
     {
         float minX = terrainPosition.x / 3f;
         float maxX = (terrainPosition.x + terrainSize.x) / 3f;
         float minZ = terrainPosition.z;
         float maxZ = (terrainPosition.z + terrainSize.z) / 4.1f;
-        float totalWeight = 0f;
-
-        foreach (var weightedPrefab in weightedPrefabs)
-        {
-            totalWeight += weightedPrefab.weight;
-        }
+        float totalWeight = CalculateTotalWeight();
 
         for (int i = 0; i < objectsDensity; i++)
         {
             float randomValue = Random.value * totalWeight;
             float randomX = Random.Range(minX, maxX);
-            float randomZ = RandomTowardsCam(minZ, maxZ);
+            float randomZ = WeightedSpawningTowardsCam(minZ, maxZ);
 
             Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
             Vector3 viewportPoint = mainCamera.WorldToViewportPoint(smallObjPos);
 
             if (viewportPoint.x >= 0f && viewportPoint.x <= 1f && viewportPoint.y >= 0f && viewportPoint.y <= 1f)
             {
-                Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
-                RaycastHit hit;
-                if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane"))) { return; }
-                smallObjPos.y = hit.point.y;
+                AdjustPrefabPosition(ref smallObjPos);
 
-                int selectedIndex = -1;
-                float cumulativeWeight = 0f;
-
-                for (int j = 0; j < weightedPrefabs.Length; j++)
-                {
-                    cumulativeWeight += weightedPrefabs[j].weight;
-
-                    if (randomValue <= cumulativeWeight)
-                    {
-                        selectedIndex = j;
-                        break;
-                    }
-                }
-
+                int selectedIndex = SelectRandomPrefab(randomValue);
                 GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
-                GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
-
-                if (weightedPrefabs[selectedIndex].noEffects) { return; }
-
-                float multiplier = Random.Range(0.6f, 1.2f);
-                newPrefab.transform.localScale *= multiplier;
-                newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                InstantiatePrefab(smallObjPrefab, smallObjPos, selectedIndex);
             }
         }
+    }
+
+    float CalculateTotalWeight()
+    {
+        float totalWeight = 0f;
+
+        foreach (var weightedPrefab in weightedPrefabs)
+            totalWeight += weightedPrefab.weight;
+
+        return totalWeight;
+    }
+
+    void AdjustPrefabPosition(ref Vector3 smallObjPos)
+    {
+        Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
+        RaycastHit hit;
+
+        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
+            return;
+
+        smallObjPos.y = hit.point.y;
+    }
+
+    int SelectRandomPrefab(float randomValue)
+    {
+        int selectedIndex = -1;
+        float cumulativeWeight = 0f;
+
+        for (int j = 0; j < weightedPrefabs.Length; j++)
+        {
+            cumulativeWeight += weightedPrefabs[j].weight;
+
+            if (randomValue <= cumulativeWeight)
+            {
+                selectedIndex = j;
+                break;
+            }
+        }
+
+        return selectedIndex;
+    }
+
+    void InstantiatePrefab(GameObject smallObjPrefab, Vector3 smallObjPos, int selectedIndex)
+    {
+        GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+
+        if (weightedPrefabs[selectedIndex].noEffects) { return; }
+
+        float multiplier = Random.Range(0.6f, 1.2f);
+        newPrefab.transform.localScale *= multiplier;
+        newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
     }
 }
