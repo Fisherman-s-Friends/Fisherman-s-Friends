@@ -131,13 +131,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  objectsDensity: 600
+  objectsDensity: 500
   weightedPrefabs:
   - prefab: {fileID: 3356751432538110193, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
     weight: 3.97
     noEffects: 0
   - prefab: {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
-    weight: 3.33
+    weight: 3.89
     noEffects: 0
   - prefab: {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
     weight: 3.73
