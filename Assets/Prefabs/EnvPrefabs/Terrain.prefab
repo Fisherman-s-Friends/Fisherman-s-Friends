@@ -133,15 +133,21 @@ MonoBehaviour:
     m_RotationOrder: 4
   weightedPrefabs:
   - prefab: {fileID: 1821737343011776, guid: 08f65a3b4bea8a444b73430f0289240c, type: 3}
-    weight: 0.1
+    weight: 0.05
+    noEffects: 1
   - prefab: {fileID: 3356751432538110193, guid: ffbddc4ef9676cc419e81e06aaa836d8, type: 3}
     weight: 2.95
+    noEffects: 0
   - prefab: {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
     weight: 3.31
+    noEffects: 0
   - prefab: {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
     weight: 4.17
+    noEffects: 0
   - prefab: {fileID: 1000010323523608, guid: cc320c720e3404b64a3373ad0fe2ccc9, type: 3}
     weight: 1.37
+    noEffects: 0
   - prefab: {fileID: 1000010427777878, guid: f6e85fd4a4a8e4650a9703c16601ee47, type: 3}
     weight: 2.73
-  objectsDensity: 500
+    noEffects: 0
+  objectsDensity: 400
