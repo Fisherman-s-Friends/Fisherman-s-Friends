@@ -218,7 +218,7 @@ namespace Dialog
 
             for (int i = 0; i < selectedDialogue.dialogue.choices.Count; i++)
             {
-                var choice = new SerializedObject(selectedDialogue.dialogue.choices[i]);
+                var choice = new SerializedObject(serializedChoices.GetArrayElementAtIndex(i).objectReferenceValue as Choice);
 
                 var line = choice.FindProperty("line");
                 line.FindPropertyRelative("content").stringValue = selectedDialogue.dialogue.choices[i].line.content;
@@ -228,6 +228,8 @@ namespace Dialog
                 choice.FindProperty("displayText").stringValue = selectedDialogue.dialogue.choices[i].displayText;
                 choice.FindProperty("responseDialog").objectReferenceValue =
                     selectedDialogue.dialogue.choices[i].responseDialog;
+
+                EditorUtility.SetDirty(choice.targetObject);
                 choice.ApplyModifiedProperties();
             }
 

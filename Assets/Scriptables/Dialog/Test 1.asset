@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Test 1
   m_EditorClassIdentifier: 
   line:
-    speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
-    content: dsadsa
-  display: Test Choice
-  response: {fileID: 11400000, guid: 4e1b5511d3201c848a48121d19a8ddb7, type: 2}
+    speaker: {fileID: 0}
+    content: You hear me
+  displayText: Fuck me sideways
+  responseDialog: {fileID: 11400000, guid: 4e1b5511d3201c848a48121d19a8ddb7, type: 2}
   callback:
     m_PersistentCalls:
       m_Calls: []
