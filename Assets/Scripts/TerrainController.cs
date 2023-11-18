@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 [System.Serializable]
 public class WeightedPrefab
 {
     public GameObject prefab;
     [Range(0, 10)]
-    public int weight;
+    public float weight;
 }
 public class TerrainController : MonoBehaviour
 {
@@ -13,10 +14,8 @@ public class TerrainController : MonoBehaviour
     [SerializeField] float terrainHeightMultiplier;
     [SerializeField] AnimationCurve heightCurve;
 
-    [SerializeField] WeightedPrefab[] smallObjects;
-    [SerializeField] int densitySmallObjects;
-    [SerializeField] WeightedPrefab[] bigObjectsPrefabs;
-    [SerializeField] int densityBigObjects;
+    [SerializeField] WeightedPrefab[] weightedPrefabs;
+    [SerializeField] int objectsDensity;
 
     private Terrain terrain;
     private TerrainCollider terrainCollider;
@@ -102,12 +101,12 @@ public class TerrainController : MonoBehaviour
         float maxZ = (terrainPosition.z + terrainSize.z) / 4.1f;
 
         float totalWeight = 0f;
-        foreach (var weightedPrefab in smallObjects)
+        foreach (var weightedPrefab in weightedPrefabs)
         {
             totalWeight += weightedPrefab.weight;
         }
 
-        for (int i = 0; i < densitySmallObjects; i++)
+        for (int i = 0; i < objectsDensity; i++)
         {
             float randomValue = Random.value * totalWeight;
             float randomX = Random.Range(minX, maxX);
@@ -129,9 +128,9 @@ public class TerrainController : MonoBehaviour
                     int selectedIndex = -1;
                     float cumulativeWeight = 0f;
 
-                    for (int j = 0; j < smallObjects.Length; j++)
+                    for (int j = 0; j < weightedPrefabs.Length; j++)
                     {
-                        cumulativeWeight += smallObjects[j].weight;
+                        cumulativeWeight += weightedPrefabs[j].weight;
 
                         if (randomValue <= cumulativeWeight)
                         {
@@ -142,8 +141,15 @@ public class TerrainController : MonoBehaviour
 
                     if (selectedIndex != -1)
                     {
-                        GameObject smallObjPrefab = smallObjects[selectedIndex].prefab;
-                        Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+                        GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
+                        GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
+                        Debug.Log(selectedIndex);
+                        float multiplier = Random.Range(0.5f, 1.2f);
+                        if (selectedIndex > 0)
+                        {
+                            newPrefab.transform.localScale *= multiplier;
+                            newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                        }
 
                     }
                 }
