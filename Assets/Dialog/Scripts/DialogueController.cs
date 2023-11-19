@@ -12,9 +12,6 @@ namespace Dialog
         typeof(IWriter))]
     public class DialogueController : MonoBehaviour, IDialogueController
     {
-
-        [SerializeField] private Dialogue test;
-
         private IDialogWindowManager windowManager;
         private IDialogInput input;
         private IWriter writer;
