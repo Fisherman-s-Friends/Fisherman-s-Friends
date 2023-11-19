@@ -2734,6 +2734,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
+      propertyPath: weightedPrefabs.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
+    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
+      propertyPath: weightedPrefabs.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 5707813131339405077, guid: b995a96a7ca36d04b851e46870b5aadf, type: 3}
+    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
+      propertyPath: weightedPrefabs.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 5202732821079448320, guid: cebfacc247a640945a2c30b442202fca, type: 3}
+    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
+      propertyPath: weightedPrefabs.Array.data[2].weight
+      value: 0.48
+      objectReference: {fileID: 0}
     - target: {fileID: 3389939875458544982, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_Name
       value: Terrain
