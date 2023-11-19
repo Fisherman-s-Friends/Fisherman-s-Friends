@@ -244,7 +244,7 @@ MonoBehaviour:
   - prefab: {fileID: 5707813131339405077, guid: b995a96a7ca36d04b851e46870b5aadf, type: 3}
     weight: 3
   envTransform: {fileID: 0}
-  offsetY: 9.2
+  offsetY: 10
 --- !u!114 &-1694090202123332570
 MonoBehaviour:
   m_ObjectHideFlags: 0
