@@ -1803,8 +1803,8 @@ Transform:
   m_GameObject: {fileID: 1304760123}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.339999, y: 7.105011, z: 2.3916726}
-  m_LocalScale: {x: 1.7416759, y: 1, z: 1}
+  m_LocalPosition: {x: 15, y: 7, z: 2.4}
+  m_LocalScale: {x: 1.8, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 365205446}
@@ -2696,15 +2696,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 381806818178328559, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -156
+      value: -158
       objectReference: {fileID: 0}
     - target: {fileID: 381806818178328559, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 381806818178328559, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 381806818178328559, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2733,22 +2733,6 @@ PrefabInstance:
     - target: {fileID: 381806818178328559, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
-      propertyPath: weightedPrefabs.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 8903058273634794869, guid: f1fc5bb90ac285e4486771552d63bcb8, type: 3}
-    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
-      propertyPath: weightedPrefabs.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 5707813131339405077, guid: b995a96a7ca36d04b851e46870b5aadf, type: 3}
-    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
-      propertyPath: weightedPrefabs.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 5202732821079448320, guid: cebfacc247a640945a2c30b442202fca, type: 3}
-    - target: {fileID: 799601178519438994, guid: ba56046172c77014380858c766f1ecf3, type: 3}
-      propertyPath: weightedPrefabs.Array.data[2].weight
-      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3389939875458544982, guid: ba56046172c77014380858c766f1ecf3, type: 3}
       propertyPath: m_Name

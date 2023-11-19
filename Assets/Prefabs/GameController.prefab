@@ -241,10 +241,10 @@ MonoBehaviour:
     weight: 2
   - prefab: {fileID: 8651764069361032575, guid: 6b11b137a8a6d974686f8a586edd19cb, type: 3}
     weight: 2
-  - prefab: {fileID: 38335279662140195, guid: a5a1e50c48c5a3d44bce2c4f8aec91e3, type: 3}
+  - prefab: {fileID: 5707813131339405077, guid: b995a96a7ca36d04b851e46870b5aadf, type: 3}
     weight: 3
   envTransform: {fileID: 0}
-  offsetY: 8.5
+  offsetY: 9.2
 --- !u!114 &-1694090202123332570
 MonoBehaviour:
   m_ObjectHideFlags: 0

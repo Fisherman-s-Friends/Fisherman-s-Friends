@@ -82,14 +82,6 @@ public class TerrainController : MonoBehaviour
         return heightCurve.Evaluate(Mathf.PerlinNoise(xCoord, yCoord));
     }
 
-    float WeightedSpawningTowardsCam(float min, float max)
-    {
-        if (Random.value < 0.70f)
-            return Random.Range(min, max / Random.Range(2f, 3f));
-        else
-            return Random.Range(min, max);
-    }
-
     void RandomizePrefabs()
     {
         float minX = terrainPosition.x / 3f;
@@ -104,18 +96,43 @@ public class TerrainController : MonoBehaviour
             float randomX = Random.Range(minX, maxX);
             float randomZ = WeightedSpawningTowardsCam(minZ, maxZ);
 
-            Vector3 smallObjPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
-            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(smallObjPos);
+            Vector3 objectPos = new Vector3(randomX, terrainPosition.y + terrainSize.y, randomZ);
+            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(objectPos);
 
             if (viewportPoint.x >= 0f && viewportPoint.x <= 1f && viewportPoint.y >= 0f && viewportPoint.y <= 1f)
             {
-                AdjustPrefabPosition(ref smallObjPos);
+                Ray ray = new Ray(objectPos + Vector3.up, Vector3.down);
+                RaycastHit hit;
+
+                if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
+                    return;
+
+                objectPos.y = hit.point.y;
 
                 int selectedIndex = SelectRandomPrefab(randomValue);
-                GameObject smallObjPrefab = weightedPrefabs[selectedIndex].prefab;
-                InstantiatePrefab(smallObjPrefab, smallObjPos, selectedIndex);
+                GameObject objectPrefab = weightedPrefabs[selectedIndex].prefab;
+                InstantiatePrefab(objectPrefab, objectPos, selectedIndex);
             }
         }
+    }
+
+    void InstantiatePrefab(GameObject objectPrefab, Vector3 objectPos, int selectedIndex)
+    {
+        GameObject newPrefab = Instantiate(objectPrefab, objectPos, Quaternion.identity, terrainHolderTransform);
+        Debug.Log("Prefab for the environment was spawned!");
+        if (weightedPrefabs[selectedIndex].noEffects) { return; }
+
+        float multiplier = Random.Range(0.6f, 1.2f);
+        newPrefab.transform.localScale *= multiplier;
+        newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+    }
+
+    float WeightedSpawningTowardsCam(float min, float max)
+    {
+        if (Random.value < 0.70f)
+            return Random.Range(min, max / Random.Range(2f, 3f));
+        else
+            return Random.Range(min, max);
     }
 
     float CalculateTotalWeight()
@@ -126,17 +143,6 @@ public class TerrainController : MonoBehaviour
             totalWeight += weightedPrefab.weight;
 
         return totalWeight;
-    }
-
-    void AdjustPrefabPosition(ref Vector3 smallObjPos)
-    {
-        Ray ray = new Ray(smallObjPos + Vector3.up, Vector3.down);
-        RaycastHit hit;
-
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
-            return;
-
-        smallObjPos.y = hit.point.y;
     }
 
     int SelectRandomPrefab(float randomValue)
@@ -156,16 +162,5 @@ public class TerrainController : MonoBehaviour
         }
 
         return selectedIndex;
-    }
-
-    void InstantiatePrefab(GameObject smallObjPrefab, Vector3 smallObjPos, int selectedIndex)
-    {
-        GameObject newPrefab = Instantiate(smallObjPrefab, smallObjPos, Quaternion.identity, terrainHolderTransform);
-
-        if (weightedPrefabs[selectedIndex].noEffects) { return; }
-
-        float multiplier = Random.Range(0.6f, 1.2f);
-        newPrefab.transform.localScale *= multiplier;
-        newPrefab.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
     }
 }
