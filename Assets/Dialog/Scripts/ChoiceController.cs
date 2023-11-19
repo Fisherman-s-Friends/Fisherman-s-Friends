@@ -8,7 +8,7 @@ namespace Dialog
     [RequireComponent(typeof(IChoiceRenderer))]
     public class ChoiceController : MonoBehaviour, IChoiceController
     {
-        private ChoiceRenderer choiceRenderer;
+        private IChoiceRenderer choiceRenderer;
 
         public Choice selectedChoice { get; private set; }
 
