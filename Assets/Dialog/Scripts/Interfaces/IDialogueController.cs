@@ -10,5 +10,10 @@ namespace Dialog
         /// <param name="dialogue">Dialogue to start</param>
         /// <returns></returns>
         IEnumerator StartDialog(Dialogue dialogue);
+
+        /// <summary>
+        /// Ends any dialog currently on going
+        /// </summary>
+        void EndDialog();
     }
 }
