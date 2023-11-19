@@ -107,8 +107,9 @@ public class TerrainController : MonoBehaviour
                 if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
                     return;
 
-                objectPos.y = hit.point.y;
+                float prefabYOffset = 0.15f;
 
+                objectPos.y = hit.point.y - prefabYOffset;
                 int selectedIndex = SelectRandomPrefab(randomValue);
                 GameObject objectPrefab = weightedPrefabs[selectedIndex].prefab;
                 InstantiatePrefab(objectPrefab, objectPos, selectedIndex);
@@ -120,6 +121,7 @@ public class TerrainController : MonoBehaviour
     {
         GameObject newPrefab = Instantiate(objectPrefab, objectPos, Quaternion.identity, terrainHolderTransform);
         Debug.Log("Prefab for the environment was spawned!");
+
         if (weightedPrefabs[selectedIndex].noEffects) { return; }
 
         float multiplier = Random.Range(0.6f, 1.2f);
