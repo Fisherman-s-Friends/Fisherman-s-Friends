@@ -107,7 +107,7 @@ public class TerrainController : MonoBehaviour
                 if (!Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("GroundPlane")))
                     return;
 
-                float prefabYOffset = 0.15f;
+                float prefabYOffset = 0.05f;
 
                 objectPos.y = hit.point.y - prefabYOffset;
                 int selectedIndex = SelectRandomPrefab(randomValue);
