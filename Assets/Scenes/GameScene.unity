@@ -2771,6 +2771,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 728654497}
+    - target: {fileID: 7693867995864395086, guid: 11d40b166e56d314f91e0ec9271f0902, type: 3}
+      propertyPath: splashParticles
+      value: 
+      objectReference: {fileID: 3786076059509810050, guid: 62682b29913fc2149a8d10053dc3d67f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
