@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class BobberScript : MonoBehaviour
 {
     [SerializeField] GameObject hook, gameController;
-
+    
     private GameObject newHook;
     private Rigidbody bobberRb;
     private PlayerInput playerInputSwap;
