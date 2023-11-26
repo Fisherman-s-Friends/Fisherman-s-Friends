@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3092,7 +3092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6972266, y: 0.85873824}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5, y: 0.6000061}
+  m_AnchoredPosition: {x: -1.5, y: 0.5999756}
   m_SizeDelta: {x: 4, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607794727
@@ -4663,6 +4663,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5941160659855499257, guid: 2673e872065ff8040ad4f5402bf70f24, type: 3}
+      propertyPath: intro
+      value: 
+      objectReference: {fileID: 11400000, guid: 88c599ae4ff34b7449d6de606c5f08ad, type: 2}
     - target: {fileID: 8215696672499406995, guid: 2673e872065ff8040ad4f5402bf70f24, type: 3}
       propertyPath: m_Name
       value: SceneManager
@@ -5929,7 +5933,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 921957137238089007, guid: 9b0d190b4c3355b4388fec75262e5071, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.166809
+      value: -5.16687
       objectReference: {fileID: 0}
     - target: {fileID: 921957137238089007, guid: 9b0d190b4c3355b4388fec75262e5071, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6078,6 +6082,10 @@ PrefabInstance:
     - target: {fileID: 5562128051301361769, guid: 9b0d190b4c3355b4388fec75262e5071, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403945122972457738, guid: 9b0d190b4c3355b4388fec75262e5071, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.0149536
       objectReference: {fileID: 0}
     - target: {fileID: 7963661017270300844, guid: 9b0d190b4c3355b4388fec75262e5071, type: 3}
       propertyPath: m_AnchorMax.x

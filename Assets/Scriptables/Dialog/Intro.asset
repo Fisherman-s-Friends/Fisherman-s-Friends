@@ -13,11 +13,29 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   lines:
-  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
-    content: dsadsad
-  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
-    content: reee
   - speaker: {fileID: 0}
-    content: "k\xF6sdfkj\xF6"
-  choices:
-  - {fileID: 11400000, guid: f2ec34488ffc88f48879279a15ef2a2e, type: 2}
+    content: Fianlly time to retire
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: Not so fast rawr!
+  - speaker: {fileID: 0}
+    content: What in the...
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: 'Rawr! You are going fishing in my waters :3. You need a license.
+
+      You
+      see, Imma a business shark rawr!'
+  - speaker: {fileID: 0}
+    content: ...
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: 'I smell you have no fish..
+
+      You buy license with debt!
+
+      Rawr!'
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: 'License cost 100 fishes.
+
+      You need to payback 5 fishes each night.
+
+      Rawr!'
+  choices: []

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7917b69129d07b4f8f418f5a39c154e, type: 3}
+  m_Name: IntroMenu
+  m_EditorClassIdentifier: 
+  lines:
+  - speaker: {fileID: 11400000, guid: a1327decf85425b4e909f4c3385c5334, type: 2}
+    content: Anything else rawr?
+  choices:
+  - {fileID: 11400000, guid: 08746fbf9d61ed54999db9066a53a185, type: 2}
+  - {fileID: 11400000, guid: 5637e792a9fabeb4a9fecef80dff4cce, type: 2}
+  - {fileID: 11400000, guid: 0919a778e73b48e439fbe40a366794f0, type: 2}

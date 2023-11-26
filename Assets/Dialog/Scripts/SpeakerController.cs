@@ -9,12 +9,12 @@ namespace Dialog
     {
         private Image speakerImage;
 
-        private void Start()
+        private void Awake()
         {
             if (!TryGetComponent(out speakerImage))
             {
                 throw new ArgumentNullException("speaker",
-                    "Couldn't find IDialogWindowManager attached to the game object");
+                    "Couldn't find Image attached to the game object");
             }
         }
 
