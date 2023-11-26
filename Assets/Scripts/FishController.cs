@@ -10,26 +10,21 @@ using Vector3 = UnityEngine.Vector3;
 
 public class FishController : MonoBehaviour
 {
-    [SerializeField]
-    public Vector3 fishBoundingBoxOffset;
+    [SerializeField] public Vector3 fishBoundingBoxOffset;
 
-    [SerializeField]
-    public Vector3 fishBoundingBoxSize;
+    [SerializeField] public Vector3 fishBoundingBoxSize;
 
-    [SerializeField]
-    private FishSpawnObject[] fishObjects;
+    [SerializeField] private FishSpawnObject[] fishObjects;
 
-    [SerializeField]
-    private float timeToSpawn;
+    [SerializeField] private float timeToSpawn;
 
-    [SerializeField]
-    private float currentTimeToSpawn;
+    [SerializeField] private float currentTimeToSpawn;
 
-    [SerializeField]
-    private int countFish;
+    [SerializeField] private int countFish;
 
-    [SerializeField]
-    private int maxFish;
+    [SerializeField] private int maxFish;
+    private int shark = 0;
+    private NightTimer nightTimer;
 
     private Transform fishHolderTransform;
 
@@ -39,6 +34,8 @@ public class FishController : MonoBehaviour
     void Start()
     {
         fishHolderTransform = new GameObject("FishHolder").transform;
+        nightTimer = GameObject.Find("GameController").GetComponent<NightTimer>();
+        nightTimer.timer60.AddListener(spawnshark);
     }
 
     // Update is called once per frame
@@ -49,6 +46,7 @@ public class FishController : MonoBehaviour
             SpawnFish();
             currentTimeToSpawn = timeToSpawn;
         }
+
         currentTimeToSpawn -= Time.deltaTime;
     }
 
@@ -97,6 +95,7 @@ public class FishController : MonoBehaviour
         {
             point.y += point.y < fishBoundingBoxOffset.y ? moveAmount : -moveAmount;
         }
+
         return point;
     }
 
@@ -105,7 +104,8 @@ public class FishController : MonoBehaviour
     /// </summary>
     private void SpawnFish()
     {
-        var spawnObject = RandomUtil.GetRandomElemntFromWeightedList(fishObjects.Select(f => new Tuple<FishSpawnObject, float>(f, f.weight * 0.1f)).ToList());
+        var spawnObject = RandomUtil.GetRandomElemntFromWeightedList(fishObjects
+            .Select(f => new Tuple<FishSpawnObject, float>(f, f.weight * 0.1f)).ToList());
 
         for (int i = 0; i < spawnObject.amount; i++)
         {
@@ -124,6 +124,18 @@ public class FishController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + fishBoundingBoxOffset, fishBoundingBoxSize);
     }
 
+    void spawnshark(float time)
+    {
+        if (shark < 4)
+        {
+            var shark = Instantiate(fishObjects[4].prefab,
+                new Vector3(CalculateX(), Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.y,
+                    Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.z), transform.rotation, fishHolderTransform);
+            fishList.Add(shark);
+            shark.GetComponent<FishScript>().Controller = this;
+        }
+    }
+
     private float CalculateX()
     {
         float result = fishBoundingBoxSize.x;
@@ -136,7 +148,6 @@ public class FishController : MonoBehaviour
     struct FishPrefabs
     {
         public GameObject prefab;
-        [Range(1, 10)]
-        public int weight;
+        [Range(1, 10)] public int weight;
     }
 }
