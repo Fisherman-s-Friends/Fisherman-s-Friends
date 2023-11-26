@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             mgScript.GetFishBehaviour(closestFish.GetComponent<FishScript>().fishBehaviour);
             minigameObj.SetActive(true);
+            mgScript.fishCaught = closestFish;
             gameStarted = false;
         }
     }

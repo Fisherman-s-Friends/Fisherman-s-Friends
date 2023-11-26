@@ -7,6 +7,7 @@ public class MinigameScript : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] FishBehaviour fishBehaviour;
     [SerializeField] PlayerController playerController;
+    [SerializeField] GameObject popUp;
 
     private RectTransform fishIconTrans, catchAreaTrans, pivotPointTrans;
     private Vector3 pivotPoint;
@@ -14,9 +15,10 @@ public class MinigameScript : MonoBehaviour
     private float fishSmoothness, fishSpeedMultiplier, fishSliderSize;
     private float fishPosition, fishDestination, fishTimer, fishSpeed, sliderGainSpeed = 15f;
     private int noPointsDistance, halfPointsDistance, areaDistance;
-
+    public GameObject fishCaught;
     void Start()
     {
+
         fishIconTrans = fishIconObj.GetComponent<RectTransform>();
         catchAreaTrans = catchArea.GetComponent<RectTransform>();
         pivotPointTrans = pivotPointObj.gameObject.GetComponent<RectTransform>();
@@ -35,6 +37,11 @@ public class MinigameScript : MonoBehaviour
         if (slider.value == fishSliderSize)
         {
             // here you could add the splash screen for the fish you caught
+            popUp.SetActive(true);
+            GameObject fishModel = popUp.transform.Find("FishSpin").gameObject;
+            fishModel.GetComponent<MeshFilter>().sharedMesh = fishCaught.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+        //  fishModel.GetComponent<MeshRenderer>().material = fishCaught.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
+
             playerController.ResetEverything();
         }
 
