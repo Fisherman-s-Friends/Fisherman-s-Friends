@@ -1,10 +1,13 @@
 using System;
+using System.Data.SqlTypes;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SessionController : MonoBehaviour
 {
+    private SessionController sessionController;
     static private GameObject sessionObject;
 
     [SerializeField] private int loan;
@@ -16,6 +19,7 @@ public class SessionController : MonoBehaviour
     [SerializeField] private int DayCount;
     void Start()
     {
+        sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
         if (sessionObject != null)
         {
             Destroy(this);
@@ -31,9 +35,13 @@ public class SessionController : MonoBehaviour
 
     void Update()
     {
-
+       
     }
-
+    public void RestartGame()
+    {
+        loan = 105;
+        money = 0;
+    }
     public void AddMoney(int amount)
     {
         money += amount;
@@ -43,16 +51,19 @@ public class SessionController : MonoBehaviour
     public void NextDay()
     {
         money -= paybackRate;
+       
         if (money < 0)
         {
-            throw new NotImplementedException("Not enough money, you lose");
-            //return;
+            // throw new NotImplementedException("Not enough money, you lose");
+            RestartGame();
+            StartCoroutine(SceneController.ChangeScene(Scenes.Lose));
         }
+    
         loan -= paybackRate;
         if (loan <= 0)
         {
-            throw new NotImplementedException("Loan payed, you win");
-            //return;
+           // throw new NotImplementedException("Loan payed, you win");
+            StartCoroutine(SceneController.ChangeScene(Scenes.Winn));
         }
 
         UpdateText();
