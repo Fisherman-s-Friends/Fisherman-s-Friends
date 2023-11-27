@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8784801913461706646}
   - component: {fileID: 6257030878461727376}
   - component: {fileID: -1694090202123332570}
+  - component: {fileID: 7141773975891228220}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -262,3 +263,32 @@ MonoBehaviour:
   sky: {fileID: 0}
   light: {fileID: 0}
   debug: 0
+  timer60:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7738259191278337774}
+        m_TargetAssemblyTypeName: FishController, Assembly-CSharp
+        m_MethodName: SpawnShark
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7141773975891228220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107217551883611595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38472b305a202a47bfd5683f8a579f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashScreen: {fileID: 0}
+  secondsToWaitForFish: 3

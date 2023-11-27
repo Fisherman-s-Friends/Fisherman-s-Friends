@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -23,7 +20,9 @@ public class FishController : MonoBehaviour
     [SerializeField] private int countFish;
 
     [SerializeField] private int maxFish;
-    private int shark = 0;
+
+    private int sharkCount = 0;
+
     private NightTimer nightTimer;
 
     private Transform fishHolderTransform;
@@ -35,7 +34,7 @@ public class FishController : MonoBehaviour
     {
         fishHolderTransform = new GameObject("FishHolder").transform;
         nightTimer = GameObject.Find("GameController").GetComponent<NightTimer>();
-        nightTimer.timer60.AddListener(spawnshark);
+        nightTimer.timer60.AddListener(SpawnShark);
     }
 
     // Update is called once per frame
@@ -124,15 +123,16 @@ public class FishController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + fishBoundingBoxOffset, fishBoundingBoxSize);
     }
 
-    void spawnshark(float time)
+    public void SpawnShark()
     {
-        if (shark < 4)
+        if (sharkCount < 1)
         {
             var shark = Instantiate(fishObjects[4].prefab,
                 new Vector3(CalculateX(), Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.y,
                     Random.Range(-0.5f, 0.5f) * fishBoundingBoxSize.z), transform.rotation, fishHolderTransform);
             fishList.Add(shark);
             shark.GetComponent<FishScript>().Controller = this;
+            sharkCount++;
         }
     }
 
