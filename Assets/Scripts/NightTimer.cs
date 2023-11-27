@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 
 public class NightTimer : MonoBehaviour
@@ -19,6 +21,8 @@ public class NightTimer : MonoBehaviour
     private bool debug = false;
 
     private bool returnHomeCalled = false;
+    
+    public UnityEvent<float> timer60;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +48,10 @@ public class NightTimer : MonoBehaviour
         skyMaterial.mainTextureOffset = new Vector2(0.3f * Mathf.Pow((1 - timeLeft / sessionLengthInSeconds), 2), 0);
         light.intensity = Mathf.Clamp(Mathf.Pow((timeLeft / sessionLengthInSeconds), 0.5f), 0.5f, 1);
         light.color = Color.Lerp(Color.white, new Color(200f / 255, 111f / 255, 0), 1 - timeLeft / sessionLengthInSeconds);
-
+        if (timeLeft < 60 && timeLeft > 59.9f)
+        {
+            if(timer60 != null) timer60.Invoke(timeLeft);
+        }
     }
 
     private void ReturnHome()
