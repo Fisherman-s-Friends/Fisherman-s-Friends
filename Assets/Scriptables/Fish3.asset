@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7dcfcd0f59e788439a2869aef2cd4ae, type: 3}
   m_Name: Fish3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5097173858673144793, guid: bd6ec9893bc6fe743a42af90f444adb7, type: 3}
+  prefab: {fileID: 1152135729087072480, guid: ad32311d73b9b1a47b4705a051360cc9, type: 3}
   amount: 1
   weight: 2
   Limit: 0
