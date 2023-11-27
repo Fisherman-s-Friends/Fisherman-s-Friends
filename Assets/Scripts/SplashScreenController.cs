@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SplashScreenController : MonoBehaviour
 {
     public GameObject splashScreen;
+
     public float secondsToWaitForFish;
+
     private PlayerController playerController;
 
     private void Start()
