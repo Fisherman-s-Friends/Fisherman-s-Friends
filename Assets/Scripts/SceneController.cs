@@ -26,5 +26,7 @@ public static class SceneController
  public enum Scenes
  {
      Home = 0,
-     Play = 1
+     Play = 1,
+     Lose = 2,
+     Winn = 3,
 }

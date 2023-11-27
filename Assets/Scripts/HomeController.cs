@@ -3,6 +3,7 @@ using UnityEngine;
 public class HomeController : MonoBehaviour
 {
     private SessionController sessionController;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,4 +31,5 @@ public class HomeController : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit the game");
     }
+    
 }
