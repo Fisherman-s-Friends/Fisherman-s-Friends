@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657677, g: 0.49641275, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657636, g: 0.49641252, b: 0.5748182, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -347,7 +347,6 @@ GameObject:
   m_Component:
   - component: {fileID: 340866447}
   - component: {fileID: 340866445}
-  - component: {fileID: 340866446}
   m_Layer: 0
   m_Name: Canvas Camera
   m_TagString: MainCamera
@@ -406,14 +405,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &340866446
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340866444}
-  m_Enabled: 1
 --- !u!4 &340866447
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,6 +1051,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6bf2e68ed84a647b9e6549718719a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &728654502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728654497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38472b305a202a47bfd5683f8a579f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashScreen: {fileID: 1828819814}
+  secondsToWaitForFish: 3
 --- !u!1001 &749381427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2885,7 +2890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf2f84a38fb2a041ad0d13d0cd920cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 50
+  rotationSpeed: 100
 --- !u!1 &2116176685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3132,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5107217551883611595, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 728654502}
   m_SourcePrefab: {fileID: 100100000, guid: bf4123e0698bd484884fce4ac5fa8ae4, type: 3}
 --- !u!1001 &7203532393236506785
 PrefabInstance:

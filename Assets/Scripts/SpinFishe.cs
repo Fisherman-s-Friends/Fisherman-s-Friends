@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpinFishe : MonoBehaviour
 {
     public float rotationSpeed = 100f;
-    // Start is called before the first frame update
-    void Start()
+
+    private Vector3 startScale;
+
+    void Awake()
     {
-        
+        startScale = transform.localScale;
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        transform.localScale = startScale;
+    }
+
     void Update()
     {
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
