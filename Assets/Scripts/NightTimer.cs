@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class NightTimer : MonoBehaviour
 {

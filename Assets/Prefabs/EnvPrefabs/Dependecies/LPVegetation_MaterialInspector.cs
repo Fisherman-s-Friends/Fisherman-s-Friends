@@ -1,7 +1,7 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor {
     public class LPVegetation_MaterialInspector : ShaderGUI {
 
         MaterialProperty metallic = null;
@@ -138,4 +138,5 @@ namespace UnityEditor {
             EditorGUILayout.EndHorizontal();
         }
     }
-}
+
+#endif

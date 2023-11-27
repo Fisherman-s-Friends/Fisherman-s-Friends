@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishWinDespawner : MonoBehaviour
@@ -8,11 +6,5 @@ public class FishWinDespawner : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, 10);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
