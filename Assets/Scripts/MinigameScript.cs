@@ -38,6 +38,7 @@ public class MinigameScript : MonoBehaviour
         {
             // here you could add the splash screen for the fish you caught
             popUp.SetActive(true);
+            
             GameObject fishModel = popUp.transform.Find("FishSpin").gameObject;
             fishModel.GetComponent<MeshFilter>().sharedMesh = fishCaught.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
         //  fishModel.GetComponent<MeshRenderer>().material = fishCaught.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
