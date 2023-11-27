@@ -1,6 +1,5 @@
 using System;
-using System.Data.SqlTypes;
-using Unity.VisualScripting;
+using Dialog;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +16,9 @@ public class SessionController : MonoBehaviour
     private int paybackRate;
 
     [SerializeField] private int DayCount;
+
+    [SerializeField] private Dialogue intro;
+
     void Start()
     {
         sessionController = GameObject.Find("SceneManager").GetComponent<SessionController>();
@@ -31,6 +33,8 @@ public class SessionController : MonoBehaviour
 
         UpdateText();
         SceneManager.sceneLoaded += onSceneLoaded;
+
+        StartCoroutine(GameObject.FindGameObjectWithTag("DialogUi")?.GetComponent<DialogueController>()?.StartDialog(intro));
     }
 
     void Update()
